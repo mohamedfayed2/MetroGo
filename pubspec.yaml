@@ -1,0 +1,43 @@
+name: metro_app
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.6.1 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  get: ^4.7.2
+  smooth_page_indicator: ^1.2.1
+  lottie: ^2.6.0
+  flutter_svg: ^2.0.10
+  flutter_launcher_icons: ^0.13.1
+  lucide_icons: any
+  font_awesome_flutter: any
+  eva_icons_flutter: ^3.0.2
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/lottie/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/AppIcons/android/mipmap-xxxhdpi/ic_launcher.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/AppIcons/android/mipmap-xxxhdpi/ic_launcher.png"
+
+flutter_launcher_name:
+  name: "MetroGo"
