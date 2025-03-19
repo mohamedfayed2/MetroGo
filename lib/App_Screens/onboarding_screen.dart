@@ -3,7 +3,7 @@ import 'package:metro_app/Introduction_Screens/intro_page_1.dart';
 import 'package:metro_app/Introduction_Screens/intro_page_2.dart';
 import 'package:metro_app/Introduction_Screens/intro_page_3.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'App_Screens/HomePage.dart';
+import 'HomePage.dart';
 
 class OnBoardingScreens extends StatefulWidget {
   const OnBoardingScreens({super.key});

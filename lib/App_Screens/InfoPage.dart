@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Customs/Custom_Bottom_Navigation_Bar.dart';
-import '../NavigationController.dart';
+import '../controllers/NavigationController.dart';
 
 class InfoPage extends StatelessWidget {
   final NavigationController navController = Get.find<NavigationController>();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../Customs/Custom_Bottom_Navigation_Bar.dart';
-import '../NavigationController.dart';
+import '../controllers/NavigationController.dart';
 
 class TicketPage extends StatelessWidget {
   final NavigationController navController = Get.find<NavigationController>();

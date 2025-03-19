@@ -6,7 +6,7 @@ import '../App_Screens/InfoPage.dart';
 import '../App_Screens/MapPage.dart';
 import '../App_Screens/TicketPage.dart';
 import '../App_Screens/TrainPage.dart';
-import '../NavigationController.dart';
+import '../controllers/NavigationController.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   CustomBottomNavigationBar({super.key});

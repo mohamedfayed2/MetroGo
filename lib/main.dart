@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:metro_app/App_Screens/HomePage.dart';
-import 'NavigationController.dart';
-import 'bindings.dart';
-import 'onboarding_screen.dart';
+import 'controllers/NavigationController.dart';
+import 'App_Screens/onboarding_screen.dart';
+import 'controllers/bindings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
