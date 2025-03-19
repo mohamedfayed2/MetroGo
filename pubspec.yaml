@@ -22,9 +22,10 @@ dependencies:
   eva_icons_flutter: ^3.0.2
   get_storage: ^2.1.1
   geolocator: ^13.0.2
-  url_launcher: ^6.3.1
+  url_launcher: ^6.1.14
   geocoding: ^3.0.0
   animated_text_kit: ^4.2.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

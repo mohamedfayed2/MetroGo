@@ -3,15 +3,13 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:metro_app/Customs/Custom_Bottom_Navigation_Bar.dart';
-
 import '../Models/Stations.dart';
 import '../controllers/NavigationController.dart';
 import '../controllers/controller_home.dart';
-
 class HomePage extends StatefulWidget {
   final NavigationController navController = Get.find<NavigationController>();
   final  Stations stations =  Get.put(Stations());
-  final controllers Home=Get.put(controllers());
+  final controllers Homecontroller=Get.put(controllers());
   State<HomePage> createState() => _HomePageState();
 }
 // location variable
@@ -26,7 +24,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _initlocation();
   }
-
   void _initlocation() async {
     await _determinePosition();
     print(p);
