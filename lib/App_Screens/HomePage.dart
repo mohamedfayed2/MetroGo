@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import 'package:metro_app/Customs/Custom_Bottom_Navigation_Bar.dart';
 
 import '../NavigationController.dart';
@@ -199,7 +198,9 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xff007BFF),
       ),
       body: Column(),
-      // bottomNavigationBar: CustomBottomNavigationBar(),
+       bottomNavigationBar: SizedBox(
+           height: 80,
+           child: CustomBottomNavigationBar()),
     );
   }
 
