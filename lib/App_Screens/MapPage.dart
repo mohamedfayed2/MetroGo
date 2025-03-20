@@ -6,6 +6,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:dio/dio.dart' as dio;
 import '../Customs/Custom_Bottom_Navigation_Bar.dart';
 import '../controllers/NavigationController.dart';
+import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 
 class MapController extends GetxController {
   var startPoint = Rxn<LatLng>();
@@ -96,8 +97,8 @@ class MapPage extends StatelessWidget {
               ),
               children: [
                 TileLayer(
-                  urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                  subdomains: ['a', 'b', 'c'],
+                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  tileProvider: CancellableNetworkTileProvider(),
                 ),
                 if (mapController.startPoint.value != null)
                   MarkerLayer(

@@ -1,11 +1,11 @@
 class Station {
-  String nsme;
+  String name;
   double late;
   double long;
   String link;
 
   Station(
-      {required this.nsme,
+      {required this.name,
       required this.late,
       required this.long,
       required this.link});

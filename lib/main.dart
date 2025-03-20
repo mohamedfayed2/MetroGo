@@ -21,7 +21,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: AppBindings(),
       debugShowCheckedModeBanner: false,
+
       initialRoute: '/',
+
+
       getPages: [
         GetPage(name: '/', page: () => HomePage()),
         GetPage(name: '/map', page: () => MapPage()),
