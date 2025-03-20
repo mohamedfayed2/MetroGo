@@ -93,7 +93,7 @@ class Stations extends GetxController {
   ];
 
 //this place in right of end line 3 ,you can look in the map and you will find it
-  List<String> rightExtension3 = [
+  List<String> right_3 = [
     'Al-Sodan',
     'Embaba',
     'Al-Bohe',
@@ -103,7 +103,7 @@ class Stations extends GetxController {
   ];
 
 //this place in right of end line 3 ,you can look in the map and you will find it
-  List<String> leftExtension3 = [
+  List<String> left_3 = [
     'Al-Twfikia',
     'Wady Al-Nil',
     'Al-Dwal University',
