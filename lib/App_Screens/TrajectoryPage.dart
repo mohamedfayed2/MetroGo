@@ -8,13 +8,14 @@ class TrajectoryPage extends StatelessWidget {
 
   final Stations stations = Get.put(Stations());
   final controllers home = Get.put(controllers());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xff121212),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Home Page"),
+        title: const Text("مسار الرحلة", style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xff007BFF),
       ),
       body: Padding(
@@ -22,67 +23,106 @@ class TrajectoryPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Obx(() => Text(
-              home.count.isEmpty ? '${home.time_s}' : '',
-              style: TextStyle(color: Colors.red, fontSize: 18),
-            )),
+
+            Obx(() => home.count.isEmpty
+                ? Text('${home.time_s}', style: TextStyle(color: Colors.red, fontSize: 18))
+                : SizedBox()
+            ),
+
             SizedBox(height: 20),
+
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Column(
-                  children: [
-                    Obx(() => home.count.isNotEmpty
-                        ? Text('عدد المحطات: ${home.sub_st}')
-                        : SizedBox()),
-                    Obx(() => home.count.isNotEmpty
-                        ? Text('الزمن: ${home.time_s}')
-                        : SizedBox()),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Obx(() => home.count.isNotEmpty
-                        ? Text('الاتجاه: ${home.dir}')
-                        : SizedBox()),
-                    Obx(() => home.count.isNotEmpty
-                        ? Text('سعر التذكرة: ${home.ticket} جنيه')
-                        : SizedBox()),
-                  ],
-                ),
+                InfoCard(title: "عدد المحطات", value: home.sub_st.toString()),
+                InfoCard(title: "الزمن", value: home.time_s.toString()),
+                InfoCard(title: "الاتجاه", value: home.dir.toString()),
+                InfoCard(title: "سعر التذكرة", value: "${home.ticket} جنيه"),
               ],
             ),
+
             SizedBox(height: 20),
+
+
             Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Obx(() => home.count.isNotEmpty
-                        ? ListView(
-                      children: home.count
-                          .map((value) => Text('$value'))
-                          .toList(),
-                    )
-                        : SizedBox()),
-                  ),
-                  Expanded(
-                    child: Obx(() => home.count2.isNotEmpty
-                        ? ListView(
-                      children: home.count2
-                          .map((value) => Text(
-                        '$value',
-                        style: TextStyle(color: Colors.white),
-                      ))
-                          .toList(),
-                    )
-                        : SizedBox()),
-                  ),
-                ],
+              child: Obx(() => home.count.isNotEmpty
+                  ? ListView.builder(
+                itemCount: home.count.length,
+                itemBuilder: (context, index) {
+                  return StationTile(
+                    stationName: home.count[index],
+                    isFirst: index == 0,
+                    isLast: index == home.count.length - 1,
+                  );
+                },
+              )
+                  : SizedBox()
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class InfoCard extends StatelessWidget {
+  final String title;
+  final String value;
+
+  const InfoCard({required this.title, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(value, style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+        Text(title, style: TextStyle(color: Colors.grey, fontSize: 14)),
+      ],
+    );
+  }
+}
+
+
+class StationTile extends StatelessWidget {
+  final String stationName;
+  final bool isFirst;
+  final bool isLast;
+
+  const StationTile({required this.stationName, required this.isFirst, required this.isLast});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Column(
+          children: [
+            if (!isFirst) Container(width: 2, height: 20, color: Colors.blue), // خط قبل المحطة
+            Container(
+              width: 12,
+              height: 12,
+              decoration: BoxDecoration(
+                color: isFirst || isLast ? Colors.red : Colors.blue,
+                shape: BoxShape.circle,
+              ),
+            ),
+            if (!isLast) Container(width: 2, height: 20, color: Colors.blue), // خط بعد المحطة
+          ],
+        ),
+        SizedBox(width: 10),
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: Text(
+              stationName,
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

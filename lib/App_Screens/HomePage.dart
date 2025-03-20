@@ -361,7 +361,12 @@ class _HomePageState extends State<HomePage> {
                   Home.ticket.value = 15;
                 }
               }
-              Get.to(() => TrajectoryPage());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TrajectoryPage(),
+                ),
+              );
             },
             icon: Icon(EvaIcons.search),
           ),
