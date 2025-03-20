@@ -1,12 +1,15 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:metro_app/App_Screens/MapPage.dart';
+import 'package:metro_app/App_Screens/TrajectoryPage.dart';
 import 'package:metro_app/Customs/Custom_Bottom_Navigation_Bar.dart';
 import '../Models/Stations.dart';
 import '../controllers/NavigationController.dart';
 import '../controllers/controller_home.dart';
+import 'PhotomapPage.dart';
 
 class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
@@ -63,57 +66,81 @@ class _HomePageState extends State<HomePage> {
             width: double.infinity,
             height: 30,
           ),
-          DropdownMenu(
-            dropdownMenuEntries: [
-              for (var value in line_s)
-                DropdownMenuEntry(value: value, label: value),
-            ],
-            inputDecorationTheme: InputDecorationTheme(
-                border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(0),
-            )),
-            label: Text(
-              'from',
+          Card(
+            elevation: 4,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DropdownMenu(
+                dropdownMenuEntries: [
+                  for (var value in line_s)
+                    DropdownMenuEntry(value: value, label: value),
+                ],
+                inputDecorationTheme: InputDecorationTheme(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                  ),
+                ),
+                label: Text(
+                  'From',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                width: 350,
+                helperText: 'Enter start station',
+                enableSearch: true,
+                enableFilter: true,
+                requestFocusOnTap: true,
+                controller: Home.cont,
+              ),
             ),
-            width: 350,
-            helperText: 'enter start station',
-            enableSearch: true,
-            enableFilter: true,
-            requestFocusOnTap: true,
-            controller: Home.cont,
           ),
+          SizedBox(height: 10),
           IconButton(
-              onPressed: () {
-                Home.sta2 = Home.cont.text;
-                Home.cont.text = Home.cont2.text;
-                Home.cont2.text = Home.sta2;
-              },
-              icon: Icon(Icons.switch_access_shortcut)),
+            onPressed: () {
+              Home.sta2 = Home.cont.text;
+              Home.cont.text = Home.cont2.text;
+              Home.cont2.text = Home.sta2;
+            },
+            icon: Icon(Icons.swap_vert, size: 30, color: Colors.blue),
+          ),
           SizedBox(
             height: 10,
           ),
-          DropdownMenu(
-            dropdownMenuEntries: [
-              for (var value in line_s)
-                DropdownMenuEntry(value: value, label: value),
-            ],
-            inputDecorationTheme: InputDecorationTheme(
-                border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(0),
-            )),
-            label: Text('to'),
-            width: 350,
-            helperText: 'enter end station',
-            enableSearch: true,
-            enableFilter: true,
-            requestFocusOnTap: true,
-            controller: Home.cont2,
+          Card(
+            elevation: 4,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DropdownMenu(
+                dropdownMenuEntries: [
+                  for (var value in line_s)
+                    DropdownMenuEntry(value: value, label: value),
+                ],
+                inputDecorationTheme: InputDecorationTheme(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.green, width: 2),
+                  ),
+                ),
+                label: Text(
+                  'To',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                width: 350,
+                helperText: 'Enter end station',
+                enableSearch: true,
+                enableFilter: true,
+                requestFocusOnTap: true,
+                controller: Home.cont2,
+              ),
+            ),
           ),
           SizedBox(
             height: 20,
           ),
           ElevatedButton.icon(
-            label: Text('culclate'),
+            label: Text('Search'),
             onPressed: () {
               Home.dir.value = '';
               Home.time_s.value = '';
@@ -334,106 +361,20 @@ class _HomePageState extends State<HomePage> {
                   Home.ticket.value = 15;
                 }
               }
+              Get.to(() => TrajectoryPage());
             },
-            icon: Icon(Icons.search),
+            icon: Icon(EvaIcons.search),
           ),
           SizedBox(
             height: 20,
           ),
-          Obx(() {
-            if (Home.count.isEmpty) {
-              return Text(
-                '${Home.time_s}',
-                style: TextStyle(
-                  color: Colors.red,
-                ),
-              );
-            } else {
-              return SizedBox();
-            }
-          }),
-          Row(children: [
-            SizedBox(
-              width: 50,
-            ),
-            Column(children: [
-              Obx(() {
-                if (Home.count.isNotEmpty) {
-                  return Text('count =${Home.sub_st}');
-                } else {
-                  return SizedBox();
-                }
-              }),
-              Obx(() {
-                if (Home.count.isNotEmpty) {
-                  return Text('${Home.time_s}');
-                } else {
-                  return SizedBox();
-                }
-              }),
-            ]),
-            SizedBox(
-              width: 50,
-            ),
-            Column(children: [
-              Obx(() {
-                if (Home.count.isNotEmpty) {
-                  return Text('dir = ${Home.dir}');
-                } else {
-                  return SizedBox();
-                }
-              }),
-              Obx(() {
-                if (Home.count.isNotEmpty) {
-                  return Text('ticket = ${Home.ticket} P.E');
-                } else {
-                  return SizedBox();
-                }
-              }),
-            ]),
-          ]),
-          Expanded(
-            child: Row(children: [
-              Expanded(child: Obx(() {
-                if (Home.count.isNotEmpty) {
-                  return SizedBox(
-                    width: 100,
-                    child: ListView(
-                      children: [
-                        for (var value in Home.count) Text('$value \n')
-                      ],
-                    ),
-                  );
-                } else {
-                  return SizedBox();
-                }
-              })),
-              Expanded(child: Obx(() {
-                if (Home.count.isNotEmpty) {
-                  return SizedBox(
-                    width: 100,
-                    child: ListView(
-                      children: [
-                        for (var value in Home.count2)
-                          Text(
-                            '$value \n',
-                            style: TextStyle(color: Colors.white),
-                          )
-                      ],
-                    ),
-                  );
-                } else {
-                  return SizedBox();
-                }
-              })),
-            ]),
-          ),
+
           Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             IconButton(
               onPressed: () {
-                Get.to(MapPage());
+                Get.to(PhotoMap());
               },
-              icon: Icon(Icons.map),
+              icon: Icon(EvaIcons.map),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 shape: RoundedRectangleBorder(
