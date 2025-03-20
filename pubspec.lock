@@ -495,7 +495,11 @@ packages:
       sha256: bdb68674043280c3428e9ec998512fb681678676b3c54e773629ffe74419f8c7
       url: "https://pub.dev"
     source: hosted
+<<<<<<< HEAD
     version: "1.15.0"
+=======
+    version: "1.16.0"
+>>>>>>> 11c26f8c1e4d057e14cba9aae07d1a76548a19d5
   mgrs_dart:
     dependency: transitive
     description:
