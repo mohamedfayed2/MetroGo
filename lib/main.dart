@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:metro_app/App_Screens/HomePage.dart';
 import 'App_Screens/MapPage.dart';
 import 'controllers/NavigationController.dart';
+import 'App_Screens/onboarding_screen.dart';
 import 'controllers/bindings.dart';
 
 Future<void> main() async {
@@ -21,10 +22,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: AppBindings(),
       debugShowCheckedModeBanner: false,
-
-      initialRoute: '/',
-
-
+      initialRoute: '/', // تحديد المسار الأولي
       getPages: [
         GetPage(name: '/', page: () => HomePage()),
         GetPage(name: '/map', page: () => MapPage()),
