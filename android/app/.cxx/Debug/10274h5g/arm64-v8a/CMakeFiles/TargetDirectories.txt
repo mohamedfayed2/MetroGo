@@ -1,2 +1,0 @@
-C:/Users/wika/StudioProjects/metro_go/MetroGo/android/app/.cxx/Debug/10274h5g/arm64-v8a/CMakeFiles/edit_cache.dir
-C:/Users/wika/StudioProjects/metro_go/MetroGo/android/app/.cxx/Debug/10274h5g/arm64-v8a/CMakeFiles/rebuild_cache.dir

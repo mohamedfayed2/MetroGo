@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
     }
     pt = p!.latitude;
     pg = p!.longitude;
-    print('kareem');
     nerst_st(pt, pg);
   }
 
@@ -89,11 +88,7 @@ class _HomePageState extends State<HomePage> {
                 Home.cont.text = Home.cont2.text;
                 Home.cont2.text = Home.sta2;
               },
-              icon: Image.asset(
-                'assets/images/switch2.png',
-                width: 20,
-                height: 20,
-              )),
+              icon: Icon(Icons.switch_access_shortcut)),
           SizedBox(
             height: 10,
           ),
@@ -460,6 +455,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void line_s_d(String cont1, String cont2) {}
   Future<void> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -501,7 +497,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   void nerst_st(double pt, double pg) {
-    print(pt);
-    print(pg);
+    for (int i = 0; i < stations.statoin.length; i++) {
+      if (Home.dis >
+          (Geolocator.distanceBetween(
+              pt, pg, stations.statoin[i].late, stations.statoin[i].long))) {
+        Home.dis = Geolocator.distanceBetween(
+            pt, pg, stations.statoin[i].late, stations.statoin[i].long);
+        Home.sta_d = stations.statoin[i];
+      }
+    }
+    Get.snackbar('info', '${Home.sta_d?.name}');
+    Get.snackbar('info', '${Home.sta_d?.link}');
+    Get.snackbar('info', '${(Home.dis / 1000).roundToDouble()}');
   }
 }

@@ -41,14 +41,13 @@ class Stations extends GetxController {
     'new el-marg'
   ];
 
-
 //line 2 in metro
   List<String> line_2 = [
     'shubra el-kheima',
     'kolleyet el-zeraa',
     'mezallat',
     'khalafawy',
-    'st. teresa',
+    'st.teresa',
     'rod el-farag',
     'masarra',
     'al-shohadaa',
@@ -65,7 +64,6 @@ class Stations extends GetxController {
     'sakiat mekky',
     'el-mounib'
   ];
-
 
 //line 3 in metro
   List<String> line_3 = [
@@ -94,7 +92,6 @@ class Stations extends GetxController {
     'kit kat'
   ];
 
-
 //this place in right of end line 3 ,you can look in the map and you will find it
   List<String> right_3 = [
     'al-sodan',
@@ -104,7 +101,6 @@ class Stations extends GetxController {
     'al-daary road',
     'rod al-farag'
   ];
-
 
 //this place in right of end line 3 ,you can look in the map and you will find it
   List<String> left_3 = [
@@ -142,14 +138,12 @@ class Stations extends GetxController {
             "https://www.google.com/maps/dir/30.1786632,31.228547/Khlfawy's+metro+station%D8%8C+Al+Khalafawi,%D8%AD%D8%A7%D8%B1%D8%A9+%D8%A3%D8%B3%D8%B9%D8%AF+%D8%B4%D8%A8%D8%B1%D8%A7%D8%8C+%D8%A7%D9%84%D8%B3%D8%A7%D8%AD%D9%84%E2%80%AD/@30.1424678,31.3179542,12z/data=!3m1!4b1!4m17!1m7!3m6!1s0x145840140800dc0d:0x208945e92503b0db!2sKhlfawy's+metro+station!8m2!3d30.0972289!4d31.2454981!16s%2Fg%2F11d_1pmqhw!4m8!1m1!4e1!1m5!1m1!1s0x145840140800dc0d:0x208945e92503b0db!2m2!1d31.2454981!2d30.0972289?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "st. teresa",
-
         late: 30.087966572262022,
         long: 31.245491387021804,
         link:
             "https://www.google.com/maps/place/%D8%B3%D8%A7%D9%86%D8%AA+%D8%AA%D8%B1%D9%8A%D8%B2%D8%A7%E2%80%AD/@30.0879022,31.2457146,21z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x1458406c0002fb41:0x9959722226caaf3a!2z2LPYp9mG2Kog2KrYsdmK2LLYp9iMINi02LHZitmB2Iwg2KfZhNiz2KfYrdmE2Iwg2YXYrdin2YHYuNipINin2YTZgtin2YfYsdip4oCsIDQzNTIyMDI!2m2!1d31.2454927!2d30.0879569!3m5!1s0x1458406c0002fb41:0x9959722226caaf3a!8m2!3d30.0879569!4d31.2454927!16s%2Fg%2F1xpt1501?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "rod el-farag",
-
         late: 30.10190401299639,
         long: 31.184398999134125,
         link:
@@ -162,7 +156,6 @@ class Stations extends GetxController {
             "https://www.google.com/maps/place/Massara+Station+Subway/@30.1294727,31.3179542,12z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x1458408a04eca851:0xd05fdb45e72154aa!2zTWFzc2FyYSBTdGF0aW9uIFN1YndheSwgMzZDVytRMkPYjCDYrNiy2YrYsdipINio2K_Ysdin2YbYjCDYtNio2LHYp9iMINmF2K3Yp9mB2LjYqSDYp9mE2YLYp9mH2LHYqeKArCA0MzQyMTEw!2m2!1d31.2450181!2d30.0719364!3m5!1s0x1458408a04eca851:0xd05fdb45e72154aa!8m2!3d30.0719364!4d31.2450181!16s%2Fg%2F11f_1j3x4s?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "al-shohadaa",
-
         late: 30.061372074913507,
         long: 31.246166488651753,
         link:
@@ -175,51 +168,42 @@ class Stations extends GetxController {
             "https://www.google.com/maps/place/%D8%A7%D9%84%D8%B9%D8%AA%D8%A8%D9%87%E2%80%AD/@30.0523425,31.4067432,11z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x1458409615a1b5e7:0x519c1b193917ab43!2z2KfZhNi52KrYqNmH2Iwg2LrZiti3INin2YTYudiv2KnYjCDYudin2KjYr9mK2YbYjCDZhdit2KfZgdi42Kkg2KfZhNmC2KfZh9ix2KnigKwgNDI4NDAwMw!2m2!1d31.246803!2d30.052346!3m5!1s0x1458409615a1b5e7:0x519c1b193917ab43!8m2!3d30.052346!4d31.246803!16s%2Fg%2F12hs83fps?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "mohamed naguib",
-
         late: 30.04533069748844,
         long: 31.244161888223914,
         link:
             "https://www.google.com/maps/place/Mohamed+Naguib+Metro+Station/@30.0882622,31.3253075,12z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x145840b96aedafff:0xe3ac95702a40face!2z2YXYrdmF2K8g2YbYrNmK2KjYjCDYp9mE2KjZhNin2YLYs9ip2Iwg2LnYp9io2K_ZitmG2Iwg2YXYrdin2YHYuNipINin2YTZgtin2YfYsdip4oCsIDQyODIwMDE!2m2!1d31.2441623!2d30.0453216!3m5!1s0x145840b969cdea27:0x97d6bfa40e902cd2!8m2!3d30.045362!4d31.244032!16s%2Fg%2F11mgs2hf3b?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "sadat",
-
         late: 30.04363448963182,
         long: 31.235860155469567,
         link:
             "https://www.google.com/maps/place/Sadat+Metro+Station/@30.113176,31.3178076,12z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x145841dc3b3f902f:0x1adaa1d092ec38f3!2zU2FkYXQgTWV0cm8gU3RhdGlvbiwgMjZWUCtDOFjYjCDZhdmK2K_Yp9mGINin2YTYqtit2LHZitix2Iwg2YLYtdixINin2YTYr9mI2KjYp9ix2KnYjCDZgtiz2YUg2YLYtdixINin2YTZhtmK2YTYjCDZhdit2KfZgdi42Kkg2KfZhNmC2KfZh9ix2KnigKwgNDI3MjA3Nw!2m2!1d31.2358609!2d30.043622!3m5!1s0x145841dc3b3f902f:0x1adaa1d092ec38f3!8m2!3d30.043622!4d31.2358609!16s%2Fg%2F11fm_bxhlx?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "dokki",
-
         late: 30.0384519833401,
         long: 31.21222446424741,
         link:
             "https://www.google.com/maps/place/%D8%A7%D9%84%D8%AF%D9%82%D9%8A%E2%80%AD/@30.0396096,31.2296248,15z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x145846d4be99004d:0xc048d76eec8c637c!2z2KfZhNiv2YLZitiMINin2YTYr9mC2Yog2KPYjCDZgtiz2YUg2KfZhNiv2YLZitiMINmF2K3Yp9mB2LjYqSDYp9mE2KzZitiy2KkgMzc1MzAwMg!2m2!1d31.2122279!2d30.0384395!3m5!1s0x145846d4be99004d:0xc048d76eec8c637c!8m2!3d30.0384395!4d31.2122279!16s%2Fg%2F1219h4xk?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "bohooth",
-
         late: 30.03579428860002,
         long: 31.200166048565258,
-
         link:
             "https://www.google.com/maps/place/%D8%A7%D9%84%D8%A8%D8%AD%D9%88%D8%AB%E2%80%AD/@30.0371419,31.2104901,15.77z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x145846cec93456ef:0x347fa2ff254a38d4!2z2KfZhNio2K3ZiNir2Iwg2KfZhNiv2YLZitiMINmC2LPZhSDYp9mE2K_ZgtmK2Iwg2YXYrdin2YHYuNipINin2YTYrNmK2LLYqSAzNzUxMDMx!2m2!1d31.2001594!2d30.0357798!3m5!1s0x145846cec93456ef:0x347fa2ff254a38d4!8m2!3d30.0357798!4d31.2001594!16s%2Fg%2F1vb67q1n?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "cairo university",
-
         late: 30.026019692441054,
         long: 31.20116048778759,
-
         link:
             "https://www.google.com/maps/place/%D8%AC%D8%A7%D9%85%D8%B9%D8%A9+%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9%E2%80%AD/@30.0374295,31.2249436,13.65z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x145846c3ed04411f:0xbd516eee043d2c3!2z2KzYp9mF2LnYqSDYp9mE2YLYp9mH2LHYqdiMINio2YjZhNin2YIg2KfZhNiv2YPYsdmI2LHYjCDZhdit2KfZgdi42Kkg2KfZhNis2YrYstipIDM3MTYyMzA!2m2!1d31.2011598!2d30.0260066!3m5!1s0x145846c3ed04411f:0xbd516eee043d2c3!8m2!3d30.0260066!4d31.2011598!16s%2Fg%2F1tfhwwyb?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "faisal",
         late: 30.017053674107743,
         long: 31.20397556963166,
-
         link:
             "http://google.com/maps/place/%D9%81%D9%8A%D8%B5%D9%84%E2%80%AD/@30.048601,31.278289,12.48z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x145846e8ec5db851:0x130d30d6096adf14!2z2YHZiti12YTYjCDYo9io2Ygg2YLYqtin2K_YqdiMINio2YjZhNin2YIg2KfZhNiv2YPYsdmI2LHYjCDZhdit2KfZgdi42Kkg2KfZhNis2YrYstipIDM3MTYwMTI!2m2!1d31.203936!2d30.0173696!3m5!1s0x145846e8ec5db851:0x130d30d6096adf14!8m2!3d30.0173696!4d31.203936!16s%2Fg%2F1tf8b5nd?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "giza",
-
         late: 30.01123054849492,
         long: 31.206549368811515,
         link:
@@ -228,19 +212,16 @@ class Stations extends GetxController {
         name: "om el-masryeen",
         late: 30.005664865408367,
         long: 31.208122708638317,
-
         link:
             "https://www.google.com/maps/place/%D9%85%D8%AD%D8%B7%D8%A9+%D9%85%D8%AA%D8%B1%D9%88+%D8%A7%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D9%8A%D9%86%E2%80%AD/@30.0193773,31.2423109,13.59z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x145846fa3616bdd3:0x4874a5d508074e8e!2z2YXYrdi32Kkg2YXYqtix2Ygg2KfZhSDYp9mE2YXYtdix2YrZitmG2Iwg2KfZhNi52YXYsdin2YbZitipINin2YTYtNix2YLZitip2Iwg2YLYs9mFINin2YTYudmF2LHYp9mG2YrYqdiMINmF2K3Yp9mB2LjYqSDYp9mE2KzZitiy2KkgMzU0NzEwOQ!2m2!1d31.2081202!2d30.0056539!3m5!1s0x145846fa3616bdd3:0x4874a5d508074e8e!8m2!3d30.0056539!4d31.2081202!16s%2Fg%2F1tn8hnbg?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "sakiat mekky",
         late: 29.995506041207047,
         long: 31.208654345119122,
-
         link:
             "https://www.google.com/maps/place/%D8%B3%D8%A7%D9%82%D9%8A%D8%A9+%D9%85%D9%83%D9%8A%E2%80%AD/@30.0004076,31.2313097,14.26z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x14584656e339e7e5:0x264fb0a23037a06d!2z2LPYp9mC2YrYqSDZhdmD2YrYjCDYp9mE2LnZhdix2KfZhtmK2Kkg2KfZhNi02LHZgtmK2KnYjCDZgtiz2YUg2KfZhNi52YXYsdin2YbZitip2Iwg2YXYrdin2YHYuNipINin2YTYrNmK2LLYqSAzNzIzNDIw!2m2!1d31.208656!2d29.9954938!3m5!1s0x14584656e339e7e5:0x264fb0a23037a06d!8m2!3d29.9954938!4d31.208656!16s%2Fg%2F122qs49v?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
     Station(
         name: "el-mounib",
-
         late: 29.981107134363445,
         long: 31.21244944501756,
         link:

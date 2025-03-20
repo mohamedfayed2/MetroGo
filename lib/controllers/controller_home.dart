@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../sta_tg.dart';
+
 class controllers extends GetxController {
   //first station
   final cont = TextEditingController();
@@ -45,4 +47,6 @@ class controllers extends GetxController {
   var nerst = null;
 //this variable for DropdownMenu
   var line_All = <String>[];
+  var dis = double.infinity;
+  Station? sta_d;
 }
