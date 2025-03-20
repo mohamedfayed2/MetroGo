@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: AppBindings(),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',  // تحديد المسار الأولي
+      initialRoute: '/', // تحديد المسار الأولي
       getPages: [
         GetPage(name: '/', page: () => HomePage()),
         GetPage(name: '/map', page: () => MapPage()),
