@@ -364,7 +364,7 @@ class _HomePageState extends State<HomePage> {
             Column(children: [
               Obx(() {
                 if (Home.count.isNotEmpty) {
-                  return Text('count = ${Home.sub_st}');
+                  return Text('count =${Home.sub_st}');
                 } else {
                   return SizedBox();
                 }
@@ -390,7 +390,7 @@ class _HomePageState extends State<HomePage> {
               }),
               Obx(() {
                 if (Home.count.isNotEmpty) {
-                  return Text('ticket = ${Home.ticket}');
+                  return Text('ticket = ${Home.ticket} P.E');
                 } else {
                   return SizedBox();
                 }
