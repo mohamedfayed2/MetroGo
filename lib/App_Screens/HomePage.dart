@@ -46,9 +46,8 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xff007BFF),
       ),
       body: Column(),
-       bottomNavigationBar: SizedBox(
-           height: 80,
-           child: CustomBottomNavigationBar()),
+      bottomNavigationBar:
+          SizedBox(height: 80, child: CustomBottomNavigationBar()),
     );
   }
 
