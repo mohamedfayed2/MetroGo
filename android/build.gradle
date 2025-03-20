@@ -1,18 +1,16 @@
-allprojects {
+
+buildscript {
+    ext.kotlin_version = '1.9.22'
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.2.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "dev.flutter:flutter-gradle-plugin:1.0.0" // ✅ أضف هذا السطر
     }
 }
 
-rootProject.buildDir = "../build"
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(":app")
-}
 
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
-}
