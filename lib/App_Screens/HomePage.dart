@@ -51,8 +51,6 @@ class _HomePageState extends State<HomePage> {
         stations.right_3 +
         stations.left_3;
     Set<String> line_s = Home.line_All.toSet();
-    Home.count.value = [];
-    Home.count2.value = [];
     return Scaffold(
       backgroundColor: Color(0xff121212),
       appBar: AppBar(

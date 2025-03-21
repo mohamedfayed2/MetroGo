@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: AppBindings(),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: OnBoardingScreens(),
       // initialRoute: '/intro', // تحديد المسار الأولي
       // getPages: [
       //   GetPage(name: '/', page: () => HomePage()),

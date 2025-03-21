@@ -51,7 +51,7 @@ class controllers extends GetxController {
   var line_All = <String>[];
   var dis = double.infinity;
   Station? sta_d;
-  void l_roud(String cont, String cont2) {
+  void l_roud(String cont, String cont2, [int x = 1]) {
     //decide the line
     if (stations.line_1.contains(cont)) {
       line_start = stations.line_1;
@@ -205,16 +205,16 @@ class controllers extends GetxController {
       sub_st = count.length + count2.length;
       sub_st = sub_st;
       if (sub_st * 2 >= 60) {
-        time_s.value = ' 1 hour ${sub_st * 2 - 60}';
+        time_s.value = ' 1 ساعه ${sub_st * 2 - 60}دقيقه ';
       } else {
-        time_s.value = 'time = ${sub_st * 2} min';
+        time_s.value = '${sub_st * 2} دقيقه ';
       }
       if (sub_st <= 9) {
-        ticket.value = 8;
+        ticket.value = 10 * x;
       } else if (sub_st <= 17) {
-        ticket.value = 10;
+        ticket.value = 12 * x;
       } else {
-        ticket.value = 15;
+        ticket.value = 15 * x;
       }
     }
   }
