@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:metro_app/App_Screens/MapPage.dart';
 import 'package:metro_app/App_Screens/TrajectoryPage.dart';
 import 'package:metro_app/Customs/Custom_Bottom_Navigation_Bar.dart';
 import '../Models/Stations.dart';
@@ -29,10 +28,12 @@ GetStorage? file;
 class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
+
     _initlocation();
   }
 
   void _initlocation() async {
+    Future.delayed(Duration(seconds: 10));
     await _determinePosition();
     print(p);
     if (p == null) {
