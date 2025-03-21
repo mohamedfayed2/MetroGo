@@ -53,36 +53,25 @@ class controllers extends GetxController {
   Station? sta_d;
   void l_roud(String cont, String cont2, [int x = 1]) {
     //decide the line
-    line_start = (stations.line_1.contains(cont))
-        ? stations.line_1
-        : (stations.line_2.contains(cont))
-            ? stations.line_2
-            : (stations.line_3.contains(cont))
-                ? stations.line_3
-                : [];
-    (line_start != [])
-        ? () {
-            (stations.line_1.contains(cont) && stations.line_2.contains(cont))
-                ? (stations.line_1.contains(cont2))
-                    ? line_start = stations.line_1
-                    : (stations.line_2.contains(cont2))
-                        ? line_start = stations.line_2
-                        : null
-                : (stations.line_2.contains(cont) &&
-                        stations.line_3.contains(cont))
-                    ? (stations.line_2.contains(cont2))
-                        ? line_start = stations.line_2
-                        : (stations.line_3.contains(cont2))
-                            ? line_start = stations.line_3
-                            : null
-                    : (stations.line_1.contains(cont) &&
-                            stations.line_3.contains(cont))
-                        ? (stations.line_1.contains(cont2))
-                            ? line_start = stations.line_1
-                            : (stations.line_3.contains(cont2))
-                                ? line_start = stations.line_3
-                                : null
-                        : null;
+    if (stations.line_1.contains(cont)) {
+      line_start = stations.line_1;
+    } else if (stations.line_2.contains(cont)) {
+      line_start = stations.line_2;
+    } else if (stations.line_3.contains(cont)) {
+      line_start = stations.line_3;
+    } else {
+      if (stations.line_1.contains(cont) && stations.line_2.contains(cont)) {
+        if (stations.line_1.contains(cont2)) {
+          line_start = stations.line_1;
+        } else if (stations.line_2.contains(cont2)) {
+          line_start = stations.line_2;
+        }
+      } else if (stations.line_2.contains(cont) &&
+          stations.line_3.contains(cont)) {
+        if (stations.line_2.contains(cont2)) {
+          line_start = stations.line_2;
+        } else if (stations.line_3.contains(cont2)) {
+          line_start = stations.line_3;
           }
         : () {
             line_All = stations.line_3 + stations.right_3 + stations.left_3;

@@ -140,8 +140,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 20,
           ),
-          ElevatedButton.icon(
-            label: Text('Search'),
+          ElevatedButton(
             onPressed: () {
               Home.dir.value = '';
               Home.time_s.value = '';
@@ -176,7 +175,15 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            icon: Icon(EvaIcons.search),
+            style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              backgroundColor: Colors.blueAccent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              elevation: 5,
+            ),
+            child: Text('Search', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
           ),
           SizedBox(
             height: 20,
