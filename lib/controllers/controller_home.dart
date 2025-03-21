@@ -53,87 +53,97 @@ class controllers extends GetxController {
   Station? sta_d;
   void l_roud(String cont, String cont2, [int x = 1]) {
     //decide the line
-    if (stations.line_1.contains(cont)) {
-      line_start = stations.line_1;
-    } else if (stations.line_2.contains(cont)) {
-      line_start = stations.line_2;
-    } else if (stations.line_3.contains(cont)) {
-      line_start = stations.line_3;
-    } else {
-      if (stations.line_1.contains(cont) && stations.line_2.contains(cont)) {
-        if (stations.line_1.contains(cont2)) {
-          line_start = stations.line_1;
-        } else if (stations.line_2.contains(cont2)) {
-          line_start = stations.line_2;
-        }
-      } else if (stations.line_2.contains(cont) &&
-          stations.line_3.contains(cont)) {
-        if (stations.line_2.contains(cont2)) {
-          line_start = stations.line_2;
-        } else if (stations.line_3.contains(cont2)) {
-          line_start = stations.line_3;
-        }
-      } else if (stations.line_1.contains(cont) &&
-          stations.line_3.contains(cont)) {
-        if (stations.line_1.contains(cont2)) {
-          line_start = stations.line_1;
-        } else if (stations.line_3.contains(cont2)) {
-          line_start = stations.line_3;
-        }
-      }
-      line_All = stations.line_3 + stations.right_3 + stations.left_3;
-      if (line_All.contains(cont) && line_All.contains(cont2)) {
-        if (stations.line_3.contains(cont) &&
-            stations.right_3.contains(cont2)) {
-          line_start = stations.line_3 + stations.right_3;
-        } else if (stations.line_3.contains(cont2) &&
-            stations.right_3.contains(cont)) {
-          stations.right_3 = stations.right_3.reversed.toList();
-          line_start = stations.line_3 + stations.right_3;
-        } else if ((stations.line_3.contains(cont2) &&
-                stations.line_3.contains(cont)) ||
-            (stations.line_3.contains(cont) &&
-                stations.left_3.contains(cont2))) {
-          line_start = stations.line_3 + stations.left_3;
-        } else if (stations.left_3.contains(cont) &&
-            stations.right_3.contains(cont2)) {
-          stations.left_3 = stations.left_3.reversed.toList();
-          if (!stations.right_3.contains('kit kat') &&
-              !stations.left_3.contains('kit kat')) {
-            stations.left_3.add('kit kat');
+    line_start = (stations.line_1.contains(cont))
+        ? stations.line_1
+        : (stations.line_2.contains(cont))
+            ? stations.line_2
+            : (stations.line_3.contains(cont))
+                ? stations.line_3
+                : [];
+    (line_start != [])
+        ? () {
+            (stations.line_1.contains(cont) && stations.line_2.contains(cont))
+                ? (stations.line_1.contains(cont2))
+                    ? line_start = stations.line_1
+                    : (stations.line_2.contains(cont2))
+                        ? line_start = stations.line_2
+                        : null
+                : (stations.line_2.contains(cont) &&
+                        stations.line_3.contains(cont))
+                    ? (stations.line_2.contains(cont2))
+                        ? line_start = stations.line_2
+                        : (stations.line_3.contains(cont2))
+                            ? line_start = stations.line_3
+                            : null
+                    : (stations.line_1.contains(cont) &&
+                            stations.line_3.contains(cont))
+                        ? (stations.line_1.contains(cont2))
+                            ? line_start = stations.line_1
+                            : (stations.line_3.contains(cont2))
+                                ? line_start = stations.line_3
+                                : null
+                        : null;
           }
-          line_start = stations.line_3 + stations.left_3 + stations.right_3;
-        } else if (stations.right_3.contains(cont) &&
-            stations.left_3.contains(cont2)) {
-          stations.right_3 = stations.right_3.reversed.toList();
-          if (!stations.right_3.contains('kit kat') &&
-              !stations.left_3.contains('kit kat')) {
-            stations.right_3.add('kit kat');
-          }
-          line_start = stations.line_3 + stations.right_3 + stations.left_3;
-        }
-      } else if (line_All.contains(cont)) {
-        if (stations.left_3.contains(cont)) {
-          if (!stations.right_3.contains('kit kat') &&
-              !stations.left_3.contains('kit kat')) {
-            stations.left_3.add('kit kat');
-          }
-          line_start = stations.line_3 + stations.left_3 + stations.right_3;
-        } else if (stations.right_3.contains(cont)) {
-          if (!stations.right_3.contains('kit kat') &&
-              !stations.left_3.contains('kit kat')) {
-            stations.right_3.add('kit kat');
-          }
-          line_start = stations.line_3 + stations.right_3 + stations.left_3;
-        }
-        if (stations.left_3.contains(cont) && stations.left_3.contains(cont2)) {
-          line_start = stations.left_3;
-        } else if (stations.left_3.contains(cont) &&
-            stations.left_3.contains(cont2)) {
-          line_start = stations.right_3;
-        }
-      }
-    }
+        : () {
+            line_All = stations.line_3 + stations.right_3 + stations.left_3;
+            if (line_All.contains(cont) && line_All.contains(cont2)) {
+              if (stations.line_3.contains(cont) &&
+                  stations.right_3.contains(cont2)) {
+                line_start = stations.line_3 + stations.right_3;
+              } else if (stations.line_3.contains(cont2) &&
+                  stations.right_3.contains(cont)) {
+                stations.right_3 = stations.right_3.reversed.toList();
+                line_start = stations.line_3 + stations.right_3;
+              } else if ((stations.line_3.contains(cont2) &&
+                      stations.line_3.contains(cont)) ||
+                  (stations.line_3.contains(cont) &&
+                      stations.left_3.contains(cont2))) {
+                line_start = stations.line_3 + stations.left_3;
+              } else if (stations.left_3.contains(cont) &&
+                  stations.right_3.contains(cont2)) {
+                stations.left_3 = stations.left_3.reversed.toList();
+                if (!stations.right_3.contains('kit kat') &&
+                    !stations.left_3.contains('kit kat')) {
+                  stations.left_3.add('kit kat');
+                }
+                line_start =
+                    stations.line_3 + stations.left_3 + stations.right_3;
+              } else if (stations.right_3.contains(cont) &&
+                  stations.left_3.contains(cont2)) {
+                stations.right_3 = stations.right_3.reversed.toList();
+                if (!stations.right_3.contains('kit kat') &&
+                    !stations.left_3.contains('kit kat')) {
+                  stations.right_3.add('kit kat');
+                }
+                line_start =
+                    stations.line_3 + stations.right_3 + stations.left_3;
+              }
+            } else if (line_All.contains(cont)) {
+              if (stations.left_3.contains(cont)) {
+                if (!stations.right_3.contains('kit kat') &&
+                    !stations.left_3.contains('kit kat')) {
+                  stations.left_3.add('kit kat');
+                }
+                line_start =
+                    stations.line_3 + stations.left_3 + stations.right_3;
+              } else if (stations.right_3.contains(cont)) {
+                if (!stations.right_3.contains('kit kat') &&
+                    !stations.left_3.contains('kit kat')) {
+                  stations.right_3.add('kit kat');
+                }
+                line_start =
+                    stations.line_3 + stations.right_3 + stations.left_3;
+              }
+              if (stations.left_3.contains(cont) &&
+                  stations.left_3.contains(cont2)) {
+                line_start = stations.left_3;
+              } else if (stations.left_3.contains(cont) &&
+                  stations.left_3.contains(cont2)) {
+                line_start = stations.right_3;
+              }
+            }
+          };
+
     //this block for sub the list and Generat the road
     if (line_start.contains(cont) && line_start.contains(cont2)) {
       sub_st = line_start.indexOf(cont);
@@ -179,6 +189,8 @@ class controllers extends GetxController {
         sub_st = line_end.indexOf(sta2);
         sub_end = line_end.indexOf(cont2);
         if (sub_end > sub_st) {
+          print(sub_end);
+          print(sub_st);
           count2.value = line_end.sublist(sub_st, sub_end + 1);
           dir.value = line_end[line_end.length - 1];
         } else {

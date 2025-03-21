@@ -120,10 +120,39 @@ class TicketPage extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
+                    Home.dir.value = '';
+                    Home.time_s.value = '';
+                    Home.count.value = [];
+                    Home.count2.value = [];
+                    Home.ticket.value = 0;
+                    Home.line_All = stations.line_1 +
+                        stations.line_2 +
+                        stations.line_3 +
+                        stations.right_3 +
+                        stations.left_3;
+
+                    //this block for avoid the exception
+                    if (cont.text == '' || cont2.text == '') {
+                      Home.time_s.value = 'enter stations';
+                      return;
+                    } else if (!Home.line_All.contains(cont.text)) {
+                      Home.time_s.value = 'start station is wrong';
+                      return;
+                    } else if (!Home.line_All.contains(cont2.text)) {
+                      Home.time_s.value = 'end station is wrong';
+                      return;
+                    } else if (cont.text == cont2.text) {
+                      Home.time_s.value = 'it is a same station';
+                      return;
+                    }
+
+                    numcont.text = numcont.text.isEmpty ? '1' : numcont.text;
+
                     Home.l_roud(cont.text, cont2.text, int.parse(numcont.text));
                     Get.snackbar('info', '${Home.ticket}');
                   },
                   child: Text('calculate')),
+              Text('${Home.time_s}'),
             ],
           ),
         ),
