@@ -24,10 +24,7 @@ class TrajectoryPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
-            Obx(() => home.count.isEmpty
-                ? Text('${home.time_s}', style: TextStyle(color: Colors.red, fontSize: 18))
-                : SizedBox()
-            ),
+
 
             SizedBox(height: 20),
 
@@ -35,12 +32,73 @@ class TrajectoryPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                InfoCard(title: "عدد المحطات", value: home.sub_st.toString()),
-                InfoCard(title: "الزمن", value: home.time_s.toString()),
-                InfoCard(title: "الاتجاه", value: home.dir.toString()),
-                InfoCard(title: "سعر التذكرة", value: "${home.ticket} جنيه"),
+                Container(
+                  padding: EdgeInsets.all(12),
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade100, // لون خلفية مميز
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 4,
+                        offset: Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: InfoCard(title: "عدد المحطات", value: home.sub_st.toString()),
+                ),
+                Container(
+                  padding: EdgeInsets.all(12),
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.green.shade100, // لون آخر مميز
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 4,
+                        offset: Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: InfoCard(title: "الزمن", value: home.time_s.toString()),
+                ),
+                Container(
+                  padding: EdgeInsets.all(12),
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.orange.shade100, // لون مختلف للتمييز
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 4,
+                        offset: Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: InfoCard(title: "الاتجاه", value: home.dir.toString()),
+                ),
+                Container(
+                  padding: EdgeInsets.all(12),
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade100,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 4,
+                        offset: Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: InfoCard(title: "سعر التذكرة", value: "${home.ticket} جنيه"),
+                ),
               ],
             ),
+
 
             SizedBox(height: 20),
 
