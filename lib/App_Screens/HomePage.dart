@@ -68,7 +68,8 @@ class _HomePageState extends State<HomePage> {
           ),
           Card(
             elevation: 4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: DropdownMenu(
@@ -109,7 +110,8 @@ class _HomePageState extends State<HomePage> {
           ),
           Card(
             elevation: 4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: DropdownMenu(
@@ -167,200 +169,7 @@ class _HomePageState extends State<HomePage> {
                 Home.time_s.value = 'it is a same station';
                 return;
               }
-              //decide the line
-              if (stations.line_1.contains(Home.cont.text)) {
-                Home.line_start = stations.line_1;
-              } else if (stations.line_2.contains(Home.cont.text)) {
-                Home.line_start = stations.line_2;
-              } else if (stations.line_3.contains(Home.cont.text)) {
-                Home.line_start = stations.line_3;
-              } else if (stations.left_3.contains(Home.cont.text)) {
-                Home.line_start = stations.line_3;
-              } else if (stations.right_3.contains(Home.cont.text)) {
-                Home.line_start = stations.line_3;
-              }
-              if (stations.line_1.contains(Home.cont.text) &&
-                  stations.line_2.contains(Home.cont.text)) {
-                if (stations.line_1.contains(Home.cont2.text)) {
-                  Home.line_start = stations.line_1;
-                } else if (stations.line_2.contains(Home.cont2.text)) {
-                  Home.line_start = stations.line_2;
-                }
-              } else if (stations.line_2.contains(Home.cont.text) &&
-                  stations.line_3.contains(Home.cont.text)) {
-                if (stations.line_2.contains(Home.cont2.text)) {
-                  Home.line_start = stations.line_2;
-                } else if (stations.line_3.contains(Home.cont2.text)) {
-                  Home.line_start = stations.line_3;
-                }
-              } else if (stations.line_1.contains(Home.cont.text) &&
-                  stations.line_3.contains(Home.cont.text)) {
-                if (stations.line_1.contains(Home.cont2.text)) {
-                  Home.line_start = stations.line_1;
-                } else if (stations.line_3.contains(Home.cont2.text)) {
-                  Home.line_start = stations.line_3;
-                }
-              }
-              Home.line_All =
-                  stations.line_3 + stations.right_3 + stations.left_3;
-              if (Home.line_All.contains(Home.cont.text) &&
-                  Home.line_All.contains(Home.cont2.text)) {
-                if (stations.line_3.contains(Home.cont.text) &&
-                    stations.right_3.contains(Home.cont2.text)) {
-                  Home.line_start = stations.line_3 + stations.right_3;
-                } else if (stations.line_3.contains(Home.cont2.text) &&
-                    stations.right_3.contains(Home.cont.text)) {
-                  stations.right_3 = stations.right_3.reversed.toList();
-                  Home.line_start = stations.line_3 + stations.right_3;
-                } else if ((stations.line_3.contains(Home.cont2.text) &&
-                        stations.line_3.contains(Home.cont.text)) ||
-                    (stations.line_3.contains(Home.cont.text) &&
-                        stations.left_3.contains(Home.cont2.text))) {
-                  Home.line_start = stations.line_3 + stations.left_3;
-                } else if (stations.left_3.contains(Home.cont.text) &&
-                    stations.right_3.contains(Home.cont2.text)) {
-                  stations.left_3 = stations.left_3.reversed.toList();
-                  if (!stations.right_3.contains('kit kat') &&
-                      !stations.left_3.contains('kit kat')) {
-                    stations.left_3.add('kit kat');
-                  }
-                  Home.line_start =
-                      stations.line_3 + stations.left_3 + stations.right_3;
-                } else if (stations.right_3.contains(Home.cont.text) &&
-                    stations.left_3.contains(Home.cont2.text)) {
-                  stations.right_3 = stations.right_3.reversed.toList();
-                  if (!stations.right_3.contains('kit kat') &&
-                      !stations.left_3.contains('kit kat')) {
-                    stations.right_3.add('kit kat');
-                  }
-                  Home.line_start =
-                      stations.line_3 + stations.right_3 + stations.left_3;
-                }
-              } else if (Home.line_All.contains(Home.cont.text)) {
-                if (stations.left_3.contains(Home.cont.text)) {
-                  if (!stations.right_3.contains('kit kat') &&
-                      !stations.left_3.contains('kit kat')) {
-                    stations.left_3.add('kit kat');
-                  }
-                  Home.line_start =
-                      stations.line_3 + stations.left_3 + stations.right_3;
-                } else if (stations.right_3.contains(Home.cont.text)) {
-                  if (!stations.right_3.contains('kit kat') &&
-                      !stations.left_3.contains('kit kat')) {
-                    stations.right_3.add('kit kat');
-                  }
-                  Home.line_start =
-                      stations.line_3 + stations.right_3 + stations.left_3;
-                }
-                if (stations.left_3.contains(Home.cont.text) &&
-                    stations.left_3.contains(Home.cont2.text)) {
-                  Home.line_start = stations.left_3;
-                } else if (stations.left_3.contains(Home.cont.text) &&
-                    stations.left_3.contains(Home.cont2.text)) {
-                  Home.line_start = stations.right_3;
-                }
-              }
-              //this block for sub the list and Generat the road
-              if (Home.line_start.contains(Home.cont.text) &&
-                  Home.line_start.contains(Home.cont2.text)) {
-                Home.sub_st = Home.line_start.indexOf(Home.cont.text);
-                Home.sub_end = Home.line_start.indexOf(Home.cont2.text);
-                if (Home.sub_st < Home.sub_end) {
-                  Home.count.value =
-                      Home.line_start.sublist(Home.sub_st, Home.sub_end + 1);
-                  Home.dir.value = Home.line_start[Home.line_start.length - 1];
-                } else {
-                  Home.count.value =
-                      Home.line_start.sublist(Home.sub_end, Home.sub_st + 1);
-                  Home.count.value = Home.count.reversed.toList();
-                  Home.dir.value = 'dir = ${Home.line_start[0]}';
-                }
-              } else {
-                if (stations.line_1.contains(Home.cont2.text)) {
-                  Home.line_end = stations.line_1;
-                } else if (stations.line_2.contains(Home.cont2.text)) {
-                  Home.line_end = stations.line_2;
-                } else {
-                  Home.line_end = stations.line_3;
-                }
-                Home.sta = [
-                  'sadat',
-                  'cairo university',
-                  'attaba',
-                  'al-shohadaa',
-                  'nasser'
-                ];
-                Home.sta.shuffle();
-                for (int i = 0; i < Home.sta.length; i++) {
-                  if (Home.line_start.contains(Home.sta[i]) &&
-                      Home.line_end.contains(Home.sta[i])) {
-                    Home.sta2 = Home.sta[i];
-                    Home.sta[i] = '';
-                    break;
-                  } else {
-                    Home.sta2 = '';
-                  }
-                }
-                if (stations.right_3.contains(Home.cont2.text)) {
-                  stations.left_3 = stations.left_3.reversed.toList();
-                  Home.line_end =
-                      stations.line_3 + stations.left_3 + stations.right_3;
-                } else if (stations.right_3.contains(Home.sta2) &&
-                    stations.left_3.contains(Home.cont2.text)) {
-                  Home.line_end =
-                      stations.line_3 + stations.right_3 + stations.left_3;
-                }
-                Home.sub_st = Home.line_start.indexOf(Home.cont.text);
-                Home.sub_end = Home.line_start.indexOf(Home.sta2);
-                if (Home.sub_st < Home.sub_end) {
-                  Home.count.value =
-                      Home.line_start.sublist(Home.sub_st, Home.sub_end);
-                  Home.sub_st = Home.line_end.indexOf(Home.sta2);
-                  Home.sub_end = Home.line_end.indexOf(Home.cont2.text);
-                  if (Home.sub_end > Home.sub_st) {
-                    Home.count2.value =
-                        Home.line_end.sublist(Home.sub_st, Home.sub_end + 1);
-                    Home.dir.value = Home.line_end[Home.line_end.length - 1];
-                  } else {
-                    Home.count2.value =
-                        Home.line_end.sublist(Home.sub_end, Home.sub_st);
-                    Home.count2.value = Home.count2.reversed.toList();
-                    Home.dir.value = Home.line_end[0];
-                  }
-                } else {
-                  Home.count.value =
-                      Home.line_start.sublist(Home.sub_end, Home.sub_st + 1);
-                  Home.count.value = Home.count.reversed.toList();
-                  Home.sub_st = Home.line_end.indexOf(Home.sta2);
-                  Home.sub_end = Home.line_end.indexOf(Home.cont2.text);
-                  if (Home.sub_end > Home.sub_st) {
-                    Home.count2.value =
-                        Home.line_end.sublist(Home.sub_st, Home.sub_end);
-                    Home.dir.value = Home.line_end[Home.line_end.length - 1];
-                  } else {
-                    Home.count2.value =
-                        Home.line_end.sublist(Home.sub_end, Home.sub_st + 1);
-                    Home.count2.value = Home.count2.reversed.toList();
-                    Home.dir.value = Home.line_end[0];
-                  }
-                }
-              }
-              if (Home.count.isNotEmpty) {
-                Home.sub_st = Home.count.length + Home.count2.length;
-                Home.sub_st = Home.sub_st;
-                if (Home.sub_st * 2 >= 60) {
-                  Home.time_s.value = ' 1 hour ${Home.sub_st * 2 - 60}';
-                } else {
-                  Home.time_s.value = 'time = ${Home.sub_st * 2} min';
-                }
-                if (Home.sub_st <= 9) {
-                  Home.ticket.value = 8;
-                } else if (Home.sub_st <= 17) {
-                  Home.ticket.value = 10;
-                } else {
-                  Home.ticket.value = 15;
-                }
-              }
+              Home.l_roud(Home.cont.text, Home.cont2.text);
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -373,7 +182,6 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 20,
           ),
-
           Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             IconButton(
               onPressed: () {

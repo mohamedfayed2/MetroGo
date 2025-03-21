@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 
 import '../Customs/Custom_Bottom_Navigation_Bar.dart';
 import '../controllers/NavigationController.dart';
+import '../controllers/controller_home.dart';
 
 class TicketPage extends StatelessWidget {
   final NavigationController navController = Get.find<NavigationController>();
+  final controllers Home = Get.put(controllers());
   var cont = TextEditingController();
   var cont2 = TextEditingController();
   @override
@@ -38,6 +40,14 @@ class TicketPage extends StatelessWidget {
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white))),
             ),
+            SizedBox(
+              height: 40,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Home.l_roud(cont.text, cont2.text);
+                },
+                child: Text('calculate')),
           ],
         ),
       ),

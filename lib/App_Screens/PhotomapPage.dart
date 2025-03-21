@@ -6,14 +6,13 @@ class PhotoMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Center(
+      backgroundColor: Colors.black,
+      body: Center(
         child: Container(
-          height: 100,
-          width: 300,
+          width: double.infinity,
           child: Image.asset("assets/images/new-map8.jpg"),
         ),
       ),
-
     );
   }
 }
