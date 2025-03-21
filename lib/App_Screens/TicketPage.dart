@@ -22,10 +22,14 @@ class TicketPage extends StatelessWidget {
         stations.left_3;
     Set<String> line_s = Home.line_All.toSet();
     return Scaffold(
-      backgroundColor:Color(0xff121212),
+      backgroundColor: Color(0xff121212),
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Ticket Page", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+        title: Text("Ticket Page",
+            style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
         backgroundColor: Colors.blueAccent,
         elevation: 5,
         shape: RoundedRectangleBorder(
@@ -47,8 +51,39 @@ class TicketPage extends StatelessWidget {
               SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
+                  Home.dir.value = '';
+                  Home.time_s.value = '';
+                  Home.count.value = [];
+                  Home.count2.value = [];
+                  Home.ticket.value = 0;
+                  Home.line_All = stations.line_1 +
+                      stations.line_2 +
+                      stations.line_3 +
+                      stations.right_3 +
+                      stations.left_3;
+
+                  //this block for avoid the exception
+                  if (cont.text == '' || cont2.text == '') {
+                    Home.time_s.value = 'enter stations';
+                    return;
+                  } else if (!Home.line_All.contains(cont.text)) {
+                    Home.time_s.value = 'start station is wrong';
+                    return;
+                  } else if (!Home.line_All.contains(cont2.text)) {
+                    Home.time_s.value = 'end station is wrong';
+                    return;
+                  } else if (cont.text == cont2.text) {
+                    Home.time_s.value = 'it is a same station';
+                    return;
+                  }
+
+                  numcont.text = numcont.text.isEmpty ? '1' : numcont.text;
+
                   Home.l_roud(cont.text, cont2.text, int.parse(numcont.text));
-                  Get.snackbar('Info', '${Home.ticket}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.blueAccent, colorText: Colors.white);
+                  Get.snackbar('Info', '${Home.ticket}',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.blueAccent,
+                      colorText: Colors.white);
                 },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
@@ -58,18 +93,23 @@ class TicketPage extends StatelessWidget {
                   ),
                   elevation: 5,
                 ),
-                child: Text('Search', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+                child: Text('Search',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white)),
               ),
             ],
           ),
         ),
       ),
       bottomNavigationBar:
-      SizedBox(height: 80, child: CustomBottomNavigationBar()),
+          SizedBox(height: 80, child: CustomBottomNavigationBar()),
     );
   }
 
-  Widget _buildDropdown(String label, Set<String> items, TextEditingController controller) {
+  Widget _buildDropdown(
+      String label, Set<String> items, TextEditingController controller) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -92,7 +132,7 @@ class TicketPage extends StatelessWidget {
         items: items.map((value) {
           return DropdownMenuItem(
             value: value,
-            child: Text(value, style: TextStyle(color:Color(0xff121212))),
+            child: Text(value, style: TextStyle(color: Color(0xff121212))),
           );
         }).toList(),
         onChanged: (newValue) {
