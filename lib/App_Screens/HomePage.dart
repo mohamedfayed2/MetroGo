@@ -214,7 +214,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void line_s_d(String cont1, String cont2) {}
   Future<void> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
