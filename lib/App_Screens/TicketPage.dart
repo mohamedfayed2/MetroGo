@@ -135,6 +135,7 @@ class TicketPage extends StatelessWidget {
             child: Text(value, style: TextStyle(color: Color(0xff121212))),
           );
         }).toList(),
+        menuMaxHeight: 150,
         onChanged: (newValue) {
           controller.text = newValue!;
         },

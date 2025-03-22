@@ -23,16 +23,12 @@ class TrajectoryPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
-
-
             SizedBox(height: 20),
-
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
+                  width: Get.width * 0.4,
                   padding: EdgeInsets.all(12),
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
@@ -46,9 +42,11 @@ class TrajectoryPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: InfoCard(title: "عدد المحطات", value: home.sub_st.toString()),
+                  child: InfoCard(
+                      title: "عدد المحطات", value: home.sub_st.toString()),
                 ),
                 Container(
+                  width: Get.width * 0.4,
                   padding: EdgeInsets.all(12),
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
@@ -62,9 +60,19 @@ class TrajectoryPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: InfoCard(title: "الزمن", value: home.time_s.toString()),
+                  child:
+                      InfoCard(title: "الزمن", value: home.time_s.toString()),
                 ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
                 Container(
+                  width: Get.width * 0.4,
                   padding: EdgeInsets.all(12),
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
@@ -81,6 +89,7 @@ class TrajectoryPage extends StatelessWidget {
                   child: InfoCard(title: "الاتجاه", value: home.dir.toString()),
                 ),
                 Container(
+                  width: Get.width * 0.4,
                   padding: EdgeInsets.all(12),
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
@@ -94,29 +103,25 @@ class TrajectoryPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: InfoCard(title: "سعر التذكرة", value: "${home.ticket} جنيه"),
+                  child: InfoCard(
+                      title: "سعر التذكرة", value: "${home.ticket} جنيه"),
                 ),
               ],
             ),
-
-
             SizedBox(height: 20),
-
-
             Expanded(
               child: Obx(() => home.count.isNotEmpty
                   ? ListView.builder(
-                itemCount: home.count.length,
-                itemBuilder: (context, index) {
-                  return StationTile(
-                    stationName: home.count[index],
-                    isFirst: index == 0,
-                    isLast: index == home.count.length - 1,
-                  );
-                },
-              )
-                  : SizedBox()
-              ),
+                      itemCount: home.count.length,
+                      itemBuilder: (context, index) {
+                        return StationTile(
+                          stationName: home.count[index],
+                          isFirst: index == 0,
+                          isLast: index == home.count.length - 1,
+                        );
+                      },
+                    )
+                  : SizedBox()),
             ),
           ],
         ),
@@ -124,7 +129,6 @@ class TrajectoryPage extends StatelessWidget {
     );
   }
 }
-
 
 class InfoCard extends StatelessWidget {
   final String title;
@@ -136,20 +140,24 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(value, style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+        Text(value,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold)),
         Text(title, style: TextStyle(color: Colors.grey, fontSize: 14)),
       ],
     );
   }
 }
 
-
 class StationTile extends StatelessWidget {
   final String stationName;
   final bool isFirst;
   final bool isLast;
 
-  const StationTile({required this.stationName, required this.isFirst, required this.isLast});
+  const StationTile(
+      {required this.stationName, required this.isFirst, required this.isLast});
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +166,9 @@ class StationTile extends StatelessWidget {
       children: [
         Column(
           children: [
-            if (!isFirst) Container(width: 2, height: 20, color: Colors.blue), // خط قبل المحطة
+            if (!isFirst)
+              Container(
+                  width: 2, height: 20, color: Colors.blue), // خط قبل المحطة
             Container(
               width: 12,
               height: 12,
@@ -167,7 +177,9 @@ class StationTile extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
             ),
-            if (!isLast) Container(width: 2, height: 20, color: Colors.blue), // خط بعد المحطة
+            if (!isLast)
+              Container(
+                  width: 2, height: 20, color: Colors.blue), // خط بعد المحطة
           ],
         ),
         SizedBox(width: 10),

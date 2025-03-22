@@ -7,6 +7,10 @@ class PhotoMap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text('photo map'),
+        backgroundColor: Colors.blueAccent,
+      ),
       body: Center(
         child: Container(
           width: double.infinity,

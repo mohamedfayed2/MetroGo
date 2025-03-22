@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:metro_app/App_Screens/TrajectoryPage.dart';
 import 'package:metro_app/Customs/Custom_Bottom_Navigation_Bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../Models/Stations.dart';
 import '../controllers/NavigationController.dart';
 import '../controllers/controller_home.dart';
@@ -32,16 +34,20 @@ class _HomePageState extends State<HomePage> {
     _initlocation();
   }
 
+  var name = Home.sta_d.name.obs; // أو RxnString() إذا كنت تتوقع null
+
   void _initlocation() async {
     Future.delayed(Duration(seconds: 10));
     await _determinePosition();
     print(p);
+    print(name?.value);
     if (p == null) {
       return;
     }
     pt = p!.latitude;
     pg = p!.longitude;
     nerst_st(pt, pg);
+    Get.snackbar('info', '${name?.value}');
   }
 
   @override
@@ -63,7 +69,49 @@ class _HomePageState extends State<HomePage> {
         children: [
           SizedBox(
             width: double.infinity,
-            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    width: Get.width * 0.7,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Obx(() {
+                      return Text(
+                        '${name}',
+                        style: TextStyle(fontSize: 20),
+                      );
+                    }),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    width: Get.width * 0.2,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: IconButton(
+                        onPressed: () {
+                          if (Home.sta_d.link == '') {
+                            return;
+                          }
+                          launchUrl(Uri.parse(Home.sta_d.link));
+                        },
+                        icon: Icon(LucideIcons.map)),
+                  ),
+                ),
+              ],
+            ),
           ),
           Card(
             elevation: 4,
@@ -71,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: DropdownMenu(
+              child: DropdownMenu<String>(
                 dropdownMenuEntries: [
                   for (var value in line_s)
                     DropdownMenuEntry(value: value, label: value),
@@ -86,6 +134,7 @@ class _HomePageState extends State<HomePage> {
                   'From',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
+                menuHeight: 150,
                 width: 350,
                 helperText: 'Enter start station',
                 enableSearch: true,
@@ -113,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: DropdownMenu(
+              child: DropdownMenu<String>(
                 dropdownMenuEntries: [
                   for (var value in line_s)
                     DropdownMenuEntry(value: value, label: value),
@@ -128,6 +177,7 @@ class _HomePageState extends State<HomePage> {
                   'To',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
+                menuHeight: 150,
                 width: 350,
                 helperText: 'Enter end station',
                 enableSearch: true,
@@ -183,7 +233,11 @@ class _HomePageState extends State<HomePage> {
               ),
               elevation: 5,
             ),
-            child: Text('Search', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+            child: Text('Search',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white)),
           ),
           SizedBox(
             height: 20,
@@ -201,17 +255,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox(
-              width: 10,
-            ),
           ]),
-          SizedBox(
-            height: 20,
-          ),
         ],
       ),
       bottomNavigationBar:
-          SizedBox(height: 80, child: CustomBottomNavigationBar()),
+          SizedBox(height: 60, child: CustomBottomNavigationBar()),
     );
   }
 

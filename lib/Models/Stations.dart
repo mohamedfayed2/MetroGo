@@ -88,7 +88,7 @@ class Stations extends GetxController {
     'attaba',
     'nasser',
     'maspero',
-    'zamalek',
+    'safa hijazy',
     'kit kat'
   ];
 

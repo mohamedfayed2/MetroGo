@@ -50,100 +50,97 @@ class controllers extends GetxController {
 //this variable for DropdownMenu
   var line_All = <String>[];
   var dis = double.infinity;
-  Station? sta_d;
+  Station sta_d = Station(name: '', late: 0.0, long: 0.0, link: '');
   void l_roud(String cont, String cont2, [int x = 1]) {
     //decide the line
-    line_start = (stations.line_1.contains(cont))
-        ? stations.line_1
-        : (stations.line_2.contains(cont))
-            ? stations.line_2
-            : (stations.line_3.contains(cont))
-                ? stations.line_3
-                : [];
-    (line_start != [])
-        ? () {
-            (stations.line_1.contains(cont) && stations.line_2.contains(cont))
-                ? (stations.line_1.contains(cont2))
-                    ? line_start = stations.line_1
-                    : (stations.line_2.contains(cont2))
-                        ? line_start = stations.line_2
-                        : null
-                : (stations.line_2.contains(cont) &&
-                        stations.line_3.contains(cont))
-                    ? (stations.line_2.contains(cont2))
-                        ? line_start = stations.line_2
-                        : (stations.line_3.contains(cont2))
-                            ? line_start = stations.line_3
-                            : null
-                    : (stations.line_1.contains(cont) &&
-                            stations.line_3.contains(cont))
-                        ? (stations.line_1.contains(cont2))
-                            ? line_start = stations.line_1
-                            : (stations.line_3.contains(cont2))
-                                ? line_start = stations.line_3
-                                : null
-                        : null;
+    if (!stations.left_3.contains(cont2) && !stations.right_3.contains(cont2)) {
+      line_start = (stations.line_1.contains(cont))
+          ? stations.line_1
+          : (stations.line_2.contains(cont))
+              ? stations.line_2
+              : (stations.line_3.contains(cont))
+                  ? stations.line_3
+                  : [];
+    } else {
+      line_start = [];
+    }
+    if (line_start.isNotEmpty) {
+      print('hereeeee');
+      (stations.line_1.contains(cont) && stations.line_2.contains(cont))
+          ? (stations.line_1.contains(cont2))
+              ? line_start = stations.line_1
+              : (stations.line_2.contains(cont2))
+                  ? line_start = stations.line_2
+                  : null
+          : (stations.line_2.contains(cont) && stations.line_3.contains(cont))
+              ? (stations.line_2.contains(cont2))
+                  ? line_start = stations.line_2
+                  : (stations.line_3.contains(cont2))
+                      ? line_start = stations.line_3
+                      : null
+              : (stations.line_1.contains(cont) &&
+                      stations.line_3.contains(cont))
+                  ? (stations.line_1.contains(cont2))
+                      ? line_start = stations.line_1
+                      : (stations.line_3.contains(cont2))
+                          ? line_start = stations.line_3
+                          : null
+                  : null;
+    } else {
+      print('a');
+      line_All = stations.line_3 + stations.right_3 + stations.left_3;
+      if (line_All.contains(cont) && line_All.contains(cont2)) {
+        print('b');
+        if ((stations.line_3.contains(cont) &&
+                stations.right_3.contains(cont2)) ||
+            ((stations.line_3.contains(cont2) &&
+                stations.right_3.contains(cont)))) {
+          print('c');
+          line_start = stations.line_3 + stations.right_3;
+        } else if ((stations.line_3.contains(cont2) &&
+                stations.left_3.contains(cont)) ||
+            (stations.line_3.contains(cont) &&
+                stations.left_3.contains(cont2))) {
+          line_start = stations.line_3 + stations.left_3;
+        } else if (stations.left_3.contains(cont) &&
+            stations.right_3.contains(cont2)) {
+          stations.left_3 = stations.left_3.reversed.toList();
+          if (!stations.right_3.contains('kit kat') &&
+              !stations.left_3.contains('kit kat')) {
+            stations.left_3.add('kit kat');
           }
-        : () {
-            line_All = stations.line_3 + stations.right_3 + stations.left_3;
-            if (line_All.contains(cont) && line_All.contains(cont2)) {
-              if (stations.line_3.contains(cont) &&
-                  stations.right_3.contains(cont2)) {
-                line_start = stations.line_3 + stations.right_3;
-              } else if (stations.line_3.contains(cont2) &&
-                  stations.right_3.contains(cont)) {
-                stations.right_3 = stations.right_3.reversed.toList();
-                line_start = stations.line_3 + stations.right_3;
-              } else if ((stations.line_3.contains(cont2) &&
-                      stations.line_3.contains(cont)) ||
-                  (stations.line_3.contains(cont) &&
-                      stations.left_3.contains(cont2))) {
-                line_start = stations.line_3 + stations.left_3;
-              } else if (stations.left_3.contains(cont) &&
-                  stations.right_3.contains(cont2)) {
-                stations.left_3 = stations.left_3.reversed.toList();
-                if (!stations.right_3.contains('kit kat') &&
-                    !stations.left_3.contains('kit kat')) {
-                  stations.left_3.add('kit kat');
-                }
-                line_start =
-                    stations.line_3 + stations.left_3 + stations.right_3;
-              } else if (stations.right_3.contains(cont) &&
-                  stations.left_3.contains(cont2)) {
-                stations.right_3 = stations.right_3.reversed.toList();
-                if (!stations.right_3.contains('kit kat') &&
-                    !stations.left_3.contains('kit kat')) {
-                  stations.right_3.add('kit kat');
-                }
-                line_start =
-                    stations.line_3 + stations.right_3 + stations.left_3;
-              }
-            } else if (line_All.contains(cont)) {
-              if (stations.left_3.contains(cont)) {
-                if (!stations.right_3.contains('kit kat') &&
-                    !stations.left_3.contains('kit kat')) {
-                  stations.left_3.add('kit kat');
-                }
-                line_start =
-                    stations.line_3 + stations.left_3 + stations.right_3;
-              } else if (stations.right_3.contains(cont)) {
-                if (!stations.right_3.contains('kit kat') &&
-                    !stations.left_3.contains('kit kat')) {
-                  stations.right_3.add('kit kat');
-                }
-                line_start =
-                    stations.line_3 + stations.right_3 + stations.left_3;
-              }
-              if (stations.left_3.contains(cont) &&
-                  stations.left_3.contains(cont2)) {
-                line_start = stations.left_3;
-              } else if (stations.left_3.contains(cont) &&
-                  stations.left_3.contains(cont2)) {
-                line_start = stations.right_3;
-              }
-            }
-          };
-
+          line_start = stations.line_3 + stations.left_3 + stations.right_3;
+        } else if (stations.right_3.contains(cont) &&
+            stations.left_3.contains(cont2)) {
+          stations.right_3 = stations.right_3.reversed.toList();
+          if (!stations.right_3.contains('kit kat') &&
+              !stations.left_3.contains('kit kat')) {
+            stations.right_3.add('kit kat');
+          }
+          line_start = stations.line_3 + stations.right_3 + stations.left_3;
+        }
+      } else if (line_All.contains(cont)) {
+        if (stations.left_3.contains(cont)) {
+          if (!stations.right_3.contains('kit kat') &&
+              !stations.left_3.contains('kit kat')) {
+            stations.left_3.add('kit kat');
+          }
+          line_start = stations.line_3 + stations.left_3 + stations.right_3;
+        } else if (stations.right_3.contains(cont)) {
+          if (!stations.right_3.contains('kit kat') &&
+              !stations.left_3.contains('kit kat')) {
+            stations.right_3.add('kit kat');
+          }
+          line_start = stations.line_3 + stations.right_3 + stations.left_3;
+        }
+        if (stations.left_3.contains(cont) && stations.left_3.contains(cont2)) {
+          line_start = stations.left_3;
+        } else if (stations.left_3.contains(cont) &&
+            stations.left_3.contains(cont2)) {
+          line_start = stations.right_3;
+        }
+      }
+    }
     //this block for sub the list and Generat the road
     if (line_start.contains(cont) && line_start.contains(cont2)) {
       sub_st = line_start.indexOf(cont);
@@ -154,7 +151,7 @@ class controllers extends GetxController {
       } else {
         count.value = line_start.sublist(sub_end, sub_st + 1);
         count.value = count.reversed.toList();
-        dir.value = 'dir = ${line_start[0]}';
+        dir.value = ' ${line_start[0]} ';
       }
     } else {
       if (stations.line_1.contains(cont2)) {
@@ -189,8 +186,6 @@ class controllers extends GetxController {
         sub_st = line_end.indexOf(sta2);
         sub_end = line_end.indexOf(cont2);
         if (sub_end > sub_st) {
-          print(sub_end);
-          print(sub_st);
           count2.value = line_end.sublist(sub_st, sub_end + 1);
           dir.value = line_end[line_end.length - 1];
         } else {
