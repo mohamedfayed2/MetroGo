@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     _initlocation();
   }
 
-  var name = Home.sta_d.name.obs; // أو RxnString() إذا كنت تتوقع null
+  var name = Home.sta_d.name.obs;
 
   void _initlocation() async {
     Future.delayed(Duration(seconds: 10));
@@ -47,7 +47,8 @@ class _HomePageState extends State<HomePage> {
     pt = p!.latitude;
     pg = p!.longitude;
     nerst_st(pt, pg);
-    Get.snackbar('info', '${name?.value}');
+    name.value = Home.sta_d.name;
+    Get.snackbar('info', name.value);
   }
 
   @override
@@ -85,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     child: Obx(() {
                       return Text(
-                        '${name}',
+                        name.value,
                         style: TextStyle(fontSize: 20),
                       );
                     }),
