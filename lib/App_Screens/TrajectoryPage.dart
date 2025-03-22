@@ -24,46 +24,48 @@ class TrajectoryPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: Get.width * 0.4,
-                  padding: EdgeInsets.all(12),
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.shade100, // لون خلفية مميز
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: Get.width * 0.4,
+                    padding: EdgeInsets.all(12),
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade100, // لون خلفية مميز
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                    child: InfoCard(
+                        title: "عدد المحطات", value: home.sub_st.toString()),
                   ),
-                  child: InfoCard(
-                      title: "عدد المحطات", value: home.sub_st.toString()),
-                ),
-                Container(
-                  width: Get.width * 0.4,
-                  padding: EdgeInsets.all(12),
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.green.shade100, // لون آخر مميز
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
+                  Container(
+                    width: Get.width * 0.4,
+                    padding: EdgeInsets.all(12),
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.green.shade100, // لون آخر مميز
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                    child:
+                        InfoCard(title: "الزمن", value: home.time_s.toString()),
                   ),
-                  child:
-                      InfoCard(title: "الزمن", value: home.time_s.toString()),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(
               height: 20,
