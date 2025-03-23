@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:metro_app/App_Screens/TrajectoryPage.dart';
+import 'package:metro_app/App_Screens/onboarding_screen.dart';
 import 'package:metro_app/Customs/Custom_Bottom_Navigation_Bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Models/Stations.dart';
@@ -25,19 +26,17 @@ Position? p;
 var pt = 0.0;
 //p!.longitude
 var pg = 0.0;
-GetStorage? file;
 
 class _HomePageState extends State<HomePage> {
+  @override
   void initState() {
     super.initState();
-
     _initlocation();
   }
 
   var name = Home.sta_d.name.obs;
 
   void _initlocation() async {
-    Future.delayed(Duration(seconds: 10));
     await _determinePosition();
     print(p);
     print(name?.value);
@@ -85,14 +84,13 @@ class _HomePageState extends State<HomePage> {
                       child: Center(
                         child: Obx(() {
                           return Text(
-                          name.value,
+                            name.value,
                             style: TextStyle(fontSize: 20),
                           );
                         }),
                       ),
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
@@ -242,12 +240,9 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white)),
           ),
-
           Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             IconButton(
-              onPressed: () {
-
-              },
+              onPressed: () {},
               icon: Icon(EvaIcons.map),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
@@ -314,8 +309,6 @@ class _HomePageState extends State<HomePage> {
         Home.sta_d = stations.statoin[i];
       }
     }
-    Get.snackbar('info', '${Home.sta_d?.name}');
-    Get.snackbar('info', '${Home.sta_d?.link}');
     Get.snackbar('info', '${(Home.dis / 1000).roundToDouble()}');
   }
 }

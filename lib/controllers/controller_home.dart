@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../Models/Stations.dart';
 import '../sta_tg.dart';
@@ -22,6 +23,7 @@ class controllers extends GetxController {
 //the count is result and the road for user
   var count = <String>[].obs;
 
+  var file = GetStorage();
 //direction like el-moneb or shobra el-khema
   var dir = ''.obs;
 
@@ -154,6 +156,7 @@ class controllers extends GetxController {
         dir.value = ' ${line_start[0]} ';
       }
     } else {
+      sta2 = line_start[line_start.length - 1];
       if (stations.line_1.contains(cont2)) {
         line_end = stations.line_1;
       } else if (stations.line_2.contains(cont2)) {
@@ -161,16 +164,26 @@ class controllers extends GetxController {
       } else {
         line_end = stations.line_3;
       }
+      print(line_end);
       sta = ['sadat', 'cairo university', 'attaba', 'al-shohadaa', 'nasser'];
-      sta.shuffle();
+      var st_l = <String>[];
       for (int i = 0; i < sta.length; i++) {
         if (line_start.contains(sta[i]) && line_end.contains(sta[i])) {
-          sta2 = sta[i];
+          st_l.add(sta[i]);
           sta[i] = '';
-          break;
-        } else {
-          sta2 = '';
         }
+      }
+
+      for (int i = 0; i < st_l.length; i++) {
+        sub_st = line_start.indexOf(cont);
+        print(sub_st);
+        print(line_start.indexOf(st_l[i]));
+        (sub_st < line_start.indexOf(st_l[i]))
+            ? (line_start.indexOf(st_l[i]) < line_start.indexOf(sta2))
+                ? sta2 = st_l[i]
+                : null
+            : null;
+        print(sta2);
       }
       if (stations.right_3.contains(cont2)) {
         stations.left_3 = stations.left_3.reversed.toList();

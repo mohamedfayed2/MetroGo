@@ -15,6 +15,11 @@ class OnBoardingScreens extends StatefulWidget {
 class _OnBoardingScreensState extends State<OnBoardingScreens> {
   PageController _controller = PageController();
   bool onLastPage = false;
+  @override
+  void initState() {
+    super.initState();
+    Home.file.write('splash', 'shittt');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,56 +92,61 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
                     ),
                     onLastPage
                         ? GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          PageRouteBuilder(
-                            transitionDuration: Duration(milliseconds: 700),
-                            pageBuilder: (context, animation, secondaryAnimation) {
-                              return HomePage();
-                            },
-                            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: ScaleTransition(
-                                  scale: Tween<double>(begin: 0.9, end: 1.0).animate(
-                                    CurvedAnimation(
-                                      parent: animation,
-                                      curve: Curves.easeInOut,
-                                    ),
-                                  ),
-                                  child: child,
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  transitionDuration:
+                                      Duration(milliseconds: 700),
+                                  pageBuilder:
+                                      (context, animation, secondaryAnimation) {
+                                    return HomePage();
+                                  },
+                                  transitionsBuilder: (context, animation,
+                                      secondaryAnimation, child) {
+                                    return FadeTransition(
+                                      opacity: animation,
+                                      child: ScaleTransition(
+                                        scale:
+                                            Tween<double>(begin: 0.9, end: 1.0)
+                                                .animate(
+                                          CurvedAnimation(
+                                            parent: animation,
+                                            curve: Curves.easeInOut,
+                                          ),
+                                        ),
+                                        child: child,
+                                      ),
+                                    );
+                                  },
                                 ),
                               );
                             },
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        "Done",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
+                            child: const Text(
+                              "Done",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
                         : GestureDetector(
-                      onTap: () {
-                        _controller.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                        );
-                      },
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                            onTap: () {
+                              _controller.nextPage(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,
+                              );
+                            },
+                            child: const Text(
+                              "Next",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                   ],
                 ),
               ],

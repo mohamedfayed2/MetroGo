@@ -24,7 +24,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: AppBindings(),
       debugShowCheckedModeBanner: false,
-      home: OnBoardingScreens(),
+      home: ((Home.file.read('splash')) == null)
+          ? OnBoardingScreens()
+          : HomePage(),
       // initialRoute: '/intro', // تحديد المسار الأولي
       // getPages: [
       //   GetPage(name: '/', page: () => HomePage()),
