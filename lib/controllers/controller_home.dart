@@ -164,7 +164,6 @@ class controllers extends GetxController {
       } else {
         line_end = stations.line_3;
       }
-      print(line_end);
       sta = ['sadat', 'cairo university', 'attaba', 'al-shohadaa', 'nasser'];
       var st_l = <String>[];
       for (int i = 0; i < sta.length; i++) {
@@ -176,7 +175,6 @@ class controllers extends GetxController {
 
       for (int i = 0; i < st_l.length; i++) {
         sub_st = line_start.indexOf(cont);
-        print(sub_st);
         print(line_start.indexOf(st_l[i]));
         (sub_st < line_start.indexOf(st_l[i]))
             ? (line_start.indexOf(st_l[i]) < line_start.indexOf(sta2))
@@ -225,7 +223,7 @@ class controllers extends GetxController {
       sub_st = count.length + count2.length;
       sub_st = sub_st;
       if (sub_st * 2 >= 60) {
-        time_s.value = ' 1 ساعه ${sub_st * 2 - 60}دقيقه ';
+        time_s.value = '1 دقيقه ${sub_st * 2 - 60} ساعه';
       } else {
         time_s.value = '${sub_st * 2} دقيقه ';
       }

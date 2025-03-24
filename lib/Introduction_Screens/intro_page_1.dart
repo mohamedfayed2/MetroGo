@@ -16,27 +16,27 @@ class IntroPage1 extends StatelessWidget {
           ),
           Center(
             child: Container(
-              height: Get.height * 0.15,
+              height: Get.height * 0.2,
               child: Center(
                   child: Text.rich(
                 TextSpan(
                   text: "تنقّل بسهولة وسرعة مع \n ",
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 23,
                       fontWeight: FontWeight.w500,
                       color: Colors.white),
                   children: [
                     TextSpan(
                       text: "Metro 🚇\n",
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
                     TextSpan(
                       text: "اكتشف المحطات، وابدأ رحلتك بدون تعقيد",
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 21,
                           fontWeight: FontWeight.w400,
                           color: Colors.white),
                     ),

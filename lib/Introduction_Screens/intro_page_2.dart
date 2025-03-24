@@ -22,21 +22,21 @@ class IntroPage2 extends StatelessWidget {
                 TextSpan(
                   text: "لا مزيد من الحيرة \n ",
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 23,
                       fontWeight: FontWeight.w500,
                       color: Colors.white),
                   children: [
                     TextSpan(
                       text: "MetroGo 🗺️\n",
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
                     TextSpan(
                       text: "دليلك الذكي لمترو أسرع وأسهل",
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 21,
                           fontWeight: FontWeight.w400,
                           color: Colors.white),
                     ),

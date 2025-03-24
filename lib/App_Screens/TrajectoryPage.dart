@@ -12,6 +12,8 @@ class TrajectoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // بص يسطا لما التذكره بتكون ب 10 جنيه بتكون لونها اصفر ولما بتكون ب 12 بتكون خضره
+      // ولما بتكون ي 15 جنيه بتكون بينك
       backgroundColor: Color(0xff121212),
       appBar: AppBar(
         centerTitle: true,

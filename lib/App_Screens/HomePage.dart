@@ -67,6 +67,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
+          SizedBox(
+            height: 20,
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -113,6 +116,9 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+          ),
+          SizedBox(
+            height: 10,
           ),
           Card(
             elevation: 4,
@@ -240,22 +246,10 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white)),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(EvaIcons.map),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-          ]),
         ],
       ),
       bottomNavigationBar:
-          SizedBox(height: 60, child: CustomBottomNavigationBar()),
+          SizedBox(height: 70, child: CustomBottomNavigationBar()),
     );
   }
 

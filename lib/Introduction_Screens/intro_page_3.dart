@@ -22,7 +22,7 @@ class IntroPage3 extends StatelessWidget {
           ),
           Center(
             child: Container(
-              height: Get.height * 0.15,
+              height: Get.height * 0.2,
               child: Center(
                   child: Text.rich(
                 TextSpan(
@@ -30,7 +30,7 @@ class IntroPage3 extends StatelessWidget {
                     TextSpan(
                       text: "MetroGo 🚆\n",
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
@@ -38,7 +38,7 @@ class IntroPage3 extends StatelessWidget {
                       text:
                           "أصبح التنقل أسهل\nخطط رحلتك، استكشف المحطات، وانطلق بكل ثقة",
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 21,
                           fontWeight: FontWeight.w400,
                           color: Colors.white),
                     ),
