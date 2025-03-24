@@ -1,16 +1,12 @@
-# metro_app
+# metroGo
 
-A new Flutter project.
+this app not for metro only this app made for developing thinking 
+it made with two students in secondry2
 
-## Getting Started
+## in first
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a new roude in programing
 
-A few resources to get you started if this is your first Flutter project:
+this app look for help people in metro with a easy UI for user and we devalop it every day.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://github.com/kareem250
