@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:metro_app/App_Screens/HomePage.dart';
 
 import '../Models/Stations.dart';
 import '../sta_tg.dart';
@@ -32,7 +33,6 @@ class controllers extends GetxController {
 
 //price for the ticket
   var ticket = 0.obs;
-
 //it's a line i will sub from him if i have one line in my road
 //or if i have multiple lines it's the first line you will sub from it
 //how can i decide this line ? you can search about first station in each line
@@ -55,7 +55,10 @@ class controllers extends GetxController {
   Station sta_d = Station(name: '', late: 0.0, long: 0.0, link: '');
   void l_roud(String cont, String cont2, [int x = 1]) {
     //decide the line
-    if (!stations.left_3.contains(cont2) && !stations.right_3.contains(cont2)) {
+    //في بجايه انو بيعتبر جامعه القاهره في الخط الثالث
+    if (!stations.left_3.contains(cont2) &&
+        !stations.right_3.contains(cont2) &&
+        !(cont2 == 'cairo university')) {
       line_start = (stations.line_1.contains(cont))
           ? stations.line_1
           : (stations.line_2.contains(cont))
@@ -65,6 +68,7 @@ class controllers extends GetxController {
                   : [];
     } else {
       line_start = [];
+      print(line_start);
     }
     if (line_start.isNotEmpty) {
       print('hereeeee');
@@ -156,12 +160,13 @@ class controllers extends GetxController {
         dir.value = ' ${line_start[0]} ';
       }
     } else {
+      print(line_start);
       sta2 = line_start[line_start.length - 1];
       if (stations.line_1.contains(cont2)) {
         line_end = stations.line_1;
       } else if (stations.line_2.contains(cont2)) {
         line_end = stations.line_2;
-      } else {
+      } else if (stations.line_3.contains(cont2)) {
         line_end = stations.line_3;
       }
       sta = ['sadat', 'cairo university', 'attaba', 'al-shohadaa', 'nasser'];
@@ -172,7 +177,7 @@ class controllers extends GetxController {
           sta[i] = '';
         }
       }
-
+      print(st_l);
       for (int i = 0; i < st_l.length; i++) {
         sub_st = line_start.indexOf(cont);
         print(line_start.indexOf(st_l[i]));
@@ -180,7 +185,12 @@ class controllers extends GetxController {
             ? (line_start.indexOf(st_l[i]) < line_start.indexOf(sta2))
                 ? sta2 = st_l[i]
                 : null
-            : null;
+            : (line_start.indexOf(st_l[i]) > line_start.indexOf(sta2))
+                ? sta2 = st_l[i]
+                : (sta2 == line_start[line_start.length - 1])
+                    ? sta2 = st_l[i]
+                    : null;
+
         print(sta2);
       }
       if (stations.right_3.contains(cont2)) {
@@ -194,9 +204,12 @@ class controllers extends GetxController {
       sub_end = line_start.indexOf(sta2);
       if (sub_st < sub_end) {
         count.value = line_start.sublist(sub_st, sub_end);
+        print(line_end);
         sub_st = line_end.indexOf(sta2);
         sub_end = line_end.indexOf(cont2);
         if (sub_end > sub_st) {
+          print(sub_st);
+          print(sub_end);
           count2.value = line_end.sublist(sub_st, sub_end + 1);
           dir.value = line_end[line_end.length - 1];
         } else {
@@ -228,9 +241,9 @@ class controllers extends GetxController {
         time_s.value = '${sub_st * 2} دقيقه ';
       }
       if (sub_st <= 9) {
-        ticket.value = 10 * x;
+        ticket.value = 8 * x;
       } else if (sub_st <= 17) {
-        ticket.value = 12 * x;
+        ticket.value = 10 * x;
       } else {
         ticket.value = 15 * x;
       }
