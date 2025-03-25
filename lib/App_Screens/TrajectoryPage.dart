@@ -35,8 +35,13 @@ class TrajectoryPage extends StatelessWidget {
                     padding: EdgeInsets.all(12),
                     margin: EdgeInsets.symmetric(horizontal: 5),
                     decoration: BoxDecoration(
-                      color: Colors.blue.shade100, // لون خلفية مميز
+                      color: Colors.black87, // لون خلفية مميز
                       borderRadius: BorderRadius.circular(12),
+                      border: Border(
+                          bottom: BorderSide(color: Colors.white),
+                          left: BorderSide(color: Colors.white),
+                          right: BorderSide(color: Colors.white),
+                          top: BorderSide(color: Colors.white)),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black26,
@@ -53,8 +58,13 @@ class TrajectoryPage extends StatelessWidget {
                     padding: EdgeInsets.all(12),
                     margin: EdgeInsets.symmetric(horizontal: 5),
                     decoration: BoxDecoration(
-                      color: Colors.green.shade100, // لون آخر مميز
+                      color: Colors.black87, // لون آخر مميز
                       borderRadius: BorderRadius.circular(12),
+                      border: Border(
+                          bottom: BorderSide(color: Colors.white),
+                          left: BorderSide(color: Colors.white),
+                          right: BorderSide(color: Colors.white),
+                          top: BorderSide(color: Colors.white)),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black26,
@@ -80,8 +90,13 @@ class TrajectoryPage extends StatelessWidget {
                   padding: EdgeInsets.all(12),
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
-                    color: Colors.orange.shade100, // لون مختلف للتمييز
+                    color: Colors.black87, // لون مختلف للتمييز
                     borderRadius: BorderRadius.circular(12),
+                    border: Border(
+                        bottom: BorderSide(color: Colors.white),
+                        left: BorderSide(color: Colors.white),
+                        right: BorderSide(color: Colors.white),
+                        top: BorderSide(color: Colors.white)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black26,
@@ -97,8 +112,13 @@ class TrajectoryPage extends StatelessWidget {
                   padding: EdgeInsets.all(12),
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
-                    color: Colors.red.shade100,
+                    color: Colors.black87,
                     borderRadius: BorderRadius.circular(12),
+                    border: Border(
+                        bottom: BorderSide(color: Colors.white),
+                        left: BorderSide(color: Colors.white),
+                        right: BorderSide(color: Colors.white),
+                        top: BorderSide(color: Colors.white)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black26,

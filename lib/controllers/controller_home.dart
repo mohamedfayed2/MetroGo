@@ -55,21 +55,13 @@ class controllers extends GetxController {
   Station sta_d = Station(name: '', late: 0.0, long: 0.0, link: '');
   void l_roud(String cont, String cont2, [int x = 1]) {
     //decide the line
-    //في بجايه انو بيعتبر جامعه القاهره في الخط الثالث
-    if (!stations.left_3.contains(cont2) &&
-        !stations.right_3.contains(cont2) &&
-        !(cont2 == 'cairo university')) {
-      line_start = (stations.line_1.contains(cont))
-          ? stations.line_1
-          : (stations.line_2.contains(cont))
-              ? stations.line_2
-              : (stations.line_3.contains(cont))
-                  ? stations.line_3
-                  : [];
-    } else {
-      line_start = [];
-      print(line_start);
-    }
+    line_start = (stations.line_1.contains(cont))
+        ? stations.line_1
+        : (stations.line_2.contains(cont))
+            ? stations.line_2
+            : (stations.line_3.contains(cont))
+                ? stations.line_3
+                : [];
     if (line_start.isNotEmpty) {
       print('hereeeee');
       (stations.line_1.contains(cont) && stations.line_2.contains(cont))
@@ -145,6 +137,13 @@ class controllers extends GetxController {
             stations.left_3.contains(cont2)) {
           line_start = stations.right_3;
         }
+      } else {
+        line_start = (stations.left_3.contains(cont))
+            ? stations.line_3 + stations.left_3
+            : (stations.right_3.contains(cont))
+                ? stations.line_3 + stations.right_3
+                : [];
+        print('iam here in else');
       }
     }
     //this block for sub the list and Generat the road
@@ -199,12 +198,16 @@ class controllers extends GetxController {
       } else if (stations.right_3.contains(sta2) &&
           stations.left_3.contains(cont2)) {
         line_end = stations.line_3 + stations.right_3 + stations.left_3;
+      } else if (stations.left_3.contains(cont2)) {
+        stations.left_3 = stations.left_3.reversed.toList();
+        line_end = stations.line_3 + stations.left_3 + stations.right_3;
       }
+      print(line_end);
       sub_st = line_start.indexOf(cont);
       sub_end = line_start.indexOf(sta2);
       if (sub_st < sub_end) {
         count.value = line_start.sublist(sub_st, sub_end);
-        print(line_end);
+
         sub_st = line_end.indexOf(sta2);
         sub_end = line_end.indexOf(cont2);
         if (sub_end > sub_st) {
@@ -248,5 +251,6 @@ class controllers extends GetxController {
         ticket.value = 15 * x;
       }
     }
+    print(count2);
   }
 }
