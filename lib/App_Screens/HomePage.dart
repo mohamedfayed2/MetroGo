@@ -73,47 +73,49 @@ class _HomePageState extends State<HomePage> {
           Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: Get.width * 0.7,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: Obx(() {
-                          return Text(
-                            name.value,
-                            style: TextStyle(fontSize: 20),
-                          );
-                        }),
+              child: Center(
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        width: Get.width * 0.7,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
+                          child: Obx(() {
+                            return Text(
+                              name.value,
+                              style: TextStyle(fontSize: 20),
+                            );
+                          }),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: Get.width * 0.2,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        width: Get.width * 0.2,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: IconButton(
+                            onPressed: () {
+                              if (Home.sta_d.link == '') {
+                                return;
+                              }
+                              launchUrl(Uri.parse(Home.sta_d.link));
+                            },
+                            icon: Icon(LucideIcons.map)),
                       ),
-                      child: IconButton(
-                          onPressed: () {
-                            if (Home.sta_d.link == '') {
-                              return;
-                            }
-                            launchUrl(Uri.parse(Home.sta_d.link));
-                          },
-                          icon: Icon(LucideIcons.map)),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
