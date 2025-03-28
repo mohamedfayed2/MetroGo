@@ -234,6 +234,7 @@ class controllers extends GetxController {
           dir.value = line_end[0];
         }
       }
+      print(count2);
     }
     if (count.isNotEmpty) {
       sub_st = count.length + count2.length;
@@ -251,6 +252,5 @@ class controllers extends GetxController {
         ticket.value = 15 * x;
       }
     }
-    print(count2);
   }
 }

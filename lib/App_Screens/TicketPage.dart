@@ -42,10 +42,74 @@ class TicketPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 30),
-              _buildDropdown("From", line_s, cont),
-              SizedBox(height: 20),
-              _buildDropdown("To", line_s, cont2),
+              SizedBox(
+                height: 30,
+              ),
+              Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownMenu<String>(
+                    dropdownMenuEntries: [
+                      for (var value in line_s)
+                        DropdownMenuEntry(value: value, label: value),
+                    ],
+                    inputDecorationTheme: InputDecorationTheme(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.blue, width: 2),
+                      ),
+                    ),
+                    label: Text(
+                      'From',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    menuHeight: 150,
+                    width: double.infinity,
+                    helperText: 'Enter start station',
+                    enableSearch: true,
+                    enableFilter: true,
+                    requestFocusOnTap: true,
+                    controller: Home.cont,
+                  ),
+                ),
+              ),
+              SizedBox(height: 40),
+              Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownMenu<String>(
+                    dropdownMenuEntries: [
+                      for (var value in line_s)
+                        DropdownMenuEntry(value: value, label: value),
+                    ],
+                    inputDecorationTheme: InputDecorationTheme(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.green, width: 2),
+                      ),
+                    ),
+                    label: Text(
+                      'To',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    menuHeight: 150,
+                    width: double.infinity,
+                    helperText: 'Enter end station',
+                    enableSearch: true,
+                    enableFilter: true,
+                    requestFocusOnTap: true,
+                    controller: Home.cont2,
+                  ),
+                ),
+              ),
               SizedBox(height: 20),
               _buildDropdown("Passengers", num.toSet(), numcont),
               SizedBox(height: 40),
