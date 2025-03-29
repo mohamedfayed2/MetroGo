@@ -134,19 +134,41 @@ class TrajectoryPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: Obx(() => home.count.isNotEmpty
-                  ? ListView.builder(
-                      itemCount: home.count.length,
-                      itemBuilder: (context, index) {
-                        return StationTile(
-                          stationName: home.count[index],
-                          isFirst: index == 0,
-                          isLast: index == home.count.length - 1,
-                        );
-                      },
-                    )
-                  : SizedBox()),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      // قيود واضحة
+                      child: Obx(() => ListView.builder(
+                        itemCount: home.count.length,
+                        itemBuilder: (context, index) {
+                          return StationTile(
+                            stationName: home.count[index],   isFirst: index == 0,
+                            isLast: index == home.count.length - 1,
+                          );
+                        },
+                      )),
+                    ),
+                  ),
+
+                  SizedBox(width: 10), // مسافة بين القائمتين
+                  Expanded(
+                    child: SizedBox(
+                      child: Obx(() => ListView.builder(
+                        itemCount: home.count2.length,
+                        itemBuilder: (context, index) {
+                          return StationTile(
+                            stationName: home.count2[index],   isFirst: index == 0,
+                            isLast: index == home.count2.length - 1,
+                          );
+                        },
+                      )),
+                    ),
+                  ),
+                ],
+              ),
             ),
+
           ],
         ),
       ),

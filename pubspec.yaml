@@ -14,9 +14,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   get: ^4.7.2
   smooth_page_indicator: ^1.2.1
-  lottie: ^2.6.0
+  lottie: ^3.3.1
   flutter_svg: ^2.0.10
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.3
   lucide_icons: any
   font_awesome_flutter: any
   eva_icons_flutter: ^3.0.2
@@ -25,10 +25,10 @@ dependencies:
   url_launcher: ^6.1.14
   geocoding: ^3.0.0
   animated_text_kit: ^4.2.2
-  flutter_map: ^6.0.0
+  flutter_map: ^8.1.1
   latlong2: ^0.9.0
   dio: ^5.0.0
-  flutter_map_cancellable_tile_provider: ^2.0.0
+  flutter_map_cancellable_tile_provider: ^3.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
