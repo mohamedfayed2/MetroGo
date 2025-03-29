@@ -51,7 +51,7 @@ class TrajectoryPage extends StatelessWidget {
                       ],
                     ),
                     child: InfoCard(
-                        title: "عدد المحطات", value: home.sub_st.toString()),
+                        title: "عدد المحطات", value: home.sum.toString()),
                   ),
                   Container(
                     width: Get.width * 0.4,

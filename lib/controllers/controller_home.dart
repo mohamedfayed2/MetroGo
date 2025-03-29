@@ -15,12 +15,6 @@ class controllers extends GetxController {
 //second station
   final cont2 = TextEditingController();
 
-//index the first station in list for sublist
-  var sub_st = 0;
-
-//index the second station in list for sublist
-  var sub_end = 0;
-
 //the count is result and the road for user
   var count = <String>[].obs;
 
@@ -49,6 +43,7 @@ class controllers extends GetxController {
   var count2 = <String>[].obs;
 
   var nerst = null;
+  var sum = 0;
 //this variable for DropdownMenu
   var line_All = <String>[];
   var dis = double.infinity;
@@ -146,6 +141,12 @@ class controllers extends GetxController {
         print('iam here in else');
       }
     }
+
+//index the first station in list for sublist
+    var sub_st = 0;
+
+//index the second station in list for sublist
+    var sub_end = 0;
     //this block for sub the list and Generat the road
     if (line_start.contains(cont) && line_start.contains(cont2)) {
       sub_st = line_start.indexOf(cont);
@@ -211,8 +212,6 @@ class controllers extends GetxController {
         sub_st = line_end.indexOf(sta2);
         sub_end = line_end.indexOf(cont2);
         if (sub_end > sub_st) {
-          print(sub_st);
-          print(sub_end);
           count2.value = line_end.sublist(sub_st, sub_end + 1);
           dir.value = line_end[line_end.length - 1];
         } else {
@@ -237,12 +236,11 @@ class controllers extends GetxController {
       print(count2);
     }
     if (count.isNotEmpty) {
-      sub_st = count.length + count2.length;
-      sub_st = sub_st;
+      sum = count.length + count2.length;
       if (sub_st * 2 >= 60) {
-        time_s.value = '1 دقيقه ${sub_st * 2 - 60} ساعه';
+        time_s.value = '1 دقيقه ${sum * 2 - 60} ساعه';
       } else {
-        time_s.value = '${sub_st * 2} دقيقه ';
+        time_s.value = '${sum * 2} دقيقه ';
       }
       if (sub_st <= 9) {
         ticket.value = 8 * x;
