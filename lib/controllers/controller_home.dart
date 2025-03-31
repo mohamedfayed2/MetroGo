@@ -177,7 +177,6 @@ class controllers extends GetxController {
           sta[i] = '';
         }
       }
-      print(st_l);
       for (int i = 0; i < st_l.length; i++) {
         sub_st = line_start.indexOf(cont);
         print(line_start.indexOf(st_l[i]));
@@ -237,14 +236,14 @@ class controllers extends GetxController {
     }
     if (count.isNotEmpty) {
       sum = count.length + count2.length;
-      if (sub_st * 2 >= 60) {
+      if (sum * 2 >= 60) {
         time_s.value = '1 دقيقه ${sum * 2 - 60} ساعه';
       } else {
         time_s.value = '${sum * 2} دقيقه ';
       }
-      if (sub_st <= 9) {
+      if (sum <= 9) {
         ticket.value = 8 * x;
-      } else if (sub_st <= 17) {
+      } else if (sum <= 17) {
         ticket.value = 10 * x;
       } else {
         ticket.value = 15 * x;
