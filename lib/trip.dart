@@ -3,8 +3,6 @@ import 'package:get_storage/get_storage.dart';
 import 'Models/Stations.dart';
 
 final Stations stations = Get.put(Stations());
-//the count is result and the road for user
-var count = <String>[].obs;
 
 //direction like el-moneb or shobra el-khema
 
@@ -20,9 +18,6 @@ var line_end = <String>[];
 var sta2 = '';
 var sta = <String>[];
 
-//the count is result and the road for user if i have multiple lines
-var count2 = <String>[].obs;
-
 var file = GetStorage();
 
 var nerst = null;
@@ -35,21 +30,25 @@ class Trip {
   String? cont2;
   int? ticket;
   String? time;
-  int? x = 1;
   String? dir;
   int? sum;
+  RxList<String>? count;
+  RxList<String>? count2;
   Trip(
       {this.cont,
       this.cont2,
       this.ticket,
       this.time,
-      this.x,
       this.dir,
-      this.sum});
+      this.sum,
+      this.count,
+      this.count2});
 
-  Future<Trip> l_roud([int x = 1]) async {
-    print(cont);
-    print(cont2);
+  Future<Trip> l_roud() async {
+    count ??= <String>[].obs;
+    count2 ??= <String>[].obs;
+    print(count);
+    print(count2);
     //decide the line
     line_start = (stations.line_1.contains(cont))
         ? stations.line_1
@@ -153,11 +152,11 @@ class Trip {
       sub_st = line_start.indexOf(cont!);
       sub_end = line_start.indexOf(cont2!);
       if (sub_st < sub_end) {
-        count.value = line_start.sublist(sub_st, sub_end + 1);
+        count?.value = line_start.sublist(sub_st, sub_end + 1);
         dir = line_start[line_start.length - 1];
       } else {
-        count.value = line_start.sublist(sub_end, sub_st + 1);
-        count.value = count.reversed.toList();
+        count?.value = line_start.sublist(sub_end, sub_st + 1);
+        count?.value = count!.reversed.toList();
         dir = ' ${line_start[0]} ';
       }
     } else {
@@ -207,46 +206,46 @@ class Trip {
       sub_st = line_start.indexOf(cont!);
       sub_end = line_start.indexOf(sta2);
       if (sub_st < sub_end) {
-        count.value = line_start.sublist(sub_st, sub_end);
+        count?.value = line_start.sublist(sub_st, sub_end);
 
         sub_st = line_end.indexOf(sta2);
         sub_end = line_end.indexOf(cont2!);
         print(sub_st);
         print(sub_end);
         if (sub_end > sub_st) {
-          count2.value = line_end.sublist(sub_st, sub_end + 1);
+          count2?.value = line_end.sublist(sub_st, sub_end + 1);
           dir = line_end[line_end.length - 1];
         } else {
-          count2.value = line_end.sublist(sub_end, sub_st);
-          count2.value = count2.reversed.toList();
+          count2?.value = line_end.sublist(sub_end, sub_st);
+          count2?.value = count2!.reversed.toList();
           dir = line_end[0];
         }
       } else {
-        count.value = line_start.sublist(sub_end, sub_st + 1);
-        count.value = count.reversed.toList();
+        count?.value = line_start.sublist(sub_end, sub_st + 1);
+        count?.value = count!.reversed.toList();
         sub_st = line_end.indexOf(sta2);
         sub_end = line_end.indexOf(cont2!);
         if (sub_end > sub_st) {
-          count2.value = line_end.sublist(sub_st, sub_end);
+          count2?.value = line_end.sublist(sub_st, sub_end);
           dir = line_end[line_end.length - 1];
         } else {
-          count2.value = line_end.sublist(sub_end, sub_st + 1);
-          count2.value = count2.reversed.toList();
+          count2?.value = line_end.sublist(sub_end, sub_st + 1);
+          count2?.value = count2!.reversed.toList();
           dir = line_end[0];
         }
       }
     }
-    if (count.isNotEmpty) {
-      sum = count.length + count2.length;
+    if (count!.isNotEmpty) {
+      sum = count!.length + count2!.length;
       time = (sum! * 2 >= 60)
           ? '1 دقيقه ${sum! * 2 - 60} ساعه'
           : '${sum! * 2} دقيقه ';
 
       ticket = ((sum! <= 9)
-          ? (8 * x)
+          ? 8
           : (sum! <= 17)
-              ? (10 * x)
-              : (15 * x));
+              ? 10
+              : 15);
     }
     return await Trip(
         cont: cont,
@@ -254,6 +253,8 @@ class Trip {
         ticket: ticket,
         dir: dir,
         time: time,
-        sum: sum);
+        sum: sum,
+        count: count,
+        count2: count2);
   }
 }

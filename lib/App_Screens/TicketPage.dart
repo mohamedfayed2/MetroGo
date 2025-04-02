@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:metro_app/App_Screens/TrajectoryPage.dart';
+import '../Info_Trip.dart';
 import 'HomePage.dart';
 import '../Customs/Custom_Bottom_Navigation_Bar.dart';
 import '../controllers/NavigationController.dart';
@@ -137,10 +138,10 @@ class TicketPage extends StatelessWidget {
 
                   numcont.text = numcont.text.isEmpty ? '1' : numcont.text;
 
-                  var trip = await Trip(
+                  var trip = await InfoTrip(
                     cont: cont.text,
                     cont2: cont2.text,
-                    x: int.parse(numcont.text),
+                    pass: int.parse(numcont.text),
                   ).l_roud();
 
                   Get.to(TrajectoryPage(), arguments: trip);

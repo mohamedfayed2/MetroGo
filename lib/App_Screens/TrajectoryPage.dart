@@ -139,12 +139,12 @@ class TrajectoryPage extends StatelessWidget {
                     child: SizedBox(
                       // قيود واضحة
                       child: Obx(() => ListView.builder(
-                            itemCount: count.length,
+                            itemCount: trip.count?.length,
                             itemBuilder: (context, index) {
                               return StationTile(
-                                stationName: count[index],
+                                stationName: trip.count![index],
                                 isFirst: index == 0,
-                                isLast: index == count.length - 1,
+                                isLast: index == trip.count!.length - 1,
                               );
                             },
                           )),
@@ -155,12 +155,12 @@ class TrajectoryPage extends StatelessWidget {
                   Expanded(
                     child: SizedBox(
                       child: Obx(() => ListView.builder(
-                            itemCount: count2.length,
+                            itemCount: trip.count2?.length,
                             itemBuilder: (context, index) {
                               return StationTile(
-                                stationName: count2[index],
+                                stationName: trip.count2![index],
                                 isFirst: index == 0,
-                                isLast: index == count2.length - 1,
+                                isLast: index == trip.count2!.length - 1,
                               );
                             },
                           )),
