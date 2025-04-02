@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:metro_app/App_Screens/TrajectoryPage.dart';
 import 'HomePage.dart';
 import '../Customs/Custom_Bottom_Navigation_Bar.dart';
 import '../controllers/NavigationController.dart';
@@ -123,10 +124,10 @@ class TicketPage extends StatelessWidget {
                   if (cont.text == '' || cont2.text == '') {
                     //Home.time_s.value = 'enter stations';
                     return;
-                  } else if (line_All.contains(cont.text)) {
+                  } else if (!line_All.contains(cont.text)) {
                     //Home.time_s.value = 'start station is wrong';
                     return;
-                  } else if (line_All.contains(cont2.text)) {
+                  } else if (!line_All.contains(cont2.text)) {
                     //Home.time_s.value = 'end station is wrong';
                     return;
                   } else if (cont.text == cont2.text) {
@@ -141,10 +142,8 @@ class TicketPage extends StatelessWidget {
                     cont2: cont2.text,
                     x: int.parse(numcont.text),
                   ).l_roud();
-                  Get.snackbar('Info', '${trip.ticket}',
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.blueAccent,
-                      colorText: Colors.white);
+
+                  Get.to(TrajectoryPage(), arguments: trip);
                 },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
