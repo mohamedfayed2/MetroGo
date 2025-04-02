@@ -210,7 +210,9 @@ class Trip {
         count.value = line_start.sublist(sub_st, sub_end);
 
         sub_st = line_end.indexOf(sta2);
-        sub_end = line_end.indexOf(cont!);
+        sub_end = line_end.indexOf(cont2!);
+        print(sub_st);
+        print(sub_end);
         if (sub_end > sub_st) {
           count2.value = line_end.sublist(sub_st, sub_end + 1);
           dir = line_end[line_end.length - 1];
@@ -245,15 +247,13 @@ class Trip {
           : (sum! <= 17)
               ? (10 * x)
               : (15 * x));
-      return await Trip(
-          cont: cont,
-          cont2: cont2,
-          ticket: ticket,
-          dir: dir,
-          time: time,
-          sum: sum);
     }
     return await Trip(
-        cont: cont, cont2: cont2, ticket: ticket, dir: dir, time: time);
+        cont: cont,
+        cont2: cont2,
+        ticket: ticket,
+        dir: dir,
+        time: time,
+        sum: sum);
   }
 }
