@@ -1,25 +1,27 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:metro_app/App_Screens/TrajectoryPage.dart';
-import 'package:metro_app/App_Screens/onboarding_screen.dart';
 import 'package:metro_app/Customs/Custom_Bottom_Navigation_Bar.dart';
+import 'package:metro_app/trip.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../Models/Stations.dart';
 import '../controllers/NavigationController.dart';
-import '../controllers/controller_home.dart';
-import 'PhotomapPage.dart';
+import '../sta_tg.dart';
 
 class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
 final NavigationController navController = Get.find<NavigationController>();
-final Stations stations = Get.put(Stations());
-final controllers Home = Get.put(controllers());
+
+//first station
+final cont = TextEditingController();
+
+//second station
+final cont2 = TextEditingController();
+
+Station sta_d = Station(name: '', late: 0.0, long: 0.0, link: '');
 // location variable
 Position? p;
 //p!.latitude
@@ -34,7 +36,7 @@ class _HomePageState extends State<HomePage> {
     _initlocation();
   }
 
-  var name = Home.sta_d.name.obs;
+  var name = sta_d.name.obs;
 
   void _initlocation() async {
     await _determinePosition();
@@ -46,18 +48,18 @@ class _HomePageState extends State<HomePage> {
     pt = p!.latitude;
     pg = p!.longitude;
     nerst_st(pt, pg);
-    name.value = Home.sta_d.name;
+    name.value = sta_d.name;
     Get.snackbar('info', name.value);
   }
 
   @override
   Widget build(BuildContext context) {
-    Home.line_All = stations.line_1 +
+    line_All = stations.line_1 +
         stations.line_2 +
         stations.line_3 +
         stations.right_3 +
         stations.left_3;
-    Set<String> line_s = Home.line_All.toSet();
+    Set<String> line_s = line_All.toSet();
     return Scaffold(
       backgroundColor: Color(0xff121212),
       appBar: AppBar(
@@ -106,10 +108,10 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: IconButton(
                             onPressed: () {
-                              if (Home.sta_d.link == '') {
+                              if (sta_d.link == '') {
                                 return;
                               }
-                              launchUrl(Uri.parse(Home.sta_d.link));
+                              launchUrl(Uri.parse(sta_d.link));
                             },
                             icon: Icon(LucideIcons.map)),
                       ),
@@ -149,16 +151,16 @@ class _HomePageState extends State<HomePage> {
                 enableSearch: true,
                 enableFilter: true,
                 requestFocusOnTap: true,
-                controller: Home.cont,
+                controller: cont,
               ),
             ),
           ),
           SizedBox(height: 10),
           IconButton(
             onPressed: () {
-              Home.sta2 = Home.cont.text;
-              Home.cont.text = Home.cont2.text;
-              Home.cont2.text = Home.sta2;
+              sta2 = cont.text;
+              cont.text = cont2.text;
+              cont2.text = sta2;
             },
             icon: Icon(Icons.swap_vert, size: 30, color: Colors.blue),
           ),
@@ -192,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                 enableSearch: true,
                 enableFilter: true,
                 requestFocusOnTap: true,
-                controller: Home.cont2,
+                controller: cont2,
               ),
             ),
           ),
@@ -200,39 +202,34 @@ class _HomePageState extends State<HomePage> {
             height: 20,
           ),
           ElevatedButton(
-            onPressed: () {
-              Home.dir.value = '';
-              Home.time_s.value = '';
-              Home.count.value = [];
-              Home.count2.value = [];
-              Home.ticket.value = 0;
-              Home.line_All = stations.line_1 +
+            onPressed: () async {
+              line_All = stations.line_1 +
                   stations.line_2 +
                   stations.line_3 +
                   stations.right_3 +
                   stations.left_3;
 
               //this block for avoid the exception
-              if (Home.cont.text == '' || Home.cont2.text == '') {
-                Home.time_s.value = 'enter stations';
+              if (cont.text == '' || cont2.text == '') {
+                //time_s.value = 'enter stations';
                 return;
-              } else if (!Home.line_All.contains(Home.cont.text)) {
-                Home.time_s.value = 'start station is wrong';
+              } else if (!line_All.contains(cont.text)) {
+                //time_s.value = 'start station is wrong';
                 return;
-              } else if (!Home.line_All.contains(Home.cont2.text)) {
-                Home.time_s.value = 'end station is wrong';
+              } else if (!line_All.contains(cont2.text)) {
+                //time_s.value = 'end station is wrong';
                 return;
-              } else if (Home.cont.text == Home.cont2.text) {
-                Home.time_s.value = 'it is a same station';
+              } else if (cont.text == cont2.text) {
+                //time_s.value = 'it is a same station';
                 return;
               }
-              Home.l_roud(Home.cont.text, Home.cont2.text);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrajectoryPage(),
-                ),
+              var trip = await Trip(
+                cont: cont.text,
+                cont2: cont2.text,
               );
+              var trip2 = await trip.l_roud();
+              print(trip2.sum);
+              Get.to(TrajectoryPage(), arguments: trip2);
             },
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
@@ -297,14 +294,14 @@ class _HomePageState extends State<HomePage> {
 
   void nerst_st(double pt, double pg) {
     for (int i = 0; i < stations.statoin.length; i++) {
-      if (Home.dis >
+      if (dis >
           (Geolocator.distanceBetween(
               pt, pg, stations.statoin[i].late, stations.statoin[i].long))) {
-        Home.dis = Geolocator.distanceBetween(
+        dis = Geolocator.distanceBetween(
             pt, pg, stations.statoin[i].late, stations.statoin[i].long);
-        Home.sta_d = stations.statoin[i];
+        sta_d = stations.statoin[i];
       }
     }
-    Get.snackbar('info', '${(Home.dis / 1000).roundToDouble()}');
+    Get.snackbar('info', '${(dis / 1000).roundToDouble()}');
   }
 }

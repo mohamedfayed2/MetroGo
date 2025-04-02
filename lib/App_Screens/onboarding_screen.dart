@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:metro_app/Introduction_Screens/intro_page_1.dart';
 import 'package:metro_app/Introduction_Screens/intro_page_2.dart';
 import 'package:metro_app/Introduction_Screens/intro_page_3.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../trip.dart';
 import 'HomePage.dart';
 
 class OnBoardingScreens extends StatefulWidget {
@@ -18,7 +20,7 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
   @override
   void initState() {
     super.initState();
-    Home.file.write('splash', 'shittt');
+    file.write('splash', 'shittt');
   }
 
   @override

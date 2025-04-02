@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:metro_app/App_Screens/HomePage.dart';
-import 'package:metro_app/App_Screens/TicketPage.dart';
 import 'package:metro_app/App_Screens/onboarding_screen.dart';
-import 'package:metro_app/Introduction_Screens/intro_page_1.dart';
-import 'App_Screens/MapPage.dart';
+import 'package:metro_app/trip.dart';
 import 'controllers/NavigationController.dart';
 import 'controllers/bindings.dart';
 
@@ -24,9 +22,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: AppBindings(),
       debugShowCheckedModeBanner: false,
-      home: ((Home.file.read('splash')) == null)
-          ? OnBoardingScreens()
-          : HomePage(),
+      home: ((file.read('splash')) == null) ? OnBoardingScreens() : HomePage(),
       // initialRoute: '/intro', // تحديد المسار الأولي
       // getPages: [
       //   GetPage(name: '/', page: () => HomePage()),

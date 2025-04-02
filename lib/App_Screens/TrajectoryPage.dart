@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Models/Stations.dart';
-import '../controllers/controller_home.dart';
+import '../trip.dart';
 
 class TrajectoryPage extends StatelessWidget {
   TrajectoryPage({super.key});
 
   final Stations stations = Get.put(Stations());
-  final controllers home = Get.put(controllers());
 
   @override
   Widget build(BuildContext context) {
+    var trip = Get.arguments as Trip;
     return Scaffold(
       // بص يسطا لما التذكره بتكون ب 10 جنيه بتكون لونها اصفر ولما بتكون ب 12 بتكون خضره
       // ولما بتكون ي 15 جنيه بتكون بينك
@@ -51,7 +51,7 @@ class TrajectoryPage extends StatelessWidget {
                       ],
                     ),
                     child: InfoCard(
-                        title: "عدد المحطات", value: home.sum.toString()),
+                        title: "عدد المحطات", value: trip.sum!.toString()),
                   ),
                   Container(
                     width: Get.width * 0.4,
@@ -73,8 +73,7 @@ class TrajectoryPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child:
-                        InfoCard(title: "الزمن", value: home.time_s.toString()),
+                    child: InfoCard(title: "الزمن", value: trip.time!),
                   ),
                 ],
               ),
@@ -105,7 +104,7 @@ class TrajectoryPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: InfoCard(title: "الاتجاه", value: home.dir.toString()),
+                  child: InfoCard(title: "الاتجاه", value: trip.dir!),
                 ),
                 Container(
                   width: Get.width * 0.4,
@@ -128,7 +127,7 @@ class TrajectoryPage extends StatelessWidget {
                     ],
                   ),
                   child: InfoCard(
-                      title: "سعر التذكرة", value: "${home.ticket} جنيه"),
+                      title: "سعر التذكرة", value: "${trip.ticket} جنيه"),
                 ),
               ],
             ),
@@ -140,14 +139,15 @@ class TrajectoryPage extends StatelessWidget {
                     child: SizedBox(
                       // قيود واضحة
                       child: Obx(() => ListView.builder(
-                        itemCount: home.count.length,
-                        itemBuilder: (context, index) {
-                          return StationTile(
-                            stationName: home.count[index],   isFirst: index == 0,
-                            isLast: index == home.count.length - 1,
-                          );
-                        },
-                      )),
+                            itemCount: count.length,
+                            itemBuilder: (context, index) {
+                              return StationTile(
+                                stationName: count[index],
+                                isFirst: index == 0,
+                                isLast: index == count.length - 1,
+                              );
+                            },
+                          )),
                     ),
                   ),
 
@@ -155,20 +155,20 @@ class TrajectoryPage extends StatelessWidget {
                   Expanded(
                     child: SizedBox(
                       child: Obx(() => ListView.builder(
-                        itemCount: home.count2.length,
-                        itemBuilder: (context, index) {
-                          return StationTile(
-                            stationName: home.count2[index],   isFirst: index == 0,
-                            isLast: index == home.count2.length - 1,
-                          );
-                        },
-                      )),
+                            itemCount: count2.length,
+                            itemBuilder: (context, index) {
+                              return StationTile(
+                                stationName: count2[index],
+                                isFirst: index == 0,
+                                isLast: index == count2.length - 1,
+                              );
+                            },
+                          )),
                     ),
                   ),
                 ],
               ),
             ),
-
           ],
         ),
       ),

@@ -1,54 +1,55 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:metro_app/App_Screens/HomePage.dart';
+import 'Models/Stations.dart';
 
-import '../Models/Stations.dart';
-import '../sta_tg.dart';
-
-class controllers extends GetxController {
-  final Stations stations = Get.put(Stations());
-
-  //first station
-  final cont = TextEditingController();
-
-//second station
-  final cont2 = TextEditingController();
-
+final Stations stations = Get.put(Stations());
 //the count is result and the road for user
-  var count = <String>[].obs;
+var count = <String>[].obs;
 
-  var file = GetStorage();
 //direction like el-moneb or shobra el-khema
-  var dir = ''.obs;
 
-//time for the user's trip
-  var time_s = ''.obs;
-
-//price for the ticket
-  var ticket = 0.obs;
 //it's a line i will sub from him if i have one line in my road
 //or if i have multiple lines it's the first line you will sub from it
 //how can i decide this line ? you can search about first station in each line
-  var line_start = <String>[];
+var line_start = <String>[];
 
 //if i have multiple lines it's the end line you will sub from him
 //how can i decide this line ? you can search about second station in each line
-  var line_end = <String>[];
+var line_end = <String>[];
 //it's the station concat between two lines
-  var sta2 = '';
-  var sta = <String>[];
+var sta2 = '';
+var sta = <String>[];
 
 //the count is result and the road for user if i have multiple lines
-  var count2 = <String>[].obs;
+var count2 = <String>[].obs;
 
-  var nerst = null;
-  var sum = 0;
+var file = GetStorage();
+
+var nerst = null;
 //this variable for DropdownMenu
-  var line_All = <String>[];
-  var dis = double.infinity;
-  Station sta_d = Station(name: '', late: 0.0, long: 0.0, link: '');
-  void l_roud(String cont, String cont2, [int x = 1]) {
+var line_All = <String>[];
+var dis = double.infinity;
+
+class Trip {
+  String? cont;
+  String? cont2;
+  int? ticket;
+  String? time;
+  int? x = 1;
+  String? dir;
+  int? sum;
+  Trip(
+      {this.cont,
+      this.cont2,
+      this.ticket,
+      this.time,
+      this.x,
+      this.dir,
+      this.sum});
+
+  Future<Trip> l_roud([int x = 1]) async {
+    print(cont);
+    print(cont2);
     //decide the line
     line_start = (stations.line_1.contains(cont))
         ? stations.line_1
@@ -149,15 +150,15 @@ class controllers extends GetxController {
     var sub_end = 0;
     //this block for sub the list and Generat the road
     if (line_start.contains(cont) && line_start.contains(cont2)) {
-      sub_st = line_start.indexOf(cont);
-      sub_end = line_start.indexOf(cont2);
+      sub_st = line_start.indexOf(cont!);
+      sub_end = line_start.indexOf(cont2!);
       if (sub_st < sub_end) {
         count.value = line_start.sublist(sub_st, sub_end + 1);
-        dir.value = line_start[line_start.length - 1];
+        dir = line_start[line_start.length - 1];
       } else {
         count.value = line_start.sublist(sub_end, sub_st + 1);
         count.value = count.reversed.toList();
-        dir.value = ' ${line_start[0]} ';
+        dir = ' ${line_start[0]} ';
       }
     } else {
       print(line_start);
@@ -178,7 +179,7 @@ class controllers extends GetxController {
         }
       }
       for (int i = 0; i < st_l.length; i++) {
-        sub_st = line_start.indexOf(cont);
+        sub_st = line_start.indexOf(cont!);
         print(line_start.indexOf(st_l[i]));
         (sub_st < line_start.indexOf(st_l[i]))
             ? (line_start.indexOf(st_l[i]) < line_start.indexOf(sta2))
@@ -203,51 +204,56 @@ class controllers extends GetxController {
         line_end = stations.line_3 + stations.left_3 + stations.right_3;
       }
       print(line_end);
-      sub_st = line_start.indexOf(cont);
+      sub_st = line_start.indexOf(cont!);
       sub_end = line_start.indexOf(sta2);
       if (sub_st < sub_end) {
         count.value = line_start.sublist(sub_st, sub_end);
 
         sub_st = line_end.indexOf(sta2);
-        sub_end = line_end.indexOf(cont2);
+        sub_end = line_end.indexOf(cont!);
         if (sub_end > sub_st) {
           count2.value = line_end.sublist(sub_st, sub_end + 1);
-          dir.value = line_end[line_end.length - 1];
+          dir = line_end[line_end.length - 1];
         } else {
           count2.value = line_end.sublist(sub_end, sub_st);
           count2.value = count2.reversed.toList();
-          dir.value = line_end[0];
+          dir = line_end[0];
         }
       } else {
         count.value = line_start.sublist(sub_end, sub_st + 1);
         count.value = count.reversed.toList();
         sub_st = line_end.indexOf(sta2);
-        sub_end = line_end.indexOf(cont2);
+        sub_end = line_end.indexOf(cont2!);
         if (sub_end > sub_st) {
           count2.value = line_end.sublist(sub_st, sub_end);
-          dir.value = line_end[line_end.length - 1];
+          dir = line_end[line_end.length - 1];
         } else {
           count2.value = line_end.sublist(sub_end, sub_st + 1);
           count2.value = count2.reversed.toList();
-          dir.value = line_end[0];
+          dir = line_end[0];
         }
       }
-      print(count2);
     }
     if (count.isNotEmpty) {
       sum = count.length + count2.length;
-      if (sum * 2 >= 60) {
-        time_s.value = '1 دقيقه ${sum * 2 - 60} ساعه';
-      } else {
-        time_s.value = '${sum * 2} دقيقه ';
-      }
-      if (sum <= 9) {
-        ticket.value = 8 * x;
-      } else if (sum <= 17) {
-        ticket.value = 10 * x;
-      } else {
-        ticket.value = 15 * x;
-      }
+      time = (sum! * 2 >= 60)
+          ? '1 دقيقه ${sum! * 2 - 60} ساعه'
+          : '${sum! * 2} دقيقه ';
+
+      ticket = ((sum! <= 9)
+          ? (8 * x)
+          : (sum! <= 17)
+              ? (10 * x)
+              : (15 * x));
+      return await Trip(
+          cont: cont,
+          cont2: cont2,
+          ticket: ticket,
+          dir: dir,
+          time: time,
+          sum: sum);
     }
+    return await Trip(
+        cont: cont, cont2: cont2, ticket: ticket, dir: dir, time: time);
   }
 }
