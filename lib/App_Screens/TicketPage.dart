@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:metro_app/App_Screens/TrajectoryPage.dart';
 import '../Customs/Custom_Bottom_Navigation_Bar.dart';
+import '../Models/Stations.dart';
 import '../controllers/NavigationController.dart';
-import '../controllers/controller_home.dart';
-import 'HomePage.dart';
+import '../Models/trip.dart';
 
 class TicketPage extends StatelessWidget {
   final NavigationController navController = Get.find<NavigationController>();
-  final controllers Home = Get.put(controllers());
   var cont = TextEditingController();
   var cont2 = TextEditingController();
   var numcont = TextEditingController();
   var num = <String>['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   @override
   Widget build(BuildContext context) {
-    Home.line_All = stations.line_1 +
-        stations.line_2 +
-        stations.line_3 +
-        stations.right_3 +
-        stations.left_3;
-    Set<String> line_s = Home.line_All.toSet();
+    line_All = line_1 + line_2 + line_3 + right_3 + left_3;
+    Set<String> line_s = line_All.toSet();
     return Scaffold(
       backgroundColor: Color(0xff121212),
       appBar: AppBar(
@@ -73,7 +68,7 @@ class TicketPage extends StatelessWidget {
                     enableSearch: true,
                     enableFilter: true,
                     requestFocusOnTap: true,
-                    controller: Home.cont,
+                    controller: cont,
                   ),
                 ),
               ),
@@ -106,7 +101,7 @@ class TicketPage extends StatelessWidget {
                     enableSearch: true,
                     enableFilter: true,
                     requestFocusOnTap: true,
-                    controller: Home.cont2,
+                    controller: cont2,
                   ),
                 ),
               ),
@@ -114,40 +109,34 @@ class TicketPage extends StatelessWidget {
               _buildDropdown("Passengers", num.toSet(), numcont),
               SizedBox(height: 40),
               ElevatedButton(
-                onPressed: () {
-                  Home.dir.value = '';
-                  Home.time_s.value = '';
-                  Home.count.value = [];
-                  Home.count2.value = [];
-                  Home.ticket.value = 0;
-                  Home.line_All = stations.line_1 +
-                      stations.line_2 +
-                      stations.line_3 +
-                      stations.right_3 +
-                      stations.left_3;
+                onPressed: () async {
+                  line_All = line_1 + line_2 + line_3 + right_3 + left_3;
 
                   //this block for avoid the exception
                   if (cont.text == '' || cont2.text == '') {
-                    Home.time_s.value = 'enter stations';
+                    //Home.time_s.value = 'enter stations';
                     return;
-                  } else if (!Home.line_All.contains(cont.text)) {
-                    Home.time_s.value = 'start station is wrong';
+                  } else if (!line_All.contains(cont.text)) {
+                    //Home.time_s.value = 'start station is wrong';
                     return;
-                  } else if (!Home.line_All.contains(cont2.text)) {
-                    Home.time_s.value = 'end station is wrong';
+                  } else if (!line_All.contains(cont2.text)) {
+                    //Home.time_s.value = 'end station is wrong';
                     return;
                   } else if (cont.text == cont2.text) {
-                    Home.time_s.value = 'it is a same station';
+                    //Home.time_s.value = 'it is a same station';
                     return;
                   }
 
                   numcont.text = numcont.text.isEmpty ? '1' : numcont.text;
 
-                  Home.l_roud(cont.text, cont2.text, int.parse(numcont.text));
-                  Get.snackbar('Info', '${Home.ticket}',
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.blueAccent,
-                      colorText: Colors.white);
+                  var trip = await Trip(
+                    cont: cont.text,
+                    cont2: cont2.text,
+                    pass: int.parse(numcont.text),
+                  ).l_roud();
+                  trip.count?.value = [];
+                  trip.count2?.value = [];
+                  Get.to(TrajectoryPage(), arguments: trip);
                 },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),

@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
-import 'package:metro_app/sta_tg.dart';
+import 'package:metro_app/Models/sta_tg.dart';
 
-class Stations extends GetxController {
   //line 1 in metro
-  List<String> line_1 = [
+  final List<String> line_1 = const [
     'helwan',
     'ain helwan',
     'helwan university',
@@ -42,7 +41,7 @@ class Stations extends GetxController {
   ];
 
 //line 2 in metro
-  List<String> line_2 = [
+  final List<String> line_2 = const [
     'shubra el-kheima',
     'kolleyet el-zeraa',
     'mezallat',
@@ -66,7 +65,7 @@ class Stations extends GetxController {
   ];
 
 //line 3 in metro
-  List<String> line_3 = [
+  final List<String> line_3 = const [
     'adly mansour',
     'el-haykestep',
     'omar ibn el-khattab',
@@ -93,7 +92,7 @@ class Stations extends GetxController {
   ];
 
 //this place in right of end line 3 ,you can look in the map and you will find it
-  List<String> right_3 = [
+  List<String> right_3 = const [
     'al-sodan',
     'embaba',
     'al-bohe',
@@ -103,7 +102,7 @@ class Stations extends GetxController {
   ];
 
 //this place in right of end line 3 ,you can look in the map and you will find it
-  List<String> left_3 = [
+  List<String> left_3 = const [
     'al-twfikia',
     'wady al-nil',
     'al-dwal university',
@@ -111,7 +110,7 @@ class Stations extends GetxController {
     'cairo university'
   ];
 
-  List<Station> statoin = [
+  final List<Station> statoin = const [
     Station(
         name: "shubra el-kheima",
         late: 30.123098565201634,
@@ -227,4 +226,4 @@ class Stations extends GetxController {
         link:
             "https://www.google.com/maps/place/%D8%A7%D9%84%D9%85%D9%86%D9%8A%D8%A8%E2%80%AD/@30.028783,31.2683131,12.57z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x1458464bea5cc439:0xa6e716ace7b6b9e4!2z2KfZhNmF2YbZitio2Iwg2KzYstmK2LHYqSDYp9mE2K_Zh9io2Iwg2YLYs9mFINin2YTYrNmK2LLYqdiMINmF2K3Yp9mB2LjYqSDYp9mE2KzZitiy2KkgMzcyMjExMw!2m2!1d31.2123247!2d29.9810944!3m5!1s0x1458464bea5cc439:0xa6e716ace7b6b9e4!8m2!3d29.9810944!4d31.2123247!16s%2Fg%2F1q5ggdn2m?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D")
   ];
-}
+

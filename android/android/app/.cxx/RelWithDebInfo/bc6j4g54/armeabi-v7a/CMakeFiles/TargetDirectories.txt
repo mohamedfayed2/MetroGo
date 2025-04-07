@@ -1,0 +1,2 @@
+C:/Users/wika/StudioProjects/metro_go/MetroGo/android/app/.cxx/RelWithDebInfo/bc6j4g54/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/wika/StudioProjects/metro_go/MetroGo/android/app/.cxx/RelWithDebInfo/bc6j4g54/armeabi-v7a/CMakeFiles/rebuild_cache.dir

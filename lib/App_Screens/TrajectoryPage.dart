@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:metro_app/main.dart';
 import '../Models/Stations.dart';
-import '../controllers/controller_home.dart';
+import '../Models/trip.dart';
 
 class TrajectoryPage extends StatelessWidget {
   TrajectoryPage({super.key});
 
-  final Stations stations = Get.put(Stations());
-  final controllers home = Get.put(controllers());
-
   @override
   Widget build(BuildContext context) {
+    var trip = Get.arguments as Trip;
     return Scaffold(
       // بص يسطا لما التذكره بتكون ب 10 جنيه بتكون لونها اصفر ولما بتكون ب 12 بتكون خضره
       // ولما بتكون ي 15 جنيه بتكون بينك
@@ -51,7 +50,7 @@ class TrajectoryPage extends StatelessWidget {
                       ],
                     ),
                     child: InfoCard(
-                        title: "عدد المحطات", value: home.sub_st.toString()),
+                        title: "عدد المحطات", value: trip.sum!.toString()),
                   ),
                   Container(
                     width: Get.width * 0.4,
@@ -73,8 +72,7 @@ class TrajectoryPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child:
-                        InfoCard(title: "الزمن", value: home.time_s.toString()),
+                    child: InfoCard(title: "الزمن", value: trip.time!),
                   ),
                 ],
               ),
@@ -82,55 +80,57 @@ class TrajectoryPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: Get.width * 0.4,
-                  padding: EdgeInsets.all(12),
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.black87, // لون مختلف للتمييز
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border(
-                        bottom: BorderSide(color: Colors.white),
-                        left: BorderSide(color: Colors.white),
-                        right: BorderSide(color: Colors.white),
-                        top: BorderSide(color: Colors.white)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: Get.width * 0.4,
+                    padding: EdgeInsets.all(12),
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.black87, // لون مختلف للتمييز
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border(
+                          bottom: BorderSide(color: Colors.white),
+                          left: BorderSide(color: Colors.white),
+                          right: BorderSide(color: Colors.white),
+                          top: BorderSide(color: Colors.white)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                    child: InfoCard(title: "الاتجاه", value: trip.dir!),
                   ),
-                  child: InfoCard(title: "الاتجاه", value: home.dir.toString()),
-                ),
-                Container(
-                  width: Get.width * 0.4,
-                  padding: EdgeInsets.all(12),
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.black87,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border(
-                        bottom: BorderSide(color: Colors.white),
-                        left: BorderSide(color: Colors.white),
-                        right: BorderSide(color: Colors.white),
-                        top: BorderSide(color: Colors.white)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
+                  Container(
+                    width: Get.width * 0.4,
+                    padding: EdgeInsets.all(12),
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.black87,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border(
+                          bottom: BorderSide(color: Colors.white),
+                          left: BorderSide(color: Colors.white),
+                          right: BorderSide(color: Colors.white),
+                          top: BorderSide(color: Colors.white)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                    child: InfoCard(
+                        title: "سعر التذكرة", value: "${trip.ticket} جنيه"),
                   ),
-                  child: InfoCard(
-                      title: "سعر التذكرة", value: "${home.ticket} جنيه"),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: 20),
             Expanded(
@@ -140,14 +140,15 @@ class TrajectoryPage extends StatelessWidget {
                     child: SizedBox(
                       // قيود واضحة
                       child: Obx(() => ListView.builder(
-                        itemCount: home.count.length,
-                        itemBuilder: (context, index) {
-                          return StationTile(
-                            stationName: home.count[index],   isFirst: index == 0,
-                            isLast: index == home.count.length - 1,
-                          );
-                        },
-                      )),
+                            itemCount: trip.count?.length,
+                            itemBuilder: (context, index) {
+                              return StationTile(
+                                stationName: trip.count![index],
+                                isFirst: index == 0,
+                                isLast: index == trip.count!.length - 1,
+                              );
+                            },
+                          )),
                     ),
                   ),
 
@@ -155,20 +156,20 @@ class TrajectoryPage extends StatelessWidget {
                   Expanded(
                     child: SizedBox(
                       child: Obx(() => ListView.builder(
-                        itemCount: home.count2.length,
-                        itemBuilder: (context, index) {
-                          return StationTile(
-                            stationName: home.count2[index],   isFirst: index == 0,
-                            isLast: index == home.count2.length - 1,
-                          );
-                        },
-                      )),
+                            itemCount: trip.count2?.length,
+                            itemBuilder: (context, index) {
+                              return StationTile(
+                                stationName: trip.count2![index],
+                                isFirst: index == 0,
+                                isLast: index == trip.count2!.length - 1,
+                              );
+                            },
+                          )),
                     ),
                   ),
                 ],
               ),
             ),
-
           ],
         ),
       ),
