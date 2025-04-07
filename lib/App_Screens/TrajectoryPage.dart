@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:metro_app/main.dart';
 import '../Models/Stations.dart';
-import '../trip.dart';
+import '../Models/trip.dart';
 
 class TrajectoryPage extends StatelessWidget {
   TrajectoryPage({super.key});
-
-  final Stations stations = Get.put(Stations());
 
   @override
   Widget build(BuildContext context) {
@@ -81,55 +80,57 @@ class TrajectoryPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: Get.width * 0.4,
-                  padding: EdgeInsets.all(12),
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.black87, // لون مختلف للتمييز
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border(
-                        bottom: BorderSide(color: Colors.white),
-                        left: BorderSide(color: Colors.white),
-                        right: BorderSide(color: Colors.white),
-                        top: BorderSide(color: Colors.white)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: Get.width * 0.4,
+                    padding: EdgeInsets.all(12),
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.black87, // لون مختلف للتمييز
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border(
+                          bottom: BorderSide(color: Colors.white),
+                          left: BorderSide(color: Colors.white),
+                          right: BorderSide(color: Colors.white),
+                          top: BorderSide(color: Colors.white)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                    child: InfoCard(title: "الاتجاه", value: trip.dir!),
                   ),
-                  child: InfoCard(title: "الاتجاه", value: trip.dir!),
-                ),
-                Container(
-                  width: Get.width * 0.4,
-                  padding: EdgeInsets.all(12),
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.black87,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border(
-                        bottom: BorderSide(color: Colors.white),
-                        left: BorderSide(color: Colors.white),
-                        right: BorderSide(color: Colors.white),
-                        top: BorderSide(color: Colors.white)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
+                  Container(
+                    width: Get.width * 0.4,
+                    padding: EdgeInsets.all(12),
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.black87,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border(
+                          bottom: BorderSide(color: Colors.white),
+                          left: BorderSide(color: Colors.white),
+                          right: BorderSide(color: Colors.white),
+                          top: BorderSide(color: Colors.white)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                    child: InfoCard(
+                        title: "سعر التذكرة", value: "${trip.ticket} جنيه"),
                   ),
-                  child: InfoCard(
-                      title: "سعر التذكرة", value: "${trip.ticket} جنيه"),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: 20),
             Expanded(

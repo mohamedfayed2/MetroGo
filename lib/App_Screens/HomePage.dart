@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:metro_app/App_Screens/TrajectoryPage.dart';
 import 'package:metro_app/Customs/Custom_Bottom_Navigation_Bar.dart';
-import 'package:metro_app/trip.dart';
+import 'package:metro_app/Models/trip.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../Models/Stations.dart';
 import '../controllers/NavigationController.dart';
-import '../sta_tg.dart';
+import '../Models/sta_tg.dart';
 
 class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
@@ -54,14 +55,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    line_All = stations.line_1 +
-        stations.line_2 +
-        stations.line_3 +
-        stations.right_3 +
-        stations.left_3;
+    final RxBool swi = false.obs;
+    line_All = line_1 + line_2 + line_3 + right_3 + left_3;
     Set<String> line_s = line_All.toSet();
     return Scaffold(
-      backgroundColor: Color(0xff121212),
+      backgroundColor: Colors.black,
       appBar: AppBar(
         centerTitle: true,
         title: const Text("Home Page"),
@@ -69,7 +67,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Center(
@@ -77,43 +75,48 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(8.0),
               child: Center(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Container(
-                        width: Get.width * 0.7,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Center(
-                          child: Obx(() {
-                            return Text(
-                              name.value,
-                              style: TextStyle(fontSize: 20),
-                            );
-                          }),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          width: Get.width * 0.75,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(13.5),
+                          ),
+                          child: Center(
+                            child: Obx(() {
+                              return Text(
+                                name.value,
+                                style: TextStyle(fontSize: 20),
+                              );
+                            }),
+                          ),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Container(
-                        width: Get.width * 0.2,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          width: Get.width * 0.15,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(13.5),
+                          ),
+                          child: IconButton(
+                              onPressed: () {
+                                if (sta_d.link == '') {
+                                  return;
+                                }
+                                launchUrl(Uri.parse(sta_d.link));
+                              },
+                              icon: Icon(LucideIcons.map)),
                         ),
-                        child: IconButton(
-                            onPressed: () {
-                              if (sta_d.link == '') {
-                                return;
-                              }
-                              launchUrl(Uri.parse(sta_d.link));
-                            },
-                            icon: Icon(LucideIcons.map)),
                       ),
                     ),
                   ],
@@ -121,7 +124,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Card(
@@ -155,7 +158,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           IconButton(
             onPressed: () {
               sta2 = cont.text;
@@ -164,7 +167,7 @@ class _HomePageState extends State<HomePage> {
             },
             icon: Icon(Icons.swap_vert, size: 30, color: Colors.blue),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Card(
@@ -198,18 +201,14 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(
-            height: 20,
+          const SizedBox(
+            height: 40,
           ),
           ElevatedButton(
             onPressed: () async {
-              line_All = stations.line_1 +
-                  stations.line_2 +
-                  stations.line_3 +
-                  stations.right_3 +
-                  stations.left_3;
+              line_All = line_1 + line_2 + line_3 + right_3 + left_3;
 
-              //this block for avoid the exception
+              //this block for avoid the exceptions
               if (cont.text == '' || cont2.text == '') {
                 //time_s.value = 'enter stations';
                 return;
@@ -223,13 +222,11 @@ class _HomePageState extends State<HomePage> {
                 //time_s.value = 'it is a same station';
                 return;
               }
-              var trip = await Trip(
+              final Trip trip_ob = await Trip(
                 cont: cont.text,
                 cont2: cont2.text,
-              );
-              var trip2 = await trip.l_roud();
-              print(trip2.sum);
-              Get.to(TrajectoryPage(), arguments: trip2);
+              ).l_roud();
+              Get.to(TrajectoryPage(), arguments: trip_ob);
             },
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
@@ -239,7 +236,7 @@ class _HomePageState extends State<HomePage> {
               ),
               elevation: 5,
             ),
-            child: Text('Search',
+            child: const Text('Search',
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -293,13 +290,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   void nerst_st(double pt, double pg) {
-    for (int i = 0; i < stations.statoin.length; i++) {
+    for (int i = 0; i < statoin.length; i++) {
       if (dis >
           (Geolocator.distanceBetween(
-              pt, pg, stations.statoin[i].late, stations.statoin[i].long))) {
+              pt, pg, statoin[i].late, statoin[i].long))) {
         dis = Geolocator.distanceBetween(
-            pt, pg, stations.statoin[i].late, stations.statoin[i].long);
-        sta_d = stations.statoin[i];
+            pt, pg, statoin[i].late, statoin[i].long);
+        sta_d = statoin[i];
       }
     }
     Get.snackbar('info', '${(dis / 1000).roundToDouble()}');

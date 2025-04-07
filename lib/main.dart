@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:metro_app/App_Screens/HomePage.dart';
 import 'package:metro_app/App_Screens/onboarding_screen.dart';
-import 'package:metro_app/trip.dart';
+import 'package:metro_app/Models/trip.dart';
 import 'controllers/NavigationController.dart';
 import 'controllers/bindings.dart';
 

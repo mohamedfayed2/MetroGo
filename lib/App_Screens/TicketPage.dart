@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:metro_app/App_Screens/TrajectoryPage.dart';
-import '../Info_Trip.dart';
-import 'HomePage.dart';
 import '../Customs/Custom_Bottom_Navigation_Bar.dart';
+import '../Models/Stations.dart';
 import '../controllers/NavigationController.dart';
-import '../trip.dart';
+import '../Models/trip.dart';
 
 class TicketPage extends StatelessWidget {
   final NavigationController navController = Get.find<NavigationController>();
@@ -15,11 +14,7 @@ class TicketPage extends StatelessWidget {
   var num = <String>['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   @override
   Widget build(BuildContext context) {
-    line_All = stations.line_1 +
-        stations.line_2 +
-        stations.line_3 +
-        stations.right_3 +
-        stations.left_3;
+    line_All = line_1 + line_2 + line_3 + right_3 + left_3;
     Set<String> line_s = line_All.toSet();
     return Scaffold(
       backgroundColor: Color(0xff121212),
@@ -115,11 +110,7 @@ class TicketPage extends StatelessWidget {
               SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () async {
-                  line_All = stations.line_1 +
-                      stations.line_2 +
-                      stations.line_3 +
-                      stations.right_3 +
-                      stations.left_3;
+                  line_All = line_1 + line_2 + line_3 + right_3 + left_3;
 
                   //this block for avoid the exception
                   if (cont.text == '' || cont2.text == '') {
@@ -138,12 +129,13 @@ class TicketPage extends StatelessWidget {
 
                   numcont.text = numcont.text.isEmpty ? '1' : numcont.text;
 
-                  var trip = await InfoTrip(
+                  var trip = await Trip(
                     cont: cont.text,
                     cont2: cont2.text,
                     pass: int.parse(numcont.text),
                   ).l_roud();
-
+                  trip.count?.value = [];
+                  trip.count2?.value = [];
                   Get.to(TrajectoryPage(), arguments: trip);
                 },
                 style: ElevatedButton.styleFrom(

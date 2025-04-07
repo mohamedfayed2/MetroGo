@@ -107,12 +107,15 @@ class InfoPage extends StatelessWidget {
                           SizedBox(
                             height: 10,
                           ),
-                          ClipOval(
-                            child: Image.asset(
-                              'assets/images/mo.jpeg',
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 42,
+                            child: CircleAvatar(
+                              radius: 40,
+                              backgroundColor: Colors.white,
+                              backgroundImage: AssetImage(
+                                'assets/images/mo.jpeg',
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -135,12 +138,14 @@ class InfoPage extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        ClipOval(
-                          child: Image.asset(
-                            'assets/images/ka.jpg',
-                            width: 60,
-                            height: 60,
-                            fit: BoxFit.cover,
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 42,
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundImage: AssetImage(
+                              'assets/images/ka.jpg',
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -183,18 +188,18 @@ class InfoPage extends StatelessWidget {
         const SizedBox(width: 10),
         IconButton(
             icon: const Icon(EvaIcons.facebook, color: Colors.blue),
-            iconSize: 35,
+            iconSize: 40,
             onPressed: () => _launchURL(fbUrl)),
         IconButton(
             icon: const Icon(
               EvaIcons.linkedin,
               color: Colors.blueAccent,
             ),
-            iconSize: 35,
+            iconSize: 40,
             onPressed: () => _launchURL(linkedinUrl)),
         IconButton(
             icon: const Icon(EvaIcons.phoneOutline, color: Colors.green),
-            iconSize: 35,
+            iconSize: 40,
             onPressed: () => _launchURL(whatsappUrl)),
       ],
     );
