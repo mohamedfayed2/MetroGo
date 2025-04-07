@@ -12,20 +12,38 @@ buildscript {
 }
 
 allprojects {
-    tasks.withType(JavaCompile).configureEach {
-        options.release.set(21)
+    repositories {
+        google()
+        mavenCentral()
     }
 }
 
+// التعديلات لدعم Java 8
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty("android")) {
+            project.android {
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+            }
+        }
+    }
+}
 
+// تحديد مجلد البناء الموحد
 rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
+
+// ضمان التقييم السابق للمشروع ":app"
 subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// مهمة التنظيف
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }

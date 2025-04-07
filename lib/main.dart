@@ -6,6 +6,7 @@ import 'package:metro_app/App_Screens/TicketPage.dart';
 import 'package:metro_app/App_Screens/onboarding_screen.dart';
 import 'package:metro_app/Introduction_Screens/intro_page_1.dart';
 import 'App_Screens/MapPage.dart';
+import 'Models/Stations.dart';
 import 'controllers/NavigationController.dart';
 import 'controllers/bindings.dart';
 
@@ -13,6 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   Get.put(NavigationController());
+  Get.put(Stations());
   runApp(MyApp());
 }
 
