@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'Stations.dart';
 
-
 //direction like el-moneb or shobra el-khema
 
 //it's a line i will sub from him if i have one line in my road
@@ -49,9 +48,6 @@ class Trip {
     count ??= <String>[].obs;
     count2 ??= <String>[].obs;
     pass ??= 1;
-    print(pass);
-    print(count);
-    print(count2);
     //decide the line
     line_start = (line_1.contains(cont))
         ? line_1
@@ -60,6 +56,12 @@ class Trip {
             : (line_3.contains(cont))
                 ? line_3
                 : [];
+    line_start = (left_3.contains(cont) ||
+            right_3.contains(cont2) ||
+            right_3.contains(cont) ||
+            left_3.contains(cont2))
+        ? []
+        : [];
     if (line_start.isNotEmpty) {
       print('hereeeee');
       (line_1.contains(cont) && line_2.contains(cont))
@@ -74,8 +76,7 @@ class Trip {
                   : (line_3.contains(cont2))
                       ? line_start = line_3
                       : null
-              : (line_1.contains(cont) &&
-                      line_3.contains(cont))
+              : (line_1.contains(cont) && line_3.contains(cont))
                   ? (line_1.contains(cont2))
                       ? line_start = line_1
                       : (line_3.contains(cont2))
@@ -87,52 +88,40 @@ class Trip {
       line_All = line_3 + right_3 + left_3;
       if (line_All.contains(cont) && line_All.contains(cont2)) {
         print('b');
-        if ((line_3.contains(cont) &&
-                right_3.contains(cont2)) ||
-            ((line_3.contains(cont2) &&
-                right_3.contains(cont)))) {
-          print('c');
+        if ((line_3.contains(cont) && right_3.contains(cont2)) ||
+            ((line_3.contains(cont2) && right_3.contains(cont)))) {
           line_start = line_3 + right_3;
-        } else if ((line_3.contains(cont2) &&
-                left_3.contains(cont)) ||
-            (line_3.contains(cont) &&
-                left_3.contains(cont2))) {
+        } else if ((line_3.contains(cont2) && left_3.contains(cont)) ||
+            (line_3.contains(cont) && left_3.contains(cont2))) {
+          print('c');
           line_start = line_3 + left_3;
-        } else if (left_3.contains(cont) &&
-            right_3.contains(cont2)) {
-          left_3 = left_3.reversed.toList();
-          if (!right_3.contains('kit kat') &&
-              !left_3.contains('kit kat')) {
+        } else if (left_3.contains(cont) && right_3.contains(cont2)) {
+          if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
             left_3.add('kit kat');
           }
           line_start = line_3 + left_3 + right_3;
-        } else if (right_3.contains(cont) &&
-            left_3.contains(cont2)) {
+        } else if (right_3.contains(cont) && left_3.contains(cont2)) {
           right_3 = right_3.reversed.toList();
-          if (!right_3.contains('kit kat') &&
-              !left_3.contains('kit kat')) {
+          if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
             right_3.add('kit kat');
           }
           line_start = line_3 + right_3 + left_3;
         }
       } else if (line_All.contains(cont)) {
         if (left_3.contains(cont)) {
-          if (!right_3.contains('kit kat') &&
-              !left_3.contains('kit kat')) {
+          if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
             left_3.add('kit kat');
           }
           line_start = line_3 + left_3 + right_3;
         } else if (right_3.contains(cont)) {
-          if (!right_3.contains('kit kat') &&
-              !left_3.contains('kit kat')) {
+          if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
             right_3.add('kit kat');
           }
           line_start = line_3 + right_3 + left_3;
         }
         if (left_3.contains(cont) && left_3.contains(cont2)) {
           line_start = left_3;
-        } else if (left_3.contains(cont) &&
-            left_3.contains(cont2)) {
+        } else if (left_3.contains(cont) && left_3.contains(cont2)) {
           line_start = right_3;
         }
       } else {
@@ -141,7 +130,6 @@ class Trip {
             : (right_3.contains(cont))
                 ? line_3 + right_3
                 : [];
-        print('iam here in else');
       }
     }
 
@@ -152,7 +140,7 @@ class Trip {
     var sub_end = 0;
     //this block for sub the list and Generat the road
     if (line_start.contains(cont) && line_start.contains(cont2)) {
-      sub_st = line_start.indexOf(cont!);
+      sub_st = line_start.indexOf(cont);
       sub_end = line_start.indexOf(cont2!);
       if (sub_st < sub_end) {
         count?.value = line_start.sublist(sub_st, sub_end + 1);
@@ -198,8 +186,7 @@ class Trip {
       if (right_3.contains(cont2)) {
         left_3 = left_3.reversed.toList();
         line_end = line_3 + left_3 + right_3;
-      } else if (right_3.contains(sta2) &&
-          left_3.contains(cont2)) {
+      } else if (right_3.contains(sta2) && left_3.contains(cont2)) {
         line_end = line_3 + right_3 + left_3;
       } else if (left_3.contains(cont2)) {
         left_3 = left_3.reversed.toList();
