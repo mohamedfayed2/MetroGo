@@ -7,14 +7,13 @@ import '../controllers/NavigationController.dart';
 
 class TrainPage extends StatelessWidget {
   final NavigationController navController = Get.find<NavigationController>();
-  final Stations stationsController = Get.find<Stations>();
   final RxString selectedLine = 'الخط الاول'.obs;
 
   // خريطة تربط الاسم العربي بالليست الحقيقية
   final Map<String, List<String>> getLineMap = {
-    'الخط الاول': Get.find<Stations>().line_1,
-    'الخط الثاني': Get.find<Stations>().line_2,
-    'الخط الثالث': Get.find<Stations>().line_3,
+    'الخط الاول': line_1,
+    'الخط الثاني': line_2,
+    'الخط الثالث':line_3,
   };
 
   @override

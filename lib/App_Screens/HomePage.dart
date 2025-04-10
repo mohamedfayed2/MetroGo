@@ -242,7 +242,7 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white)),
           ),
-        ],
+        ]
       ),
       bottomNavigationBar:
           SizedBox(height: 70, child: CustomBottomNavigationBar()),
