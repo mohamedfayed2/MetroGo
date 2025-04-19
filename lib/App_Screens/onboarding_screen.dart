@@ -17,11 +17,6 @@ class OnBoardingScreens extends StatefulWidget {
 class _OnBoardingScreensState extends State<OnBoardingScreens> {
   PageController _controller = PageController();
   bool onLastPage = false;
-  @override
-  void initState() {
-    super.initState();
-    file.write('splash', 'shittt');
-  }
 
   @override
   Widget build(BuildContext context) {

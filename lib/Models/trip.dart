@@ -21,7 +21,7 @@ var file = GetStorage();
 var nerst = null;
 //this variable for DropdownMenu
 var line_All = <String>[];
-var dis = double.infinity;
+var dis = 100000000000000000000000.0;
 
 class Trip {
   String cont;
@@ -61,7 +61,7 @@ class Trip {
             right_3.contains(cont) ||
             left_3.contains(cont2))
         ? []
-        : [];
+        : line_start;
     if (line_start.isNotEmpty) {
       print('hereeeee');
       (line_1.contains(cont) && line_2.contains(cont))
@@ -125,9 +125,9 @@ class Trip {
           line_start = right_3;
         }
       } else {
-        line_start = (left_3.contains(cont))
+        line_start = (left_3.contains(cont2))
             ? line_3 + left_3
-            : (right_3.contains(cont))
+            : (right_3.contains(cont2))
                 ? line_3 + right_3
                 : [];
       }
@@ -233,7 +233,7 @@ class Trip {
 
       ticket = ((sum! <= 9)
           ? (8 * pass!)
-          : (sum! <= 17)
+          : (sum! < 17)
               ? (10 * pass!)
               : (15 * pass!));
     }

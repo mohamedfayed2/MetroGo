@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:metro_app/main.dart';
-import '../Models/Stations.dart';
+import 'package:metro_app/Models/nearst.dart';
 import '../Models/trip.dart';
 
 class TrajectoryPage extends StatelessWidget {
   TrajectoryPage({super.key});
 
+  int co = 20;
+  var cou = '';
+  var loop = 0;
+  RxString cou2 = ''.obs;
+
   @override
   Widget build(BuildContext context) {
     var trip = Get.arguments as Trip;
+    co = (trip.count!.length + trip.count2!.length ?? 0) * 2;
     return Scaffold(
       // بص يسطا لما التذكره بتكون ب 10 جنيه بتكون لونها اصفر ولما بتكون ب 12 بتكون خضره
       // ولما بتكون ي 15 جنيه بتكون بينك
@@ -18,6 +24,27 @@ class TrajectoryPage extends StatelessWidget {
         centerTitle: true,
         title: const Text("مسار الرحلة", style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xff007BFF),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
+        ),
+        actions: [
+          Obx(() => (cou2.value != '')
+              ? Container(
+                  margin: EdgeInsets.only(right: 10),
+                  width: 85,
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Center(
+                      child: Text(
+                    '${cou2.value}',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  )),
+                )
+              : SizedBox()),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -173,7 +200,94 @@ class TrajectoryPage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: (trip.count!.isNotEmpty)
+          ? Padding(
+              padding: const EdgeInsets.only(right: 10, bottom: 13),
+              child: ElevatedButton(
+                onPressed: () async {
+                  getnum();
+                  var n = await Nerst().getdata();
+                  var index = 0;
+                  while (true) {
+                    await Future.delayed(Duration(minutes: 1));
+                    n = await Nerst().getdata();
+                    if (trip.count!.contains(n.st!.name)) {
+                      index = trip.count!.indexOf(n.st!.name);
+                      while (true) {
+                        (index != 0) ? trip.count?.removeAt(index - 1) : null;
+                      }
+                    }
+                    if (trip.count2!.contains(n.st!.name)) {
+                      index = trip.count2!.indexOf(n.st!.name);
+                      while (true) {
+                        (index != 0) ? trip.count2?.removeAt(index - 1) : null;
+                      }
+                    }
+                  }
+                },
+                child: Text('strart trip'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+              )
+                  .animate()
+                  .visibility(
+                      delay: Duration(seconds: 1),
+                      duration: Duration(microseconds: 200000))
+                  .then()
+                  .scale(),
+            )
+          : null,
     );
+  }
+
+  void getnum() async {
+    if (cou2.value != '') {
+      return;
+    }
+    for (int i = 0; i < co * 60;) {
+      await Future.delayed(Duration(seconds: 1));
+      if (loop == co) {
+        break;
+      }
+      i = i + 1;
+      if (i > 9 && i != 59) {
+        cou = '00:${i}';
+      } else if (i < 9 && i != 59) {
+        cou = '00:0${i}';
+      } else if (i == 59) {
+        i = 0;
+        loop += 1;
+        cou = '0${loop}:${i}';
+      }
+      if (loop != 0) {
+        if (loop < 9 && i < 9) {
+          cou = '0${loop}:0${i}';
+        } else if (loop < 9 && i > 9 && i != 59) {
+          cou = '0${loop}:${i}';
+        } else if (loop < 9 && i == 59) {
+          i = 0;
+          loop += 1;
+          cou = '0${loop}:${i}';
+        } else {
+          if (loop > 9 && i > 9) {
+            cou = '${loop}:${i}';
+          } else if (loop > 9 && i < 9) {
+            cou = '${loop}:0${i}';
+          } else if (loop > 9 && i == 59) {
+            i = 0;
+            loop += 1;
+            cou = '${loop}:${i}';
+          }
+        }
+      }
+      print(co);
+      cou2.value = cou;
+    }
+    loop = 0;
+    cou2.value = '00:00';
   }
 }
 
