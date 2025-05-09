@@ -10,6 +10,9 @@ class PhotoMap extends StatelessWidget {
       appBar: AppBar(
         title: Text('photo map'),
         backgroundColor: Colors.blueAccent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
+        ),
       ),
       body: Center(
         child: Container(

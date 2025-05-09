@@ -16,6 +16,9 @@ class MapPage extends StatelessWidget {
         centerTitle: true,
         title: const Text("خريطة التنقل"),
         backgroundColor: Color(0xff007BFF),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
+        ),
       ),
       body: Center(
         child: Container(

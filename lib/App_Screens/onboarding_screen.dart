@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:metro_app/Introduction_Screens/intro_page_1.dart';
-import 'package:metro_app/Introduction_Screens/intro_page_2.dart';
-import 'package:metro_app/Introduction_Screens/intro_page_3.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../Models/trip.dart';
+
+import '../Introduction_Screens/intro_page_1.dart';
+import '../Introduction_Screens/intro_page_2.dart';
+import '../Introduction_Screens/intro_page_3.dart';
 import 'HomePage.dart';
 
 class OnBoardingScreens extends StatefulWidget {
@@ -95,18 +94,26 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
                                 PageRouteBuilder(
                                   transitionDuration:
                                       Duration(milliseconds: 700),
-                                  pageBuilder:
-                                      (context, animation, secondaryAnimation) {
+                                  pageBuilder: (
+                                    context,
+                                    animation,
+                                    secondaryAnimation,
+                                  ) {
                                     return HomePage();
                                   },
-                                  transitionsBuilder: (context, animation,
-                                      secondaryAnimation, child) {
+                                  transitionsBuilder: (
+                                    context,
+                                    animation,
+                                    secondaryAnimation,
+                                    child,
+                                  ) {
                                     return FadeTransition(
                                       opacity: animation,
                                       child: ScaleTransition(
-                                        scale:
-                                            Tween<double>(begin: 0.9, end: 1.0)
-                                                .animate(
+                                        scale: Tween<double>(
+                                          begin: 0.9,
+                                          end: 1.0,
+                                        ).animate(
                                           CurvedAnimation(
                                             parent: animation,
                                             curve: Curves.easeInOut,

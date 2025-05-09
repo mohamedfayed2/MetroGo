@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,12 +19,13 @@ class InfoPage extends StatelessWidget {
   final String fbKarim =
       "https://www.facebook.com/profile.php?id=100070585457622";
   final String linkedinKarim =
-      "https://www.linkedin.com/in/kireem-ahmad-48b29933b/";
+      "https://www.linkedin.com/in/kireem-ahmad-48b29933b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bz0SpP%2BMQQl6tLZ0ayu4bgg%3D%3D";
   final String whatsappKarim = "https://wa.me/201013836545";
 
   void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    var urlparse = Uri.parse(url);
+    if (await canLaunchUrl(urlparse)) {
+      await launchUrl(urlparse);
     } else {
       debugPrint('تعذر فتح الرابط: $url');
     }
@@ -32,12 +34,15 @@ class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff121212),
+      backgroundColor: Colors.black,
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
           "معلومات التطبيق | App Info",
           style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
         ),
         backgroundColor: const Color(0xff007BFF),
       ),
@@ -161,6 +166,34 @@ class InfoPage extends StatelessWidget {
                     ],
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        'assets/images/flutter.jpg',
+                        height: 40,
+                        width: 40,
+                      ),
+                      Text(
+                        'this app made by flutter',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      )
+                    ],
+                  ),
+                ).animate().fade(duration: Duration(seconds: 1)),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const SizedBox(
+                height: 30,
               ),
             ],
           ),

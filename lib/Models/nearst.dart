@@ -1,10 +1,6 @@
-import 'dart:ffi';
-
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:metro_app/Models/sta_tg.dart';
-import 'package:metro_app/Models/trip.dart';
-
 import '../App_Screens/HomePage.dart';
 import 'Stations.dart';
 
