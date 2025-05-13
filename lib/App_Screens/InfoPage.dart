@@ -24,17 +24,13 @@ class InfoPage extends StatelessWidget {
 
   void _launchURL(String url) async {
     var urlparse = Uri.parse(url);
-    if (await canLaunchUrl(urlparse)) {
-      await launchUrl(urlparse);
-    } else {
-      debugPrint('تعذر فتح الرابط: $url');
-    }
+    await launchUrl(urlparse);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xff070707),
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
@@ -46,101 +42,64 @@ class InfoPage extends StatelessWidget {
         ),
         backgroundColor: const Color(0xff007BFF),
       ),
-      body: ListView(children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Icon(Icons.directions_subway_filled,
-                  size: 80, color: Colors.white),
-              const SizedBox(height: 20),
-
-              // أنيميشن الكتابة للنص الرئيسي
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: DefaultTextStyle(
-                  style: const TextStyle(
-                      fontSize: 18, color: Colors.white, height: 1.5),
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      TypewriterAnimatedText(
-                        "MetroGo هو تطبيق ذكي يساعدك على التنقل داخل شبكة المترو بسهولة.",
-                        speed: const Duration(milliseconds: 100),
-                      ),
-                      TypewriterAnimatedText(
-                        "يتيح لك حساب تكلفة الرحلات، العثور على أقرب محطة، ومعرفة أفضل المسارات لتوفير الوقت والتكلفة.",
-                        speed: const Duration(milliseconds: 100),
-                      ),
-                      TypewriterAnimatedText(
-                        "MetroGo is an intelligent app that helps you navigate the metro network effortlessly.",
-                        speed: const Duration(milliseconds: 100),
-                      ),
-                      TypewriterAnimatedText(
-                        "You can calculate trip costs, find the nearest station, and get the best routes to save time and money.",
-                        speed: const Duration(milliseconds: 100),
-                      ),
-                    ],
-                    isRepeatingAnimation: false,
-                  ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Icon(Icons.directions_subway_filled,
+                size: 80, color: Colors.white),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: DefaultTextStyle(
+                style: const TextStyle(
+                    fontSize: 18, color: Colors.white, height: 1.5),
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      "MetroGo هو تطبيق ذكي يساعدك على التنقل داخل شبكة المترو بسهولة.",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                    TypewriterAnimatedText(
+                      "يتيح لك حساب تكلفة الرحلات، العثور على أقرب محطة، ومعرفة أفضل المسارات لتوفير الوقت والتكلفة.",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                    TypewriterAnimatedText(
+                      "MetroGo is an intelligent app that helps you navigate the metro network effortlessly.",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                    TypewriterAnimatedText(
+                      "You can calculate trip costs, find the nearest station, and get the best routes to save time and money.",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                  ],
+                  isRepeatingAnimation: false,
                 ),
               ),
-
-              const SizedBox(height: 30),
-
-              const Text(
-                "المطورون | Developers",
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueAccent),
-              ),
-              const SizedBox(height: 20),
-
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            'Mohamed Adel',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 42,
-                            child: CircleAvatar(
-                              radius: 40,
-                              backgroundColor: Colors.white,
-                              backgroundImage: AssetImage(
-                                'assets/images/mo.jpeg',
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          _buildDeveloperRow(
-                            name: "",
-                            fbUrl: fbMohamed,
-                            linkedinUrl: linkedinMohamed,
-                            whatsappUrl: whatsappMohamed,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Column(children: [
+            ),
+            const SizedBox(height: 30),
+            const Text(
+              "المطورون | Developers",
+              style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent),
+            ),
+            const SizedBox(height: 20),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
                         Text(
-                          'Kareem Ahmed',
+                          'Mohamed Adel',
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         CircleAvatar(
@@ -148,57 +107,95 @@ class InfoPage extends StatelessWidget {
                           radius: 42,
                           child: CircleAvatar(
                             radius: 40,
+                            backgroundColor: Colors.white,
                             backgroundImage: AssetImage(
-                              'assets/images/ka.jpg',
+                              'assets/images/mo.jpeg',
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         _buildDeveloperRow(
                           name: "",
-                          fbUrl: fbKarim,
-                          linkedinUrl: linkedinKarim,
-                          whatsappUrl: whatsappKarim,
+                          fbUrl: fbMohamed,
+                          linkedinUrl: linkedinMohamed,
+                          whatsappUrl: whatsappMohamed,
                         ),
-                      ]),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(
-                        'assets/images/flutter.jpg',
-                        height: 40,
-                        width: 40,
-                      ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Column(children: [
                       Text(
-                        'this app made by flutter',
+                        'Kareem Ahmed',
                         style: TextStyle(color: Colors.white, fontSize: 20),
-                      )
-                    ],
-                  ),
-                ).animate().fade(duration: Duration(seconds: 1)),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-            ],
-          ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 42,
+                        child: CircleAvatar(
+                          radius: 40,
+                          backgroundImage: AssetImage(
+                            'assets/images/ka.jpg',
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      _buildDeveloperRow(
+                        name: "",
+                        fbUrl: fbKarim,
+                        linkedinUrl: linkedinKarim,
+                        whatsappUrl: whatsappKarim,
+                      ),
+                    ]),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      'assets/images/flutter.jpg',
+                      height: 40,
+                      width: 40,
+                    ),
+                    Text(
+                      'this app made by flutter',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    )
+                  ],
+                ),
+              )
+                  .animate(delay: Duration(seconds: 3))
+                  .slide(
+                      begin: Offset(2, 0),
+                      end: Offset(0, 0),
+                      duration: Duration(seconds: 2))
+                  .shimmer(
+                      color: Colors.blueAccent, duration: Duration(seconds: 2)),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+          ],
         ),
-      ]),
+      ),
       bottomNavigationBar:
           SizedBox(height: 80, child: CustomBottomNavigationBar()),
     );

@@ -133,10 +133,10 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(right: 3),
                 child: GestureDetector(
                   onTap: () async {
-                    print(contn.text);
                     List<Location> locations =
                         await locationFromAddress('${contn.text}, Egypt');
                     print(locations);
+                    dis = 100000000000000000000000.0;
                     for (int i = 0; i < statoin.length; i++) {
                       if (dis >
                           (Geolocator.distanceBetween(
