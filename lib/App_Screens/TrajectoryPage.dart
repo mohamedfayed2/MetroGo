@@ -51,7 +51,6 @@ class TrajectoryPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 20),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -105,7 +104,7 @@ class TrajectoryPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
             Center(
               child: Row(
@@ -159,6 +158,31 @@ class TrajectoryPage extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 15),
+            Center(
+              child: Container(
+                width: Get.width * 0.8,
+                padding: EdgeInsets.all(12),
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                decoration: BoxDecoration(
+                  color: Colors.black87, // لون مختلف للتمييز
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border(
+                      bottom: BorderSide(color: Colors.white),
+                      left: BorderSide(color: Colors.white),
+                      right: BorderSide(color: Colors.white),
+                      top: BorderSide(color: Colors.white)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 4,
+                      offset: Offset(2, 2),
+                    ),
+                  ],
+                ),
+                child: InfoCard(title: "محطه التبديل", value: trip.sta2!),
+              ),
+            ),
             SizedBox(height: 20),
             Expanded(
               child: Row(
@@ -206,21 +230,32 @@ class TrajectoryPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () async {
                   getnum();
-                  var n = await Nerst().getdata();
                   var index = 0;
-                  while (true) {
+                  while (trip.count!.isNotEmpty && trip.cont2!.isNotEmpty) {
                     await Future.delayed(Duration(minutes: 1));
-                    n = await Nerst().getdata();
+                    var n = await Nerst().getdata();
                     if (trip.count!.contains(n.st!.name)) {
                       index = trip.count!.indexOf(n.st!.name);
                       while (true) {
-                        (index != 0) ? trip.count?.removeAt(index - 1) : null;
+                        if (index == 0) {
+                          trip.count?.removeAt(index);
+                        } else if (index > 0) {
+                          trip.count?.removeAt(index);
+                          index -= 1;
+                        } else {
+                          break;
+                        }
                       }
                     }
                     if (trip.count2!.contains(n.st!.name)) {
                       index = trip.count2!.indexOf(n.st!.name);
-                      while (true) {
-                        (index != 0) ? trip.count2?.removeAt(index - 1) : null;
+                      if (index == 0) {
+                        trip.count2?.removeAt(index);
+                      } else if (index > 0) {
+                        trip.count2?.removeAt(index);
+                        index -= 1;
+                      } else {
+                        break;
                       }
                     }
                   }

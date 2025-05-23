@@ -43,7 +43,6 @@ class _HomePageState extends State<HomePage> {
     n = await Nerst().getdata();
     cont.text = n!.st!.name;
     name.value = n!.st!.name;
-    print(n?.dis);
   }
 
   @override
@@ -226,9 +225,10 @@ class _HomePageState extends State<HomePage> {
         const SizedBox(height: 10),
         IconButton(
           onPressed: () {
-            sta2 = cont.text;
+            var switc = '';
+            switc = cont.text;
             cont.text = cont2.text;
-            cont2.text = sta2;
+            cont2.text = switc;
           },
           icon: Icon(Icons.swap_vert, size: 30, color: Colors.blue),
         ),
@@ -273,16 +273,13 @@ class _HomePageState extends State<HomePage> {
           onPressed: () async {
             //this block for avoid the exceptions
             if (cont.text == '' || cont2.text == '') {
-              //time_s.value = 'enter stations';
               return;
             } else if (!line_All.contains(cont.text)) {
-              //time_s.value = 'start station is wrong';
+              ;
               return;
             } else if (!line_All.contains(cont2.text)) {
-              //time_s.value = 'end station is wrong';
               return;
             } else if (cont.text == cont2.text) {
-              //time_s.value = 'it is a same station';
               return;
             }
             final Trip trip_ob = await Trip(

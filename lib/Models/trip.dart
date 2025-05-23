@@ -13,7 +13,6 @@ var line_start = <String>[];
 //how can i decide this line ? you can search about second station in each line
 var line_end = <String>[];
 //it's the station concat between two lines
-var sta2 = '';
 var sta = <String>[];
 
 var file = GetStorage();
@@ -33,6 +32,7 @@ class Trip {
   int? pass = 1;
   RxList<String>? count;
   RxList<String>? count2;
+  String? sta2;
   Trip(
       {required this.cont,
       required this.cont2,
@@ -42,11 +42,13 @@ class Trip {
       this.sum,
       this.count,
       this.count2,
-      this.pass});
+      this.pass,
+      this.sta2});
 
   Future<Trip> l_roud() async {
     count ??= <String>[].obs;
     count2 ??= <String>[].obs;
+    sta2 ??= '';
     pass ??= 1;
     //decide the line
     line_start = (line_1.contains(cont))
@@ -56,13 +58,10 @@ class Trip {
             : (line_3.contains(cont))
                 ? line_3
                 : [];
-    line_start = (left_3.contains(cont) ||
-            right_3.contains(cont2) ||
-            right_3.contains(cont) ||
-            left_3.contains(cont2))
-        ? []
-        : line_start;
-    if (line_start.isNotEmpty) {
+    if (left_3.contains(cont) ||
+        right_3.contains(cont2) ||
+        right_3.contains(cont) ||
+        left_3.contains(cont2)) {
       print('hereeeee');
       (line_1.contains(cont) && line_2.contains(cont))
           ? (line_1.contains(cont2))
@@ -83,7 +82,8 @@ class Trip {
                           ? line_start = line_3
                           : null
                   : null;
-    } else {
+    } else if ((left_3.contains(cont) && right_3.contains(cont2)) ||
+        (right_3.contains(cont) && left_3.contains(cont2))) {
       print('a');
       line_All = line_3 + right_3 + left_3;
       if (line_All.contains(cont) && line_All.contains(cont2)) {
@@ -169,19 +169,17 @@ class Trip {
         }
       }
       for (int i = 0; i < st_l.length; i++) {
-        sub_st = line_start.indexOf(cont!);
-        print(line_start.indexOf(st_l[i]));
+        sub_st = line_start.indexOf(cont);
+
         (sub_st < line_start.indexOf(st_l[i]))
-            ? (line_start.indexOf(st_l[i]) < line_start.indexOf(sta2))
+            ? (line_start.indexOf(st_l[i]) < line_start.indexOf(sta2!))
                 ? sta2 = st_l[i]
                 : null
-            : (line_start.indexOf(st_l[i]) > line_start.indexOf(sta2))
+            : (line_start.indexOf(st_l[i]) > line_start.indexOf(sta2!))
                 ? sta2 = st_l[i]
                 : (sta2 == line_start[line_start.length - 1])
                     ? sta2 = st_l[i]
                     : null;
-
-        print(sta2);
       }
       if (right_3.contains(cont2)) {
         left_3 = left_3.reversed.toList();
@@ -192,18 +190,19 @@ class Trip {
         left_3 = left_3.reversed.toList();
         line_end = line_3 + left_3 + right_3;
       }
-      print(line_end);
-      sub_st = line_start.indexOf(cont!);
-      sub_end = line_start.indexOf(sta2);
+      print(line_start);
+      sub_st = line_start.indexOf(cont);
+      sub_end = line_start.indexOf(sta2!);
+      print(sub_st);
+      print(sub_end);
+      print(sta2);
       if (sub_st < sub_end) {
-        count?.value = line_start.sublist(sub_st, sub_end);
-
-        sub_st = line_end.indexOf(sta2);
+        print(sta2);
+        count?.value = line_start.sublist(sub_st, sub_end + 1);
+        sub_st = line_end.indexOf(sta2!);
         sub_end = line_end.indexOf(cont2!);
-        print(sub_st);
-        print(sub_end);
         if (sub_end > sub_st) {
-          count2?.value = line_end.sublist(sub_st, sub_end + 1);
+          count2?.value = line_end.sublist(sub_st, sub_end);
           dir = line_end[line_end.length - 1];
         } else {
           count2?.value = line_end.sublist(sub_end, sub_st);
@@ -211,9 +210,10 @@ class Trip {
           dir = line_end[0];
         }
       } else {
+        print('1');
         count?.value = line_start.sublist(sub_end, sub_st + 1);
         count?.value = count!.reversed.toList();
-        sub_st = line_end.indexOf(sta2);
+        sub_st = line_end.indexOf(sta2!);
         sub_end = line_end.indexOf(cont2!);
         if (sub_end > sub_st) {
           count2?.value = line_end.sublist(sub_st, sub_end);
@@ -246,6 +246,7 @@ class Trip {
         pass: pass,
         sum: sum,
         count: count,
-        count2: count2);
+        count2: count2,
+        sta2: sta2);
   }
 }
