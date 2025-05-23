@@ -238,10 +238,10 @@ class TrajectoryPage extends StatelessWidget {
                       index = trip.count!.indexOf(n.st!.name);
                       while (true) {
                         if (index == 0) {
-                          trip.count?.removeAt(index);
+                          break;
                         } else if (index > 0) {
                           trip.count?.removeAt(index);
-                          index -= 1;
+                          index--;
                         } else {
                           break;
                         }
@@ -250,10 +250,10 @@ class TrajectoryPage extends StatelessWidget {
                     if (trip.count2!.contains(n.st!.name)) {
                       index = trip.count2!.indexOf(n.st!.name);
                       if (index == 0) {
-                        trip.count2?.removeAt(index);
+                        break;
                       } else if (index > 0) {
                         trip.count2?.removeAt(index);
-                        index -= 1;
+                        index--;
                       } else {
                         break;
                       }
