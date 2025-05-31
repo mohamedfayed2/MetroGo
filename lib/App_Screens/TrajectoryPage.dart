@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:metro_app/Models/nearst.dart';
 import '../Models/trip.dart';
+import '../App_Screens/HomePage.dart';
 
 class TrajectoryPage extends StatelessWidget {
   TrajectoryPage({super.key});
@@ -11,11 +12,11 @@ class TrajectoryPage extends StatelessWidget {
   var cou = '';
   var loop = 0;
   RxString cou2 = ''.obs;
-
+  bool isfinshed = true;
   @override
   Widget build(BuildContext context) {
     var trip = Get.arguments as Trip;
-    co = (trip.count!.length + trip.count2!.length ?? 0) * 2;
+    co = (trip.count!.length + trip.count2!.length) * 2;
     return Scaffold(
       // بص يسطا لما التذكره بتكون ب 10 جنيه بتكون لونها اصفر ولما بتكون ب 12 بتكون خضره
       // ولما بتكون ي 15 جنيه بتكون بينك
@@ -231,31 +232,80 @@ class TrajectoryPage extends StatelessWidget {
                 onPressed: () async {
                   getnum();
                   var index = 0;
-                  while (trip.count!.isNotEmpty && trip.cont2!.isNotEmpty) {
-                    await Future.delayed(Duration(minutes: 1));
-                    var n = await Nerst().getdata();
-                    if (trip.count!.contains(n.st!.name)) {
-                      index = trip.count!.indexOf(n.st!.name);
-                      while (true) {
-                        if (index == 0) {
-                          break;
-                        } else if (index > 0) {
-                          trip.count?.removeAt(index);
-                          index--;
-                        } else {
-                          break;
+                  n;
+                  if (trip.count!.isNotEmpty || trip.cont2!.isNotEmpty) {
+                    if (trip.count!.isNotEmpty) {
+                      n = await Nerst().getdata();
+                      if (trip.count!.contains(n!.st!.name)) {
+                        while (trip.count!.isNotEmpty) {
+                          await Future.delayed(Duration(minutes: 1));
+                          n = await Nerst().getdata();
+                          index = trip.count!.indexOf(n!.st!.name);
+                          if (index == -1) {
+                            Get.snackbar('info', 'بتستعبطني طب والله ما مكمل');
+                            cou2.value = '';
+                            break;
+                          } else if (index > 0) {
+                            trip.count?.removeAt(index);
+                            index--;
+                          } else {
+                            if (trip.count!.length == 1 &&
+                                trip.count2!.isNotEmpty) {
+                              Get.snackbar(
+                                'info',
+                                'you must go to ${trip.sta2} station in next station',
+                                colorText: Colors.white,
+                                backgroundColor: Colors.blueAccent,
+                                duration: Duration(seconds: 6),
+                              );
+                              trip.count?.removeAt(0);
+                            } else if (trip.count!.length == 1 &&
+                                trip.count2!.isEmpty) {
+                              Get.snackbar(
+                                'info',
+                                'you finished trip',
+                                colorText: Colors.white,
+                                backgroundColor: Colors.blueAccent,
+                                duration: Duration(seconds: 6),
+                              );
+                              trip.count?.removeAt(0);
+                            }
+                          }
+                          name.value = n!.st!.name;
                         }
+                      } else {
+                        Get.snackbar('info', 'بتستعبطني ؟');
                       }
                     }
-                    if (trip.count2!.contains(n.st!.name)) {
-                      index = trip.count2!.indexOf(n.st!.name);
-                      if (index == 0) {
-                        break;
-                      } else if (index > 0) {
-                        trip.count2?.removeAt(index);
-                        index--;
+                    if (trip.count2!.isNotEmpty) {
+                      n = await Nerst().getdata();
+                      if (trip.count2!.contains(n!.st!.name)) {
+                        while (trip.count2!.isNotEmpty) {
+                          await Future.delayed(Duration(minutes: 1));
+                          n = await Nerst().getdata();
+                          index = trip.count2!.indexOf(n!.st!.name);
+                          if (index == -1) {
+                            Get.snackbar('info', 'بتستعبطني طب والله ما مكمل');
+                            cou2.value = '';
+                            break;
+                          } else if (index > 0) {
+                            trip.count?.removeAt(index);
+                            index--;
+                          } else {
+                            if (trip.count2!.length == 1) {
+                              Get.snackbar(
+                                'info',
+                                'you finished trip',
+                                colorText: Colors.white,
+                                backgroundColor: Colors.blueAccent,
+                                duration: Duration(seconds: 6),
+                              );
+                              trip.count?.removeAt(index);
+                            }
+                          }
+                        }
                       } else {
-                        break;
+                        Get.snackbar('info', 'خلصت الرحله ي باشا يلا قوم امشي');
                       }
                     }
                   }
@@ -284,7 +334,7 @@ class TrajectoryPage extends StatelessWidget {
     }
     for (int i = 0; i < co * 60;) {
       await Future.delayed(Duration(seconds: 1));
-      if (loop == co) {
+      if (loop == co || isfinshed) {
         break;
       }
       i = i + 1;
@@ -322,7 +372,7 @@ class TrajectoryPage extends StatelessWidget {
       cou2.value = cou;
     }
     loop = 0;
-    cou2.value = '00:00';
+    cou2.value = '';
   }
 }
 

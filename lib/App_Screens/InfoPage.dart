@@ -179,11 +179,12 @@ class InfoPage extends StatelessWidget {
                   ],
                 ),
               )
-                  .animate(delay: Duration(seconds: 3))
+                  .animate(delay: Duration(seconds: 1))
                   .slide(
                       begin: Offset(2, 0),
                       end: Offset(0, 0),
                       duration: Duration(seconds: 2))
+                  .then()
                   .shimmer(
                       color: Colors.blueAccent, duration: Duration(seconds: 2)),
             ),

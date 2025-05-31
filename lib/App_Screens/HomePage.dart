@@ -28,6 +28,8 @@ final contn = TextEditingController();
 
 Station sta_d = Station(name: '', late: 0.0, long: 0.0, link: '');
 // location variable
+Nerst? n;
+var name = ''.obs;
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -37,8 +39,6 @@ class _HomePageState extends State<HomePage> {
     file.write('splash', 'shittt');
   }
 
-  Nerst? n;
-  var name = ''.obs;
   void getst() async {
     n = await Nerst().getdata();
     cont.text = n!.st!.name;
@@ -84,10 +84,14 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: Center(
                           child: Obx(() {
-                            return Text(
-                              '${name.value}',
-                              style: TextStyle(fontSize: 20),
-                            );
+                            return (!(name.value == ''))
+                                ? Text(
+                                    '${name.value}',
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                : CircularProgressIndicator(
+                                    color: Colors.blueAccent,
+                                  );
                           }),
                         ),
                       ),

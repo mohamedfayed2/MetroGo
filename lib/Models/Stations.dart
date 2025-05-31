@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:metro_app/Models/sta_tg.dart';
 
 //line 1 in metro
@@ -173,8 +172,8 @@ final List<Station> statoin = const [
           "https://www.google.com/maps/place/Mohamed+Naguib+Metro+Station/@30.0882622,31.3253075,12z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x145840b96aedafff:0xe3ac95702a40face!2z2YXYrdmF2K8g2YbYrNmK2KjYjCDYp9mE2KjZhNin2YLYs9ip2Iwg2LnYp9io2K_ZitmG2Iwg2YXYrdin2YHYuNipINin2YTZgtin2YfYsdip4oCsIDQyODIwMDE!2m2!1d31.2441623!2d30.0453216!3m5!1s0x145840b969cdea27:0x97d6bfa40e902cd2!8m2!3d30.045362!4d31.244032!16s%2Fg%2F11mgs2hf3b?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
   Station(
       name: "sadat",
-      late: 30.04363448963182,
-      long: 31.235860155469567,
+      late: 30.04413892241263,
+      long: 31.234420093586042,
       link:
           "https://www.google.com/maps/place/Sadat+Metro+Station/@30.113176,31.3178076,12z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x145841dc3b3f902f:0x1adaa1d092ec38f3!2zU2FkYXQgTWV0cm8gU3RhdGlvbiwgMjZWUCtDOFjYjCDZhdmK2K_Yp9mGINin2YTYqtit2LHZitix2Iwg2YLYtdixINin2YTYr9mI2KjYp9ix2KnYjCDZgtiz2YUg2YLYtdixINin2YTZhtmK2YTYjCDZhdit2KfZgdi42Kkg2KfZhNmC2KfZh9ix2KnigKwgNDI3MjA3Nw!2m2!1d31.2358609!2d30.043622!3m5!1s0x145841dc3b3f902f:0x1adaa1d092ec38f3!8m2!3d30.043622!4d31.2358609!16s%2Fg%2F11fm_bxhlx?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
   Station(
@@ -224,5 +223,171 @@ final List<Station> statoin = const [
       late: 29.981107134363445,
       long: 31.21244944501756,
       link:
-          "https://www.google.com/maps/place/%D8%A7%D9%84%D9%85%D9%86%D9%8A%D8%A8%E2%80%AD/@30.028783,31.2683131,12.57z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x1458464bea5cc439:0xa6e716ace7b6b9e4!2z2KfZhNmF2YbZitio2Iwg2KzYstmK2LHYqSDYp9mE2K_Zh9io2Iwg2YLYs9mFINin2YTYrNmK2LLYqdiMINmF2K3Yp9mB2LjYqSDYp9mE2KzZitiy2KkgMzcyMjExMw!2m2!1d31.2123247!2d29.9810944!3m5!1s0x1458464bea5cc439:0xa6e716ace7b6b9e4!8m2!3d29.9810944!4d31.2123247!16s%2Fg%2F1q5ggdn2m?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D")
+          "https://www.google.com/maps/place/%D8%A7%D9%84%D9%85%D9%86%D9%8A%D8%A8%E2%80%AD/@30.028783,31.2683131,12.57z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x1458464bea5cc439:0xa6e716ace7b6b9e4!2z2KfZhNmF2YbZitio2Iwg2KzYstmK2LHYqSDYp9mE2K_Zh9io2Iwg2YLYs9mFINin2YTYrNmK2LLYqdiMINmF2K3Yp9mB2LjYqSDYp9mE2KzZitiy2KkgMzcyMjExMw!2m2!1d31.2123247!2d29.9810944!3m5!1s0x1458464bea5cc439:0xa6e716ace7b6b9e4!8m2!3d29.9810944!4d31.2123247!16s%2Fg%2F1q5ggdn2m?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
+  Station(
+      name: 'helwan',
+      late: 29.8483192,
+      long: 31.3368529,
+      link:
+          'https://www.google.com/maps/dir/30.1786226,31.2285564/%D9%85%D8%AA%D8%B1%D9%88+%D8%AD%D9%84%D9%88%D8%A7%D9%86%D8%8C+%D8%AD%D9%84%D9%88%D8%A7%D9%86+%D8%A7%D9%84%D8%B4%D8%B1%D9%82%D9%8A%D8%A9%D8%8C+%D9%82%D8%B3%D9%85+%D8%AD%D9%84%D9%88%D8%A7%D9%86%E2%80%AD/@30.0185878,31.443081,11z/data=!4m10!4m9!1m1!4e1!1m5!1m1!1s0x145836a301ca3eff:0x251d0e6d108b3980!2m2!1d31.3342309!2d29.848982!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D'),
+  Station(
+      name: 'ain helwan',
+      late: 29.862675,
+      long: 31.325058,
+      link:
+          'https://www.google.com/maps/dir/30.1786226,31.2285564/29.862675,+31.325058/@29.8534339,31.4030316,12z/data=!4m8!4m7!1m1!4e1!1m3!2m2!1d31.325058!2d29.862675!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D'),
+  Station(
+      name: 'helwan university',
+      late: 29.8680,
+      long: 31.3167,
+      link: 'https://www.google.com/maps/place/29.8680,31.3167'),
+  Station(
+      name: 'wadi hof',
+      late: 29.879089,
+      long: 31.313604,
+      link:
+          'https://www.google.com/maps/dir/30.1786226,31.2285564/%D9%85%D8%AD%D8%B7%D8%A9+%D9%85%D8%AA%D8%B1%D9%88+%D9%88%D8%A7%D8%AF%D9%8A+%D8%AD%D9%88%D9%81%D8%8C+V8H7%2BJCP%D8%8C+(%D8%B4%D8%A7%D8%B1%D8%B9+%D8%B1%D9%82%D9%85+1+(%D8%B7%D8%B1%D9%8A%D9%82+%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%8C+%D9%85%D9%86%D8%B4%D8%A3%D8%A9+%D9%86%D8%A7%D8%B5%D8%B1%D8%8C+%D8%A7%D9%84%D9%85%D8%B9%D8%B5%D8%B1%D8%A9%D8%8C+%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9+%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9%E2%80%AC+11433%E2%80%AD/@29.8789181,31.3138393,20.43z/data=!4m10!4m9!1m1!4e1!1m5!1m1!1s0x145836f98d575a45:0x94b898c35d738a03!2m2!1d31.3135726!2d29.8790763!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D'),
+  Station(
+      name: 'hadayek helwan',
+      late: 29.89713200938259,
+      long: 31.303947302490286,
+      link:
+          'https://www.google.com/maps/dir/Hadayek+Helwan/29.8971324,31.303951/@29.897171,31.3042846,21z/data=!4m10!4m9!1m5!1m1!1s0x145837a93f9668b1:0xbd1ae6eff751b5ed!2m2!1d31.3039662!2d29.897136!1m1!4e1!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D'), //check
+  Station(
+      name: 'el-maasara',
+      late: 29.9048,
+      long: 31.2859,
+      link: 'https://www.google.com/maps/place/29.9048,31.2859'), //check
+  Station(
+      name: 'tora el-asmant',
+      late: 29.9304,
+      long: 31.3094,
+      link:
+          'https://www.google.com/maps/dir/30.1786731,31.2285499/%D8%B7%D8%B1%D8%A9+%D8%A7%D9%84%D8%A3%D8%B3%D9%85%D9%86%D8%AA%D8%8C+%D9%82%D8%B3%D9%85+%D8%B7%D8%B1%D8%A9%D8%8C+%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9+%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9%E2%80%AC+4061001%E2%80%AD/@29.9259956,31.2879284,18.42z/data=!4m10!4m9!1m1!4e1!1m5!1m1!1s0x145837929d1b118b:0x687673275334862d!2m2!1d31.2875444!2d29.9259651!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D'), //check
+  Station(
+      name: 'kozzika',
+      late: 29.936797107912966,
+      long: 31.28186889843259,
+      link:
+          'https://www.google.com/maps/place/%D9%83%D9%88%D8%AA%D8%B3%D9%8A%D9%83%D8%A7+%D9%85%D8%AD%D8%B7%D8%A9+%D9%85%D8%AA%D8%B1%D9%88+%D8%A7%D9%84%D8%A7%D9%86%D9%81%D8%A7%D9%82%E2%80%AD/@29.9367109,31.2822688,20.41z/data=!4m21!1m14!4m13!1m4!2m2!1d31.2285499!2d30.1786731!4e1!1m6!1m2!1s0x145837f5b8dfab9d:0x1ab6540eb44bd967!2z2YPZiNiq2LPZg9in2Iwg2LfYsdipINin2YTYrdmK2LcgKNin2YTYqNmE2K8g2LPYp9io2YLYp9mLKSDZg8OZ2Iwg2YLYs9mFINi32LHYqdiMINmF2K3Yp9mB2LjYqSDYp9mE2YLYp9mH2LHYqeKArCA0MDYyMTMw!2m2!1d31.2818206!2d29.936259!3e0!3m5!1s0x14583725958f4061:0x136bfd5f9c8eb74!8m2!3d29.9367976!4d31.2818705!16s%2Fg%2F11kpvg3pb1?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D'), //check
+  Station(
+      name: 'tora el-balad', late: 29.9546, long: 31.2978, link: ''), //check
+  Station(
+      name: 'sakanat el-maadi', late: 29.9673, long: 31.2858, link: ''), //check
+  Station(
+      name: 'maadi',
+      late: 29.96030235100026,
+      long: 31.257643012714286,
+      link:
+          'https://www.google.com/maps/dir/30.1786226,31.2285564/%D9%85%D8%AD%D8%B7%D8%A9+%D9%85%D8%AA%D8%B1%D9%88+%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%AF%D9%8A%D8%8C+%D9%85%D8%B9%D8%A7%D8%AF%D9%8A+%D8%A7%D9%84%D8%AE%D8%A8%D9%8A%D8%B1%D9%8A+%D8%A7%D9%84%D8%B4%D8%B1%D9%82%D9%8A%D8%A9%D8%8C+%D9%82%D8%B3%D9%85+%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%AF%D9%8A%D8%8C+%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9+%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9%E2%80%AC+4211129%E2%80%AD/@30.0717576,31.2399719,11z/data=!3m1!4b1!4m19!1m8!3m7!1s0x145847f41b672bd7:0x7357392bdd40f39b!2z2YXYrdi32Kkg2YXYqtix2Ygg2KfZhNmF2LnYp9iv2Yo!8m2!3d29.9603028!4d31.2576431!15sCiDZhdit2LfYqSDZhdiq2LHZiCDYp9mE2YXYudin2K_ZipIBDnN1YndheV9zdGF0aW9uqgFJEAEyHxABIhv2vYInL5n5x1o5crjbMKXiAoocEt8qa8GljdEyJBACIiDZhdit2LfYqSDZhdiq2LHZiCDYp9mE2YXYudin2K_ZiuABAA!16s%2Fg%2F1td8wdwh!4m9!1m1!4e1!1m5!1m1!1s0x145847f41b672bd7:0x7357392bdd40f39b!2m2!1d31.2576431!2d29.9603028!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D'),
+  Station(
+      name: 'hadayek el-maadi',
+      late: 29.9701,
+      long: 31.2507,
+      link: 'https://www.google.com/maps?q=29.9701,31.2507'),
+  Station(
+      name: 'dar el-salam',
+      late: 29.9845,
+      long: 31.2504,
+      link: 'https://www.google.com/maps?q=29.9845,31.2504'),
+  Station(
+      name: 'el-zahraa',
+      late: 29.9936,
+      long: 31.2462,
+      link: 'https://www.google.com/maps?q=29.9936,31.2462'),
+  Station(
+      name: 'mar girgis',
+      late: 30.0051,
+      long: 31.2307,
+      link: 'https://www.google.com/maps?q=30.0051,31.2307'),
+  Station(
+      name: 'el-malek el-saleh',
+      late: 30.0195,
+      long: 31.2323,
+      link: 'https://www.google.com/maps?q=30.0195,31.2323'),
+  Station(
+      name: 'el-sayeda zeinab',
+      late: 30.0305,
+      long: 31.2346,
+      link: 'https://www.google.com/maps?q=30.0305,31.2346'),
+  Station(
+      name: 'saad zaghloul',
+      late: 30.0375,
+      long: 31.2383,
+      link: 'https://www.google.com/maps?q=30.0375,31.2383'),
+  Station(
+      name: 'nasser',
+      late: 30.0514,
+      long: 31.2403,
+      link: 'https://www.google.com/maps?q=30.0514,31.2403'),
+  Station(
+      name: 'orabi',
+      late: 30.0567,
+      long: 31.2435,
+      link: 'https://www.google.com/maps?q=30.0567,31.2435'),
+  Station(
+      name: 'ghamra',
+      late: 30.0694,
+      long: 31.2612,
+      link: 'https://www.google.com/maps?q=30.0694,31.2612'),
+  Station(
+      name: 'el-demerdash',
+      late: 30.0753,
+      long: 31.2721,
+      link: 'https://www.google.com/maps?q=30.0753,31.2721'),
+  Station(
+      name: 'manshiet el-sadr',
+      late: 30.0818,
+      long: 31.2804,
+      link: 'https://www.google.com/maps?q=30.0818,31.2804'),
+  Station(
+      name: 'kobri el-qobba',
+      late: 30.0887,
+      long: 31.2882,
+      link: 'https://www.google.com/maps?q=30.0887,31.2882'),
+  Station(
+      name: 'hammamat el-qobba',
+      late: 30.0932,
+      long: 31.2965,
+      link: 'https://www.google.com/maps?q=30.0932,31.2965'),
+  Station(
+      name: 'saray el-qobba',
+      late: 30.0986,
+      long: 31.3031,
+      link: 'https://www.google.com/maps?q=30.0986,31.3031'),
+  Station(
+      name: 'hadayek el-zaitoun',
+      late: 30.1042,
+      long: 31.3098,
+      link: 'https://www.google.com/maps?q=30.1042,31.3098'),
+  Station(
+      name: 'helmeyet el-zaitoun',
+      late: 30.1118,
+      long: 31.3175,
+      link: 'https://www.google.com/maps?q=30.1118,31.3175'),
+  Station(
+      name: 'el-matareyya',
+      late: 30.1197,
+      long: 31.3256,
+      link: 'https://www.google.com/maps?q=30.1197,31.3256'),
+  Station(
+      name: 'ain shams',
+      late: 30.1283,
+      long: 31.3328,
+      link: 'https://www.google.com/maps?q=30.1283,31.3328'),
+  Station(
+      name: 'ezbet el-nakhl',
+      late: 30.1375,
+      long: 31.3401,
+      link: 'https://www.google.com/maps?q=30.1375,31.3401'),
+  Station(
+      name: 'el-marg',
+      late: 30.1488,
+      long: 31.3486,
+      link: 'https://www.google.com/maps?q=30.1488,31.3486'),
+  Station(
+      name: 'new el-marg',
+      late: 30.1602,
+      long: 31.3564,
+      link: 'https://www.google.com/maps?q=30.1602,31.3564'),
 ];
