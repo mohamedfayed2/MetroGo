@@ -45,19 +45,20 @@ class Trip {
       this.pass,
       this.sta2});
 
+  List<String> getLineOf(String station) {
+    if (line_1.contains(station)) return line_1;
+    if (line_2.contains(station)) return line_2;
+    if (line_3.contains(station)) return line_3;
+    return [];
+  }
+
   Future<Trip> l_roud() async {
     count ??= <String>[].obs;
     count2 ??= <String>[].obs;
     sta2 ??= '';
     pass ??= 1;
     //decide the line
-    line_start = (line_1.contains(cont))
-        ? line_1
-        : (line_2.contains(cont))
-            ? line_2
-            : (line_3.contains(cont))
-                ? line_3
-                : [];
+    line_start = getLineOf(cont);
     if (left_3.contains(cont) ||
         right_3.contains(cont2) ||
         right_3.contains(cont) ||

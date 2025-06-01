@@ -225,22 +225,26 @@ final List<Station> statoin = const [
       link:
           "https://www.google.com/maps/place/%D8%A7%D9%84%D9%85%D9%86%D9%8A%D8%A8%E2%80%AD/@30.028783,31.2683131,12.57z/data=!4m20!1m13!4m12!1m4!2m2!1d31.228547!2d30.1786632!4e1!1m6!1m2!1s0x1458464bea5cc439:0xa6e716ace7b6b9e4!2z2KfZhNmF2YbZitio2Iwg2KzYstmK2LHYqSDYp9mE2K_Zh9io2Iwg2YLYs9mFINin2YTYrNmK2LLYqdiMINmF2K3Yp9mB2LjYqSDYp9mE2KzZitiy2KkgMzcyMjExMw!2m2!1d31.2123247!2d29.9810944!3m5!1s0x1458464bea5cc439:0xa6e716ace7b6b9e4!8m2!3d29.9810944!4d31.2123247!16s%2Fg%2F1q5ggdn2m?entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D"),
   Station(
-      name: 'helwan',
-      late: 29.8483192,
-      long: 31.3368529,
-      link:
-          'https://www.google.com/maps/dir/30.1786226,31.2285564/%D9%85%D8%AA%D8%B1%D9%88+%D8%AD%D9%84%D9%88%D8%A7%D9%86%D8%8C+%D8%AD%D9%84%D9%88%D8%A7%D9%86+%D8%A7%D9%84%D8%B4%D8%B1%D9%82%D9%8A%D8%A9%D8%8C+%D9%82%D8%B3%D9%85+%D8%AD%D9%84%D9%88%D8%A7%D9%86%E2%80%AD/@30.0185878,31.443081,11z/data=!4m10!4m9!1m1!4e1!1m5!1m1!1s0x145836a301ca3eff:0x251d0e6d108b3980!2m2!1d31.3342309!2d29.848982!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D'),
+    name: 'helwan',
+    late: 29.8483192,
+    long: 31.3368529,
+    link:
+        'https://www.google.com/maps/dir/30.1786226,31.2285564/%D9%85%D8%AA%D8%B1%D9%88+%D8%AD%D9%84%D9%88%D8%A7%D9%86%D8%8C+%D8%AD%D9%84%D9%88%D8%A7%D9%86+%D8%A7%D9%84%D8%B4%D8%B1%D9%82%D9%8A%D8%A9%D8%8C+%D9%82%D8%B3%D9%85+%D8%AD%D9%84%D9%88%D8%A7%D9%86%E2%80%AD/@30.0185878,31.443081,11z/data=!4m10!4m9!1m1!4e1!1m5!1m1!1s0x145836a301ca3eff:0x251d0e6d108b3980!2m2!1d31.3342309!2d29.848982!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D',
+  ),
   Station(
-      name: 'ain helwan',
-      late: 29.862675,
-      long: 31.325058,
-      link:
-          'https://www.google.com/maps/dir/30.1786226,31.2285564/29.862675,+31.325058/@29.8534339,31.4030316,12z/data=!4m8!4m7!1m1!4e1!1m3!2m2!1d31.325058!2d29.862675!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D'),
+    name: 'ain helwan',
+    late: 29.862675,
+    long: 31.325058,
+    link:
+        'https://www.google.com/maps/dir/30.1786226,31.2285564/29.862675,+31.325058/@29.8534339,31.4030316,12z/data=!4m8!4m7!1m1!4e1!1m3!2m2!1d31.325058!2d29.862675!3e0?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D',
+  ),
   Station(
-      name: 'helwan university',
-      late: 29.8680,
-      long: 31.3167,
-      link: 'https://www.google.com/maps/place/29.8680,31.3167'),
+    name: 'helwan university',
+    late: 29.8680,
+    long: 31.3167,
+    link: 'https://www.google.com/maps/place/29.8680,31.3167',
+  ),
+
   Station(
       name: 'wadi hof',
       late: 29.879089,
