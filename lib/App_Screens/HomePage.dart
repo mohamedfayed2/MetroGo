@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: IconButton(
                             onPressed: () {
-                              if (sta_d.link == '') {
+                              if (sta_d.link == null) {
                                 return;
                               }
                               launchUrl(Uri.parse(sta_d.link));
@@ -140,20 +140,15 @@ class _HomePageState extends State<HomePage> {
                         await locationFromAddress('${contn.text}, Egypt');
                     print(locations);
                     dis = 100000000000000000000000.0;
+                    var dis2 = 0.0;
                     for (int i = 0; i < statoin.length; i++) {
                       if (dis >
-                          (Geolocator.distanceBetween(
+                          (dis2 = Geolocator.distanceBetween(
                                   locations[0].latitude,
                                   locations[0].longitude,
                                   statoin[i].late,
                                   statoin[i].long)) /
                               1000) {
-                        dis = Geolocator.distanceBetween(
-                                locations[0].latitude,
-                                locations[0].longitude,
-                                statoin[i].late,
-                                statoin[i].long) /
-                            1000;
                         nar.value = statoin[i].name;
                       }
                       print(nar.value);

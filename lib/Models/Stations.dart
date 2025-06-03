@@ -394,4 +394,141 @@ final List<Station> statoin = const [
       late: 30.1602,
       long: 31.3564,
       link: 'https://www.google.com/maps?q=30.1602,31.3564'),
+  Station(
+      name: 'al-dwal university', late: 30.050177, long: 31.198947, link: ''),
+  Station(
+      name: 'adly mansour',
+      late: 30.1245,
+      long: 31.4019,
+      link: 'https://www.google.com/maps?q=30.1245,31.4019'),
+  Station(
+      name: 'el-haykestep',
+      late: 30.1438,
+      long: 31.4047,
+      link: 'https://www.google.com/maps?q=30.1438,31.4047'),
+  Station(
+      name: 'omar ibn el-khattab',
+      late: 30.1082,
+      long: 31.3742,
+      link: 'https://www.google.com/maps?q=30.1082,31.3742'),
+  Station(
+      name: 'qobaa',
+      late: 30.1011,
+      long: 31.3653,
+      link: 'https://www.google.com/maps?q=30.1011,31.3653'),
+  Station(
+      name: 'hesham barakat',
+      late: 30.0935,
+      long: 31.3571,
+      link: 'https://www.google.com/maps?q=30.0935,31.3571'),
+  Station(
+      name: 'el-nozha',
+      late: 30.1282,
+      long: 31.3600,
+      link: 'https://www.google.com/maps?q=30.1282,31.3600'),
+  Station(
+      name: 'nadi el-shams',
+      late: 30.1223,
+      long: 31.3440,
+      link: 'https://www.google.com/maps?q=30.1223,31.3440'),
+  Station(
+      name: 'alf maskan',
+      late: 30.0725,
+      long: 31.3312,
+      link: 'https://www.google.com/maps?q=30.0725,31.3312'),
+  Station(
+      name: 'heliopolis',
+      late: 30.0658,
+      long: 31.3237,
+      link: 'https://www.google.com/maps?q=30.0658,31.3237'),
+  Station(
+      name: 'haroun',
+      late: 30.0593,
+      long: 31.3164,
+      link: 'https://www.google.com/maps?q=30.0593,31.3164'),
+  Station(
+      name: 'al-ahram',
+      late: 30.0527,
+      long: 31.3091,
+      link: 'https://www.google.com/maps?q=30.0527,31.3091'),
+  Station(
+      name: 'kolleyet el-banat',
+      late: 30.0461,
+      long: 31.3018,
+      link: 'https://www.google.com/maps?q=30.0461,31.3018'),
+  Station(
+      name: 'stadium',
+      late: 30.0395,
+      long: 31.2945,
+      link: 'https://www.google.com/maps?q=30.0395,31.2945'),
+  Station(
+      name: 'fair zone',
+      late: 30.0332,
+      long: 31.2868,
+      link: 'https://www.google.com/maps?q=30.0332,31.2868'),
+  Station(
+      name: 'abbassiya',
+      late: 30.0673,
+      long: 31.2745,
+      link: 'https://www.google.com/maps?q=30.0673,31.2745'),
+  Station(
+      name: 'abdou pasha',
+      late: 30.0621,
+      long: 31.2658,
+      link: 'https://www.google.com/maps?q=30.0621,31.2658'),
+  Station(
+      name: 'el-geish',
+      late: 30.0575,
+      long: 31.2583,
+      link: 'https://www.google.com/maps?q=30.0575,31.2583'),
+  Station(
+      name: 'bab el-shaaria',
+      late: 30.0519,
+      long: 31.2517,
+      link: 'https://www.google.com/maps?q=30.0519,31.2517'),
+  Station(
+      name: 'maspero',
+      late: 30.0518,
+      long: 31.2335,
+      link: 'https://www.google.com/maps?q=30.0518,31.2335'),
+  Station(
+      name: 'safa hijazy',
+      late: 30.0528,
+      long: 31.2269,
+      link: 'https://www.google.com/maps?q=30.0528,31.2269'),
+  Station(
+      name: 'kit kat',
+      late: 30.0583,
+      long: 31.2198,
+      link: 'https://www.google.com/maps?q=30.0583,31.2198'),
+  Station(
+      name: 'al-sudan',
+      late: 30.0638,
+      long: 31.2127,
+      link: 'https://www.google.com/maps?q=30.0638,31.2127'),
+  Station(
+      name: 'imbaba',
+      late: 30.0693,
+      long: 31.2056,
+      link: 'https://www.google.com/maps?q=30.0693,31.2056'),
+  Station(
+      name: 'al-bohi',
+      late: 30.0748,
+      long: 31.1985,
+      link: 'https://www.google.com/maps?q=30.0748,31.1985'),
+  Station(
+      name: 'arab el-qawmeya',
+      late: 30.0803,
+      long: 31.1914,
+      link: 'https://www.google.com/maps?q=30.0803,31.1914'),
+  Station(
+      name: 'ring road',
+      late: 30.0858,
+      long: 31.1843,
+      link: 'https://www.google.com/maps?q=30.0858,31.1843'),
+  Station(
+      name: 'rod el-farag corridor',
+      late: 30.0913,
+      long: 31.1772,
+      link: 'https://www.google.com/maps?q=30.0913,31.1772'),
 ];

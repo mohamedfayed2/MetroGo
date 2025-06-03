@@ -160,30 +160,32 @@ class TrajectoryPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15),
-            Center(
-              child: Container(
-                width: Get.width * 0.8,
-                padding: EdgeInsets.all(12),
-                margin: EdgeInsets.symmetric(horizontal: 5),
-                decoration: BoxDecoration(
-                  color: Colors.black87, // لون مختلف للتمييز
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border(
-                      bottom: BorderSide(color: Colors.white),
-                      left: BorderSide(color: Colors.white),
-                      right: BorderSide(color: Colors.white),
-                      top: BorderSide(color: Colors.white)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 4,
-                      offset: Offset(2, 2),
+            (trip.sta2!.isEmpty)
+                ? Center(
+                    child: Container(
+                      width: Get.width * 0.8,
+                      padding: EdgeInsets.all(12),
+                      margin: EdgeInsets.symmetric(horizontal: 5),
+                      decoration: BoxDecoration(
+                        color: Colors.black87, // لون مختلف للتمييز
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border(
+                            bottom: BorderSide(color: Colors.white),
+                            left: BorderSide(color: Colors.white),
+                            right: BorderSide(color: Colors.white),
+                            top: BorderSide(color: Colors.white)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 4,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
+                      ),
+                      child: InfoCard(title: "محطه التبديل", value: trip.sta2!),
                     ),
-                  ],
-                ),
-                child: InfoCard(title: "محطه التبديل", value: trip.sta2!),
-              ),
-            ),
+                  )
+                : SizedBox(),
             SizedBox(height: 20),
             Expanded(
               child: Row(
