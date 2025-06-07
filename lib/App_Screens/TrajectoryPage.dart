@@ -160,10 +160,10 @@ class TrajectoryPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15),
-            (trip.sta2!.isEmpty)
+            (trip.sta2!.isNotEmpty)
                 ? Center(
                     child: Container(
-                      width: Get.width * 0.8,
+                      width: Get.width * 0.7,
                       padding: EdgeInsets.all(12),
                       margin: EdgeInsets.symmetric(horizontal: 5),
                       decoration: BoxDecoration(

@@ -227,11 +227,11 @@ class Trip {
       print(sta2);
       if (sub_st < sub_end) {
         print(sta2);
-        count?.value = line_start.sublist(sub_st, sub_end + 1);
+        count?.value = line_start.sublist(sub_st, sub_end);
         sub_st = line_end.indexOf(sta2!);
         sub_end = line_end.indexOf(cont2!);
         if (sub_end > sub_st) {
-          count2?.value = line_end.sublist(sub_st, sub_end);
+          count2?.value = line_end.sublist(sub_st, sub_end + 1);
           dir = line_end[line_end.length - 1];
         } else {
           count2?.value = line_end.sublist(sub_end, sub_st);
