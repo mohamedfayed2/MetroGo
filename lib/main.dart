@@ -14,6 +14,8 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+List<Trip> triplist = [];
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

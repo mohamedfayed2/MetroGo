@@ -44,7 +44,28 @@ class Trip {
       this.count2,
       this.pass,
       this.sta2});
-
+  factory Trip.fromjson(Map<String, dynamic> json) => Trip(
+      cont: json['cont'],
+      cont2: json['cont2'],
+      ticket: json['ticket'],
+      time: json['time'],
+      dir: json['dir'],
+      sum: json['sum'],
+      count: json['count'].cast<String>(),
+      count2: json['count2'].cast<String>(),
+      pass: json['pass'],
+      sta2: json['sta2']);
+  Map<String, dynamic> tojson() => {
+        'cont': cont,
+        'cont2': cont2,
+        'ticket': ticket,
+        'time': time,
+        'dir': dir,
+        'sum': sum,
+        'count': count,
+        'pass': pass,
+        'sta2': sta2
+      };
   List<String> getLineOf(String station) {
     if (line_1.contains(station)) return line_1;
     if (line_2.contains(station)) return line_2;
@@ -57,80 +78,87 @@ class Trip {
     count2 ??= <String>[].obs;
     sta2 ??= '';
     pass ??= 1;
+    line_All = line_3 + right_3 + left_3;
     //decide the line
     line_start = getLineOf(cont);
-    if (left_3.contains(cont) ||
-        right_3.contains(cont2) ||
-        right_3.contains(cont) ||
-        left_3.contains(cont2)) {
-      print('hereeeee');
-      (line_1.contains(cont) && line_2.contains(cont))
-          ? (line_1.contains(cont2))
-              ? line_start = line_1
-              : (line_2.contains(cont2))
-                  ? line_start = line_2
-                  : null
-          : (line_2.contains(cont) && line_3.contains(cont))
-              ? (line_2.contains(cont2))
-                  ? line_start = line_2
-                  : (line_3.contains(cont2))
-                      ? line_start = line_3
-                      : null
-              : (line_1.contains(cont) && line_3.contains(cont))
-                  ? (line_1.contains(cont2))
-                      ? line_start = line_1
-                      : (line_3.contains(cont2))
-                          ? line_start = line_3
-                          : null
-                  : null;
-    } else if ((left_3.contains(cont) && right_3.contains(cont2)) ||
-        (right_3.contains(cont) && left_3.contains(cont2))) {
-      print('a');
-      line_All = line_3 + right_3 + left_3;
-      if (line_All.contains(cont) && line_All.contains(cont2)) {
-        print('b');
-        if ((line_3.contains(cont) && right_3.contains(cont2)) ||
-            ((line_3.contains(cont2) && right_3.contains(cont)))) {
-          line_start = line_3 + right_3;
-        } else if ((line_3.contains(cont2) && left_3.contains(cont)) ||
-            (line_3.contains(cont) && left_3.contains(cont2))) {
-          print('c');
-          line_start = line_3 + left_3;
-        } else if (left_3.contains(cont) && right_3.contains(cont2)) {
-          if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
-            left_3.add('kit kat');
+    if ((cont != 'cairo university' && cont != 'cairo university') ||
+        line_start.isEmpty) {
+      if ((right_3.contains(cont2) ||
+              left_3.contains(cont2) ||
+              line_start.isEmpty) &&
+          (!right_3.contains(cont) && !left_3.contains(cont))) {
+        print('hereeeee');
+        (line_1.contains(cont) && line_2.contains(cont))
+            ? (line_1.contains(cont2))
+                ? line_start = line_1
+                : (line_2.contains(cont2))
+                    ? line_start = line_2
+                    : null
+            : (line_2.contains(cont) && line_3.contains(cont))
+                ? (line_2.contains(cont2))
+                    ? line_start = line_2
+                    : (line_3.contains(cont2))
+                        ? line_start = line_3
+                        : null
+                : (line_1.contains(cont) && line_3.contains(cont))
+                    ? (line_1.contains(cont2))
+                        ? line_start = line_1
+                        : (line_3.contains(cont2))
+                            ? line_start = line_3
+                            : null
+                    : null;
+        print('حا لو ساب كلو ودخل هنا');
+
+        print(line_start);
+      } else if ((left_3.contains(cont) && right_3.contains(cont2)) ||
+          (right_3.contains(cont) && left_3.contains(cont2))) {
+        print('a');
+        line_All = line_3 + right_3 + left_3;
+        if (line_All.contains(cont) && line_All.contains(cont2)) {
+          print('b');
+          if ((line_3.contains(cont) && right_3.contains(cont2)) ||
+              ((line_3.contains(cont2) && right_3.contains(cont)))) {
+            line_start = line_3 + right_3;
+          } else if ((line_3.contains(cont2) && left_3.contains(cont)) ||
+              (line_3.contains(cont) && left_3.contains(cont2))) {
+            print('c');
+            line_start = line_3 + left_3;
+          } else if (left_3.contains(cont) && right_3.contains(cont2)) {
+            if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
+              left_3.add('kit kat');
+            }
+            line_start = line_3 + left_3 + right_3;
+          } else if (right_3.contains(cont) && left_3.contains(cont2)) {
+            if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
+              right_3.add('kit kat');
+            }
+            line_start = line_3 + right_3 + left_3;
           }
-          line_start = line_3 + left_3 + right_3;
-        } else if (right_3.contains(cont) && left_3.contains(cont2)) {
-          right_3 = right_3.reversed.toList();
-          if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
-            right_3.add('kit kat');
+        } else if (line_All.contains(cont)) {
+          if (left_3.contains(cont)) {
+            if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
+              left_3.add('kit kat');
+            }
+            line_start = line_3 + left_3 + right_3;
+          } else if (right_3.contains(cont)) {
+            if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
+              right_3.add('kit kat');
+            }
+            line_start = line_3 + right_3 + left_3;
           }
-          line_start = line_3 + right_3 + left_3;
+          if (left_3.contains(cont) && left_3.contains(cont2)) {
+            line_start = left_3;
+          } else if (left_3.contains(cont) && left_3.contains(cont2)) {
+            line_start = right_3;
+          }
+        } else {
+          line_start = (left_3.contains(cont2))
+              ? line_3 + left_3
+              : (right_3.contains(cont2))
+                  ? line_3 + right_3
+                  : [];
+          print('احا لو ساب كلو ودخل هنا');
         }
-      } else if (line_All.contains(cont)) {
-        if (left_3.contains(cont)) {
-          if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
-            left_3.add('kit kat');
-          }
-          line_start = line_3 + left_3 + right_3;
-        } else if (right_3.contains(cont)) {
-          if (!right_3.contains('kit kat') && !left_3.contains('kit kat')) {
-            right_3.add('kit kat');
-          }
-          line_start = line_3 + right_3 + left_3;
-        }
-        if (left_3.contains(cont) && left_3.contains(cont2)) {
-          line_start = left_3;
-        } else if (left_3.contains(cont) && left_3.contains(cont2)) {
-          line_start = right_3;
-        }
-      } else {
-        line_start = (left_3.contains(cont2))
-            ? line_3 + left_3
-            : (right_3.contains(cont2))
-                ? line_3 + right_3
-                : [];
       }
     }
 
@@ -152,7 +180,6 @@ class Trip {
         dir = ' ${line_start[0]} ';
       }
     } else {
-      print(line_start);
       sta2 = line_start[line_start.length - 1];
       if (line_1.contains(cont2)) {
         line_end = line_1;
@@ -182,20 +209,21 @@ class Trip {
                     ? sta2 = st_l[i]
                     : null;
       }
-      if (right_3.contains(cont2)) {
-        left_3 = left_3.reversed.toList();
-        line_end = line_3 + left_3 + right_3;
-      } else if (right_3.contains(sta2) && left_3.contains(cont2)) {
-        line_end = line_3 + right_3 + left_3;
-      } else if (left_3.contains(cont2)) {
-        left_3 = left_3.reversed.toList();
-        line_end = line_3 + left_3 + right_3;
+      if (cont2 != 'cairo university') {
+        if (right_3.contains(cont2)) {
+          left_3 = left_3.reversed.toList();
+          line_end = line_3 + left_3 + right_3;
+        } else if (right_3.contains(sta2) && left_3.contains(cont2)) {
+          line_end = line_3 + right_3 + left_3;
+        } else if (left_3.contains(cont2)) {
+          left_3 = left_3.reversed.toList();
+          line_end = line_3 + left_3 + right_3;
+        }
       }
       print(line_start);
+      print(line_end);
       sub_st = line_start.indexOf(cont);
       sub_end = line_start.indexOf(sta2!);
-      print(sub_st);
-      print(sub_end);
       print(sta2);
       if (sub_st < sub_end) {
         print(sta2);
@@ -217,10 +245,10 @@ class Trip {
         sub_st = line_end.indexOf(sta2!);
         sub_end = line_end.indexOf(cont2!);
         if (sub_end > sub_st) {
-          count2?.value = line_end.sublist(sub_st, sub_end);
+          count2?.value = line_end.sublist(sub_st, sub_end + 1);
           dir = line_end[line_end.length - 1];
         } else {
-          count2?.value = line_end.sublist(sub_end, sub_st + 1);
+          count2?.value = line_end.sublist(sub_end, sub_st);
           count2?.value = count2!.reversed.toList();
           dir = line_end[0];
         }
