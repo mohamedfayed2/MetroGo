@@ -49,15 +49,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var nar = 'click'.obs;
     final RxBool swi = false.obs;
-    line_All = line_1 + line_2 + line_3 + right_3 + left_3;
-    Set<String> line_s = line_All.toSet();
+    final Set<String> line_s =
+        (line_1 + line_2 + line_3 + right_3 + left_3).toSet();
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         centerTitle: true,
         title: const Text("Home Page"),
-        backgroundColor: Color(0xff007BFF),
-        shape: RoundedRectangleBorder(
+        backgroundColor: const Color(0xff007BFF),
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
         ),
       ),
@@ -138,7 +138,6 @@ class _HomePageState extends State<HomePage> {
                   onTap: () async {
                     List<Location> locations =
                         await locationFromAddress('${contn.text}, Egypt');
-                    print(locations);
                     dis = 100000000000000000000000.0;
                     var dis2 = 0.0;
                     for (int i = 0; i < statoin.length; i++) {
