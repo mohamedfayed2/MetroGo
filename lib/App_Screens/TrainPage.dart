@@ -4,7 +4,6 @@ import '../Customs/Custom_Bottom_Navigation_Bar.dart';
 import '../Models/Stations.dart';
 import '../controllers/NavigationController.dart';
 
-
 class TrainPage extends StatelessWidget {
   final NavigationController navController = Get.find<NavigationController>();
   final RxString selectedLine = 'الخط الاول'.obs;
@@ -13,7 +12,7 @@ class TrainPage extends StatelessWidget {
   final Map<String, List<String>> getLineMap = {
     'الخط الاول': line_1,
     'الخط الثاني': line_2,
-    'الخط الثالث':line_3,
+    'الخط الثالث': line_3,
   };
 
   @override
@@ -24,6 +23,7 @@ class TrainPage extends StatelessWidget {
         centerTitle: true,
         title: Text("مسارات المترو", style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xff007BFF),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -36,7 +36,8 @@ class TrainPage extends StatelessWidget {
                 fillColor: Colors.white12,
                 labelText: 'اختر الخط',
                 labelStyle: TextStyle(color: Colors.white),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
               value: selectedLine.value,
               icon: Icon(Icons.arrow_drop_down, color: Colors.white),
@@ -69,7 +70,10 @@ class TrainPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar:SizedBox(child: CustomBottomNavigationBar(),height: 70,),
+      bottomNavigationBar: SizedBox(
+        child: CustomBottomNavigationBar(),
+        height: 70,
+      ),
     );
   }
 }

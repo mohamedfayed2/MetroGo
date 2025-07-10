@@ -160,7 +160,7 @@ class TrajectoryPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15),
-            (trip.sta2!.isNotEmpty)
+            (trip.sta2! != '')
                 ? Center(
                     child: Container(
                       width: Get.width * 0.7,
@@ -232,9 +232,13 @@ class TrajectoryPage extends StatelessWidget {
               padding: const EdgeInsets.only(right: 10, bottom: 13),
               child: ElevatedButton(
                 onPressed: () async {
+                  if (cou2.value != '') {
+                    return;
+                  }
                   getnum();
                   var index = 0;
                   n;
+
                   if (trip.count!.isNotEmpty || trip.cont2!.isNotEmpty) {
                     if (trip.count!.isNotEmpty) {
                       n = await Nerst().getdata();
@@ -312,7 +316,7 @@ class TrajectoryPage extends StatelessWidget {
                     }
                   }
                 },
-                child: Text('strart trip'),
+                child: const Text('strart trip'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,
                   shape: RoundedRectangleBorder(

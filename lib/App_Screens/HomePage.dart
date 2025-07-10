@@ -269,15 +269,19 @@ class _HomePageState extends State<HomePage> {
         ),
         ElevatedButton(
           onPressed: () async {
+            line_All.addAll(line_1 + line_2 + line_3 + left_3 + right_3);
             //this block for avoid the exceptions
             if (cont.text == '' || cont2.text == '') {
+              print('shit 1');
               return;
             } else if (!line_All.contains(cont.text)) {
-              ;
+              print('shit 2');
               return;
             } else if (!line_All.contains(cont2.text)) {
+              print('shit 3');
               return;
             } else if (cont.text == cont2.text) {
+              print('shit 4');
               return;
             }
             final Trip trip_ob = await Trip(

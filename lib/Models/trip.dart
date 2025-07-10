@@ -74,6 +74,7 @@ class Trip {
   }
 
   Future<Trip> l_roud() async {
+    print('hi');
     count ??= <String>[].obs;
     count2 ??= <String>[].obs;
     sta2 ??= '';
@@ -81,7 +82,8 @@ class Trip {
     line_All = line_3 + right_3 + left_3;
     //decide the line
     line_start = getLineOf(cont);
-    if ((cont != 'cairo university' && cont != 'cairo university') ||
+    print(line_start);
+    if ((cont != 'cairo university' && cont2 != 'cairo university') ||
         line_start.isEmpty) {
       if ((right_3.contains(cont2) ||
               left_3.contains(cont2) ||
