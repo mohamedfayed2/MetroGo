@@ -134,8 +134,8 @@ class TicketPage extends StatelessWidget {
                     cont2: cont2.text,
                     pass: int.parse(numcont.text),
                   ).l_roud();
-                  trip.count?.value = [];
-                  trip.count2?.value = [];
+                  trip.count = [];
+                  trip.count2 = [];
                   Get.to(TrajectoryPage(), arguments: trip);
                 },
                 style: ElevatedButton.styleFrom(

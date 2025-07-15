@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:isar/isar.dart';
 import 'Stations.dart';
-
+part 'trip.g.dart';
 //direction like el-moneb or shobra el-khema
 
 //it's a line i will sub from him if i have one line in my road
@@ -22,16 +23,20 @@ var nerst = null;
 var line_All = <String>[];
 var dis = 100000000000000000000000.0;
 
+@collection
 class Trip {
+  Id id = Isar.autoIncrement;
+  @Index(type: IndexType.value)
   String cont;
-  String? cont2;
+  @Index(composite: [CompositeIndex('cont')])
+  String cont2;
   int? ticket;
   String? time;
   String? dir;
   int? sum;
   int? pass = 1;
-  RxList<String>? count;
-  RxList<String>? count2;
+  List<String>? count;
+  List<String>? count2;
   String? sta2;
   Trip(
       {required this.cont,
@@ -172,13 +177,13 @@ class Trip {
     //this block for sub the list and Generat the road
     if (line_start.contains(cont) && line_start.contains(cont2)) {
       sub_st = line_start.indexOf(cont);
-      sub_end = line_start.indexOf(cont2!);
+      sub_end = line_start.indexOf(cont2);
       if (sub_st < sub_end) {
-        count?.value = line_start.sublist(sub_st, sub_end + 1);
+        count = line_start.sublist(sub_st, sub_end + 1);
         dir = line_start[line_start.length - 1];
       } else {
-        count?.value = line_start.sublist(sub_end, sub_st + 1);
-        count?.value = count!.reversed.toList();
+        count = line_start.sublist(sub_end, sub_st + 1);
+        count = count!.reversed.toList();
         dir = ' ${line_start[0]} ';
       }
     } else {
@@ -229,29 +234,29 @@ class Trip {
       print(sta2);
       if (sub_st < sub_end) {
         print(sta2);
-        count?.value = line_start.sublist(sub_st, sub_end);
+        count = line_start.sublist(sub_st, sub_end);
         sub_st = line_end.indexOf(sta2!);
-        sub_end = line_end.indexOf(cont2!);
+        sub_end = line_end.indexOf(cont2);
         if (sub_end > sub_st) {
-          count2?.value = line_end.sublist(sub_st, sub_end + 1);
+          count2 = line_end.sublist(sub_st, sub_end + 1);
           dir = line_end[line_end.length - 1];
         } else {
-          count2?.value = line_end.sublist(sub_end, sub_st);
-          count2?.value = count2!.reversed.toList();
+          count2 = line_end.sublist(sub_end, sub_st);
+          count2 = count2!.reversed.toList();
           dir = line_end[0];
         }
       } else {
         print('1');
-        count?.value = line_start.sublist(sub_end, sub_st + 1);
-        count?.value = count!.reversed.toList();
+        count = line_start.sublist(sub_end, sub_st + 1);
+        count = count!.reversed.toList();
         sub_st = line_end.indexOf(sta2!);
-        sub_end = line_end.indexOf(cont2!);
+        sub_end = line_end.indexOf(cont2);
         if (sub_end > sub_st) {
-          count2?.value = line_end.sublist(sub_st, sub_end + 1);
+          count2 = line_end.sublist(sub_st, sub_end + 1);
           dir = line_end[line_end.length - 1];
         } else {
-          count2?.value = line_end.sublist(sub_end, sub_st);
-          count2?.value = count2!.reversed.toList();
+          count2 = line_end.sublist(sub_end, sub_st);
+          count2 = count2!.reversed.toList();
           dir = line_end[0];
         }
       }

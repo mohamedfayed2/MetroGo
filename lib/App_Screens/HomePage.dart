@@ -150,7 +150,6 @@ class _HomePageState extends State<HomePage> {
                               1000) {
                         nar.value = statoin[i].name;
                       }
-                      print(nar.value);
                     }
                   },
                   child: Container(
@@ -272,7 +271,7 @@ class _HomePageState extends State<HomePage> {
             line_All.addAll(line_1 + line_2 + line_3 + left_3 + right_3);
             //this block for avoid the exceptions
             if (cont.text == '' || cont2.text == '') {
-              print('shit 1');
+              Get.snackbar('error', 'choose stations to start your trip');
               return;
             } else if (!line_All.contains(cont.text)) {
               print('shit 2');

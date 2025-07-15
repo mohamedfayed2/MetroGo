@@ -16,6 +16,8 @@ class TrajectoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var trip = Get.arguments as Trip;
+    RxList<String> count = (trip.count ?? <String>[]).obs;
+    RxList<String> count2 = (trip.count2 ?? <String>[]).obs;
     co = (trip.count!.length + trip.count2!.length) * 2;
     return Scaffold(
       // بص يسطا لما التذكره بتكون ب 10 جنيه بتكون لونها اصفر ولما بتكون ب 12 بتكون خضره
@@ -194,7 +196,7 @@ class TrajectoryPage extends StatelessWidget {
                     child: SizedBox(
                       // قيود واضحة
                       child: Obx(() => ListView.builder(
-                            itemCount: trip.count?.length,
+                            itemCount: count.length,
                             itemBuilder: (context, index) {
                               return StationTile(
                                 stationName: trip.count![index],
@@ -210,7 +212,7 @@ class TrajectoryPage extends StatelessWidget {
                   Expanded(
                     child: SizedBox(
                       child: Obx(() => ListView.builder(
-                            itemCount: trip.count2?.length,
+                            itemCount: count2.length,
                             itemBuilder: (context, index) {
                               return StationTile(
                                 stationName: trip.count2![index],
@@ -239,24 +241,23 @@ class TrajectoryPage extends StatelessWidget {
                   var index = 0;
                   n;
 
-                  if (trip.count!.isNotEmpty || trip.cont2!.isNotEmpty) {
-                    if (trip.count!.isNotEmpty) {
+                  if (count.isNotEmpty || count2.isNotEmpty) {
+                    if (count.isNotEmpty) {
                       n = await Nerst().getdata();
-                      if (trip.count!.contains(n!.st!.name)) {
-                        while (trip.count!.isNotEmpty) {
+                      if (count.contains(n!.st!.name)) {
+                        while (count.isNotEmpty) {
                           await Future.delayed(Duration(minutes: 1));
                           n = await Nerst().getdata();
-                          index = trip.count!.indexOf(n!.st!.name);
+                          index = count.indexOf(n!.st!.name);
                           if (index == -1) {
                             Get.snackbar('info', 'بتستعبطني طب والله ما مكمل');
                             cou2.value = '';
                             break;
                           } else if (index > 0) {
-                            trip.count?.removeAt(index);
+                            count.removeAt(index);
                             index--;
                           } else {
-                            if (trip.count!.length == 1 &&
-                                trip.count2!.isNotEmpty) {
+                            if (count.length == 1 && count2.isNotEmpty) {
                               Get.snackbar(
                                 'info',
                                 'you must go to ${trip.sta2} station in next station',
@@ -264,9 +265,8 @@ class TrajectoryPage extends StatelessWidget {
                                 backgroundColor: Colors.blueAccent,
                                 duration: Duration(seconds: 6),
                               );
-                              trip.count?.removeAt(0);
-                            } else if (trip.count!.length == 1 &&
-                                trip.count2!.isEmpty) {
+                              count.removeAt(0);
+                            } else if (count.length == 1 && count2.isEmpty) {
                               Get.snackbar(
                                 'info',
                                 'you finished trip',
@@ -274,7 +274,7 @@ class TrajectoryPage extends StatelessWidget {
                                 backgroundColor: Colors.blueAccent,
                                 duration: Duration(seconds: 6),
                               );
-                              trip.count?.removeAt(0);
+                              count.removeAt(0);
                             }
                           }
                           name.value = n!.st!.name;
@@ -283,22 +283,22 @@ class TrajectoryPage extends StatelessWidget {
                         Get.snackbar('info', 'بتستعبطني ؟');
                       }
                     }
-                    if (trip.count2!.isNotEmpty) {
+                    if (count2.isNotEmpty) {
                       n = await Nerst().getdata();
-                      if (trip.count2!.contains(n!.st!.name)) {
-                        while (trip.count2!.isNotEmpty) {
+                      if (count2.contains(n!.st!.name)) {
+                        while (count2.isNotEmpty) {
                           await Future.delayed(Duration(minutes: 1));
                           n = await Nerst().getdata();
-                          index = trip.count2!.indexOf(n!.st!.name);
+                          index = count2.indexOf(n!.st!.name);
                           if (index == -1) {
                             Get.snackbar('info', 'بتستعبطني طب والله ما مكمل');
                             cou2.value = '';
                             break;
                           } else if (index > 0) {
-                            trip.count?.removeAt(index);
+                            count.removeAt(index);
                             index--;
                           } else {
-                            if (trip.count2!.length == 1) {
+                            if (count2.length == 1) {
                               Get.snackbar(
                                 'info',
                                 'you finished trip',
@@ -306,7 +306,7 @@ class TrajectoryPage extends StatelessWidget {
                                 backgroundColor: Colors.blueAccent,
                                 duration: Duration(seconds: 6),
                               );
-                              trip.count?.removeAt(index);
+                              count.removeAt(index);
                             }
                           }
                         }
