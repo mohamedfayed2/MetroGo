@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:isar/isar.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:metro_app/App_Screens/TrajectoryPage.dart';
 import 'package:metro_app/Customs/Custom_Bottom_Navigation_Bar.dart';
 import 'package:metro_app/Models/nearst.dart';
 import 'package:metro_app/Models/trip.dart';
+import 'package:metro_app/service/isar_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Models/Stations.dart';
 import '../controllers/NavigationController.dart';
@@ -287,6 +289,8 @@ class _HomePageState extends State<HomePage> {
               cont: cont.text,
               cont2: cont2.text,
             ).l_roud();
+
+            await IsarService.addTrip(trip_ob);
             Get.to(TrajectoryPage(), arguments: trip_ob);
           },
           style: ElevatedButton.styleFrom(

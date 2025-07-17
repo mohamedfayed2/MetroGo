@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:isar/isar.dart';
 import 'package:metro_app/App_Screens/HomePage.dart';
 import 'package:metro_app/App_Screens/onboarding_screen.dart';
 import 'package:metro_app/Models/trip.dart';
+import 'package:metro_app/service/isar_service.dart';
 import 'controllers/NavigationController.dart';
 import 'controllers/bindings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  await IsarService.openIsarSchema();
   Get.put(NavigationController());
   runApp(MyApp());
 }
 
-List<Trip> triplist = [];
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
