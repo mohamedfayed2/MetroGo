@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import '../Customs/Custom_Bottom_Navigation_Bar.dart';
 import '../controllers/NavigationController.dart';
+import 'history_page.dart';
 
 class InfoPage extends StatelessWidget {
   final NavigationController navController = Get.find<NavigationController>();
@@ -44,9 +45,7 @@ class InfoPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
           children: [
             const Icon(Icons.directions_subway_filled,
                 size: 80, color: Colors.white),
@@ -190,6 +189,18 @@ class InfoPage extends StatelessWidget {
             ),
             const SizedBox(
               height: 30,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            TextButton(
+              onPressed: () {
+                Get.to(HistoryPage());
+              },
+              child: Text('History=>'),
+            ),
+            const SizedBox(
+              height: 60,
             ),
             const SizedBox(
               height: 30,

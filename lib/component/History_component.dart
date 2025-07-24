@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:metro_app/App_Screens/HomePage.dart';
 import 'package:metro_app/App_Screens/TrainPage.dart';
 import 'package:metro_app/Models/Stations.dart';
 
@@ -12,68 +11,83 @@ class HistoryComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final countLength = trip.count!.length;
     final count2Length = trip.count2!.length;
-    return SizedBox(
-      width: double.infinity,
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey, width: 1),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 10),
+            padding: EdgeInsets.only(left: 6),
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Column(children: [
-                    Text(
-                        'line ${(line_1.contains(trip.count![0])) ? '1' : (line_2.contains(trip.count![0])) ? '2' : '3'}'),
+                    (trip.count!.isNotEmpty)
+                        ? Text(
+                            'line ${(line_1.contains(trip.count![0])) ? '1' : (line_2.contains(trip.count![0])) ? '2' : '3'}')
+                        : SizedBox(),
                     SizedBox(
-                      height: 8,
+                      height: 6,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: ListView.builder(
-                        itemCount: trip.count!.length,
-                        itemBuilder: (context, index) {
-                          return StationTile(
-                              stationName: trip.count![index],
-                              isFirst: index == 1,
-                              isLast: index == countLength);
-                        },
-                      ),
-                    ),
+                    (trip.count!.isNotEmpty)
+                        ? Container(
+                            width: 115,
+                            height: 130,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: ListView.builder(
+                              itemCount: trip.count!.length,
+                              itemBuilder: (context, index) {
+                                return StationTile(
+                                    stationName: trip.count![index],
+                                    isFirst: index == 0,
+                                    isLast: index == count2Length - 1);
+                              },
+                            ),
+                          )
+                        : SizedBox(),
                   ]),
                   SizedBox(
-                    width: 12,
+                    width: 10,
                   ),
                   Column(
                     children: [
-                      Text(
-                          'line ${(line_1.contains(trip.count![0])) ? '1' : (line_2.contains(trip.count![0])) ? '2' : '3'}'),
+                      (trip.count2!.isNotEmpty)
+                          ? Text(
+                              'line ${(line_1.contains(trip.count![0])) ? '1' : (line_2.contains(trip.count![0])) ? '2' : '3'}')
+                          : SizedBox(),
                       SizedBox(
                         height: 8,
                       ),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ListView.builder(
-                          itemCount: trip.count2!.length,
-                          itemBuilder: (context, index) {
-                            return StationTile(
-                                stationName: trip.count2![index],
-                                isFirst: index == 1,
-                                isLast: index == count2Length);
-                          },
-                        ),
-                      ),
+                      (trip.count2!.isNotEmpty)
+                          ? Container(
+                              width: 115,
+                              height: 130,
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ListView.builder(
+                                itemCount: trip.count2!.length,
+                                itemBuilder: (context, index) {
+                                  return StationTile(
+                                      stationName: trip.count2![index],
+                                      isFirst: index == 0,
+                                      isLast: index == count2Length - 1);
+                                },
+                              ),
+                            )
+                          : SizedBox(),
                     ],
                   ),
                 ],
@@ -86,14 +100,21 @@ class HistoryComponent extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Text(trip.cont),
-                      SizedBox(
-                        width: 6,
-                      ),
-                      Text(trip.cont2)
-                    ],
+                  Text(
+                    trip.cont,
+                    maxLines: 2,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text('|'),
+                  Text('V'),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    trip.cont2,
+                    maxLines: 2,
                   ),
                   SizedBox(
                     height: 10,

@@ -12,7 +12,7 @@ class IsarService {
   static Future<Isar> openIsarSchema() async {
     var diretory = await getApplicationDocumentsDirectory();
     WidgetsFlutterBinding.ensureInitialized();
-    Isar isar = await Isar.open([TripSchema], directory: diretory.path);
+    isar = await Isar.open([TripSchema], directory: diretory.path);
     return isar;
   }
 

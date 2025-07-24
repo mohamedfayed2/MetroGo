@@ -26,7 +26,9 @@ var dis = 100000000000000000000000.0;
 @collection
 class Trip {
   Id id = Isar.autoIncrement;
-  @Index(type: IndexType.value)
+  @Index(
+    type: IndexType.value,
+  )
   String cont;
   @Index(composite: [CompositeIndex('cont')])
   String cont2;
